@@ -10,7 +10,11 @@ import SwiftUI
 struct MyFitView: View {
     @Binding var navigationPath: NavigationPath
     @State var viewModel: MyFitViewModel
-    
+    @State var showActionSheet = false
+    @State var selectedBikeFit: BikeFit?
+    @State var showDeleteBikeFitAlert = false
+    @State var showShareSheet = false
+
     var body: some View {
         GeometryReader { geometry in
             List(viewModel.bikeFits) { bikeFit in
@@ -19,10 +23,23 @@ struct MyFitView: View {
                         navigationPath.append(Coordinator.View.myFitDetailsView(bikeFit))
                     } label: {
                         VStack(alignment: .leading, content: {
-                            Text(bikeFit.name)
-                                .fontWeight(.bold)
-                                .foregroundStyle(Color.primary)
-                            
+                            HStack(alignment: .center) {
+                                Text(bikeFit.name)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(Color.primary)
+                                Spacer()
+                                Button {
+                                    selectedBikeFit = bikeFit
+                                    showActionSheet = true
+                                } label: {
+                                    HStack (spacing: 1) {
+                                        Image(systemName: "circle.fill").font(.system(size: 5))
+                                        Image(systemName: "circle.fill").font(.system(size: 5))
+                                        Image(systemName: "circle.fill").font(.system(size: 5))
+                                    }
+                                }
+                            }
+                        
                             HStack {
                                 VStack(alignment: .leading) {
                                     HStack {
@@ -50,15 +67,15 @@ struct MyFitView: View {
                                         Text("???").foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                 }
-                                .font(.custom("Roboto-Light", size: 14))
+                                .font(.custom("Roboto-Medium", size: 14))
                                 .foregroundStyle(Color.primary)
                                 
                                 Spacer()
                                 
                                 Image("BikeGuides")
                                     .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geometry.size.width * 0.4)
+                                    .scaledToFit()
+                                    .frame(width: geometry.size.width * 0.5)
                             }
                             
                             if !bikeFit.notes.isEmpty {
@@ -91,8 +108,45 @@ struct MyFitView: View {
             }) {
                 HStack {
                     Image(systemName: "plus")
+
                 }
             })
+            .actionSheet(isPresented: $showActionSheet, content: {
+                ActionSheet(title: Text("Bike Fit Options"),
+                            message: nil,
+                            buttons: [
+                                .default(Text("Share Bike Fit"),
+                                         action: {
+                                             showActionSheet = false
+                                             showShareSheet = true
+                                         }),
+                                .cancel({
+                                    showActionSheet = false
+                                    selectedBikeFit = nil
+                                }),
+                                .destructive(Text("Delete Bike Fit"),
+                                             action: {
+                                                 showActionSheet = false
+                                                 showDeleteBikeFitAlert = true
+                                             })
+                            ])
+            })
+            .alert("Delete \(selectedBikeFit?.name ?? "unknown")", isPresented: $showDeleteBikeFitAlert) {
+                Button("Cancel", role: .cancel) {
+                    showDeleteBikeFitAlert = false
+                }
+                Button("Delete", role: .destructive) {
+                    viewModel.deleteBikeFit(selectedBikeFit!)
+                    selectedBikeFit = nil
+                    showDeleteBikeFitAlert = false
+                }
+            }
+            .sheet(isPresented: $showShareSheet) {
+                defer {
+                    showShareSheet = false
+                }
+                return ShareSheet(sharedItems: [selectedBikeFit!.bikeFitAppLink])
+            }
             .onAppear {
                 viewModel.fetchData()
             }

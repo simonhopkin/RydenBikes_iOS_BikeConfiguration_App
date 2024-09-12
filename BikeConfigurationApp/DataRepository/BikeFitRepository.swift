@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 struct BikeFitRepository : BikeFitRepositoryProtocol {
-    
+
     private let modelContext: ModelContext
     
     @MainActor
@@ -31,6 +31,16 @@ struct BikeFitRepository : BikeFitRepositoryProtocol {
         do {
             try modelContext.save()
         } 
+        catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func deleteBikeFit(_ bikeFit: BikeFit) {
+        modelContext.delete(bikeFit)
+        do {
+            try modelContext.save()
+        }
         catch {
             fatalError(error.localizedDescription)
         }

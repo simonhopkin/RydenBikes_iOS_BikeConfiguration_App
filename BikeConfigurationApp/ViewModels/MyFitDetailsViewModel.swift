@@ -10,7 +10,6 @@ import _PhotosUI_SwiftUI
 import SwiftUI
 import SwiftData
 
-//@Observable
 class MyFitDetailsViewModel: ObservableObject {
     
     var bikeFit: BikeFit {
@@ -43,5 +42,19 @@ class MyFitDetailsViewModel: ObservableObject {
     
     func saveBikeFit() {
         bikeFitRepository.addBikeFit(bikeFit)
+    }
+    
+    func saveImageDataToDocuments(imageData: Data) {
+        let filename = UUID().uuidString + ".jpg"
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(filename)
+        
+        do {
+            try imageData.write(to: fileURL)
+            print("fileURL \(fileURL)")
+            bikeFit.imagePath = fileURL.path
+        }
+        catch {
+            print("Error saving image: \(error)")
+        }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import Combine
+import SwiftUI
 
 /// `BikeFit` is a SwiftData model object used to persist bike fit measurements.
 ///
@@ -22,6 +23,21 @@ class BikeFit : Identifiable {
     let created: Date
     var name: String
     var notes: String
+    
+    var imagePath: String?
+    @Transient var image: Image? {
+        get {
+            print("imagePath \(imagePath)")
+
+            guard let imagePath = imagePath else {
+                return nil
+            }
+            if let uiImage = UIImage(contentsOfFile: imagePath) {
+                return Image(uiImage: uiImage)
+            }
+            return nil
+        }
+    }
     
     // Saddle Position Properties
     
@@ -65,7 +81,6 @@ class BikeFit : Identifiable {
             // if Y is edited and X, angle and saddle height are known then recalculate the angle and saddle height
             computeSaddleCentreAndAngle()
         }
-            
     }
 
     // Hand Position Properties
@@ -75,10 +90,47 @@ class BikeFit : Identifiable {
     
     // Handlebar Position Properties
     
-    var bbToHandlebarCentre: Double
-    var bbToHandlebarAngle: Double
-    var bbToHandlebarX: Double
-    var bbToHandlebarY: Double
+    private var _bbToHandlebarCentre: Double
+    @Transient var bbToHandlebarCentre: Double {
+        get { return _bbToHandlebarCentre}
+        set {
+            print("bbToHandlebarCentre set")
+            _bbToHandlebarCentre = newValue
+            computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+        }
+    }
+    
+    private var _bbToHandlebarAngle: Double
+    @Transient var bbToHandlebarAngle: Double {
+        get { return _bbToHandlebarAngle}
+        set {
+            print("bbToHandlebarAngle set")
+            _bbToHandlebarAngle = newValue
+            computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+        }
+    }
+    
+    private var _bbToHandlebarX: Double
+    @Transient var bbToHandlebarX: Double {
+        get { return _bbToHandlebarX }
+        set {
+            print("bbToHandlebarX set")
+            _bbToHandlebarX = newValue
+            // if X is edited and Y, angle and handlebar height are known then recalculate the angle and Y
+            computeHandlebarAngleAndY()
+        }
+    }
+    
+    private var _bbToHandlebarY: Double
+    @Transient var bbToHandlebarY: Double {
+        get { return _bbToHandlebarY }
+        set {
+            print("bbToHandlebarY set")
+            _bbToHandlebarY = newValue
+            // if Y is edited and X, angle and handlebar height are known then recalculate the angle and handlebar height
+            computeHandlebarCentreAndAngle()
+        }
+    }
     
     @Transient
     private var cancellables = Set<AnyCancellable>()
@@ -94,10 +146,10 @@ class BikeFit : Identifiable {
         self._bbToSaddleY = bbToSaddleY
         self.saddleCentreToHand = saddleCentreToHand
         self.saddleToHandDrop = saddleToHandDrop
-        self.bbToHandlebarCentre = bbToHandlebarCentre
-        self.bbToHandlebarAngle = bbToHandlebarAngle
-        self.bbToHandlebarX = bbToHandlebarX
-        self.bbToHandlebarY = bbToHandlebarY
+        self._bbToHandlebarCentre = bbToHandlebarCentre
+        self._bbToHandlebarAngle = bbToHandlebarAngle
+        self._bbToHandlebarX = bbToHandlebarX
+        self._bbToHandlebarY = bbToHandlebarY
     }
     
     convenience init(name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
@@ -183,7 +235,7 @@ class BikeFit : Identifiable {
         return true
     }
     
-    /// Computes `bbSaddleX` and `bbSaddleY` from `bbToSaddleCentre` and `bbToSaddleAngle`
+    /// Computes `bbToSaddleX` and `bbToSaddleY` from `bbToSaddleCentre` and `bbToSaddleAngle`
     private func computeSaddleXAndY() {
         if _bbToSaddleAngle != 0 && _bbToSaddleCentre != 0 {
             
@@ -236,6 +288,63 @@ class BikeFit : Identifiable {
             
             if _bbToSaddleCentre != height {
                 _bbToSaddleCentre = height
+            }
+        }
+    }
+    
+    /// Computes `bbToHandlebarX` and `bbToHandlebarY` from `bbToHandlebarCentre` and `bbToHandlebarAngle`
+    private func computeHandlebarXAndY() {
+        if _bbToHandlebarAngle != 0 && _bbToHandlebarCentre != 0 {
+            
+            let handlebarAngleRadians = (90 - _bbToHandlebarAngle) * .pi / 180.0
+            
+            let x = _bbToHandlebarCentre * sin(handlebarAngleRadians) // calculate the opposite (X)
+            let y = _bbToHandlebarCentre * cos(handlebarAngleRadians) // calculate the adjacent (Y)
+            
+            print("recalculating bbToHandlebarX (\(bbToHandlebarX)) and bbToHandlebarY (\(bbToHandlebarY)) to \(x) and \(y)")
+            
+            if _bbToHandlebarX != x {
+                _bbToHandlebarX = x
+            }
+            
+            if _bbToHandlebarY != y {
+                _bbToHandlebarY = y
+            }
+        }
+    }
+    
+    /// Computes `bbToHandlebarAngle` and `bbToHandlebarY` from `bbToHandlebarX` and `bbToHandlebarCentre`
+    private func computeHandlebarAngleAndY() {
+        
+        if _bbToHandlebarAngle != 0 && _bbToHandlebarY != 0 && _bbToHandlebarCentre != 0 {
+            
+            let angle = 90 - asin(_bbToHandlebarX / _bbToHandlebarCentre) * 180.0 / .pi
+            let y = sqrt(_bbToHandlebarCentre * _bbToHandlebarCentre - _bbToHandlebarX * _bbToHandlebarX)
+            
+            if _bbToHandlebarAngle != angle {
+                _bbToHandlebarAngle = angle
+            }
+            
+            if _bbToHandlebarY != y {
+                _bbToHandlebarY = y
+            }
+        }
+    }
+    
+    /// Computes `bbToHandlebarCentre` and `bbToHandlebarAngle` from `bbToHandlebarX` and `bbToHandlebarY`
+    private func computeHandlebarCentreAndAngle() {
+        
+        if _bbToHandlebarAngle != 0 && _bbToHandlebarX != 0 && _bbToHandlebarCentre != 0 {
+            
+            let angle = 90 - atan(_bbToHandlebarX / _bbToHandlebarY) * 180.0 / .pi
+            let height = sqrt(_bbToHandlebarX * _bbToHandlebarX + _bbToHandlebarY * _bbToHandlebarY)
+            
+            if _bbToHandlebarAngle != angle {
+                _bbToHandlebarAngle = angle
+            }
+            
+            if _bbToHandlebarCentre != height {
+                _bbToHandlebarCentre = height
             }
         }
     }

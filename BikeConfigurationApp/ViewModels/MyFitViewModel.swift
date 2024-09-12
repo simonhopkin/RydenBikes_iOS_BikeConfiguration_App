@@ -22,21 +22,30 @@ class MyFitViewModel {
         bikeFits = bikeFitRepository.fetchBikeFits()
     }
     
-//    func addBikeFit() {
-//        let bikeFit = BikeFit(name: "1st Road Bike Fit",
-//                              notes: "From first bike fit session in June 2022, after raising saddle 15mm, shortening stem 20mm, and raising bars 5mm",
-//                              bbToSaddleCentre: 10,
-//                              bbToSaddleAngle: 20,
-//                              bbToSaddleX: 30,
-//                              bbToSaddleY: 40,
-//                              saddleCentreToHand: 50,
-//                              saddleToHandDrop: 60,
-//                              bbToHandlebarCentre: 70,
-//                              bbToHandlebarAngle: 80,
-//                              bbToHandlebarX: 90,
-//                              bbToHandlebarY: 100)
-//        
-//        bikeFitRepository.addBikeFit(bikeFit)
-//        fetchData()
-//    }
+    func deleteBikeFit(_ bikeFit: BikeFit) {
+        bikeFitRepository.deleteBikeFit(bikeFit)
+        bikeFits = bikeFitRepository.fetchBikeFits()
+    }
+}
+
+extension BikeFit {
+    var bikeFitAppLink: String {
+        get {
+            let url = "https://ryden.bikes/bikeFit"
+            + "?created=\(Int64(created.timeIntervalSince1970 * 1000))"
+            + "&name=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"
+            + "&notes=\(notes.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"
+            + "&bb2SC=\(String(format: "%.1f", bbToSaddleCentre))"
+            + "&bb2SA=\(String(format: "%.2f", bbToSaddleAngle))"
+//            + "&bb2SX=\(String(format: "%.1f", bbToSaddleX))"
+//            + "&bb2SY=\(String(format: "%.1f", bbToSaddleY))"
+            + "&sC2H=\(String(format: "%.1f", saddleCentreToHand))"
+            + "&s2HD=\(String(format: "%.1f", saddleToHandDrop))"
+            + "&bb2HC=\(String(format: "%.1f", bbToHandlebarCentre))"
+            + "&bb2HA=\(String(format: "%.2f", bbToHandlebarAngle))"
+//            + "&bb2HX=\(String(format: "%.1f", bbToHandlebarX))"
+//            + "&bb2HY=\(String(format: "%.1f", bbToHandlebarY))"
+            return url
+        }
+    }
 }

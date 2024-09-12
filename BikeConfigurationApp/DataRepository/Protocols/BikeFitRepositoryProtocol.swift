@@ -10,4 +10,5 @@ import Foundation
 protocol BikeFitRepositoryProtocol {
     func fetchBikeFits() -> [BikeFit]
     func addBikeFit(_ bikeFit: BikeFit)
+    func deleteBikeFit(_ bikeFit: BikeFit)
 }

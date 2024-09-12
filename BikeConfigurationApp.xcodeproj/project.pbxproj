@@ -27,6 +27,7 @@
 		3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC242C90856600B53289 /* MyFitDetailsViewModel.swift */; };
 		3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC262C9090AB00B53289 /* Coordinator.swift */; };
 		3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC292C90A7D600B53289 /* DecimalTextField.swift */; };
+		3E87DC2C2C93381800B53289 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC2B2C93381800B53289 /* ShareSheet.swift */; };
 		3EA04AA82C8C4B5E009BB9AC /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */; };
 		3EA04AA92C8C4B5E009BB9AC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */; };
 		3EA04AAA2C8C4B5E009BB9AC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */; };
@@ -85,6 +86,8 @@
 		3E87DC242C90856600B53289 /* MyFitDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitDetailsViewModel.swift; sourceTree = "<group>"; };
 		3E87DC262C9090AB00B53289 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3E87DC292C90A7D600B53289 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
+		3E87DC2B2C93381800B53289 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		3E87DC2D2C93790F00B53289 /* BikeConfigurationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeConfigurationApp.entitlements; sourceTree = "<group>"; };
 		3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 		3E2140912C8A1378007BA9CA /* BikeConfigurationApp */ = {
 			isa = PBXGroup;
 			children = (
+				3E87DC2D2C93790F00B53289 /* BikeConfigurationApp.entitlements */,
 				3EA04A9B2C8C4B40009BB9AC /* Fonts */,
 				3ECAC01F2C8B4E39008703C5 /* Info.plist */,
 				3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */,
@@ -228,6 +232,7 @@
 				3E645AF32C8CAABA009866A9 /* MyFitView.swift */,
 				3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */,
 				3E87DC262C9090AB00B53289 /* Coordinator.swift */,
+				3E87DC2B2C93381800B53289 /* ShareSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */,
 				3E645AFA2C8CB1DF009866A9 /* BikeFitSaddlePosition.swift in Sources */,
 				3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */,
+				3E87DC2C2C93381800B53289 /* ShareSheet.swift in Sources */,
 				3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */,
 				3E645AFE2C8CB21B009866A9 /* BikeFitHandPosition.swift in Sources */,
 				3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */,
@@ -601,13 +607,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BikeConfigurationApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ryden Bikes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -637,13 +645,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BikeConfigurationApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ryden Bikes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

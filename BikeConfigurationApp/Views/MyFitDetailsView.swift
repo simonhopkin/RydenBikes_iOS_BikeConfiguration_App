@@ -14,11 +14,11 @@ struct MyFitDetailsView: View {
     @Binding var navigationPath: NavigationPath
     @State var viewModel: MyFitDetailsViewModel
     
-    @State private var bikeItem: PhotosPickerItem?
-    @State private var bikeImage = Image("BikeImagePlaceholder")
+    @State private var selectedPhoto: PhotosPickerItem?
     
     @State private var displayInvalidBikeFitAlert = false
-    
+    @State private var displayInvalidBikeFitDiscardOption = false
+
     var body: some View {
         GeometryReader { geometry in
             
@@ -29,9 +29,8 @@ struct MyFitDetailsView: View {
                         
                         TextField("Bike fit name", text: $viewModel.bikeFit.name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .fontWeight(!viewModel.bikeFit.name.isEmpty ? .bold : .regular)
+                            .fontWeight((!viewModel.bikeFit.name.isEmpty ? .bold : .regular))
                             .font(.custom("Roboto-Regular", size: 16))
-                        
                         
                         HStack(alignment: .top, spacing: 20) {
                             
@@ -48,15 +47,15 @@ struct MyFitDetailsView: View {
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
-                            bikeImage
+                            (viewModel.bikeFit.image ?? Image("BikeImagePlaceholder"))
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(5)
-                                .overlay(alignment: .topTrailing) {
-                                    PhotosPicker(selection: $bikeItem,
+                                .overlay(alignment: .topLeading) {
+                                    PhotosPicker(selection: $selectedPhoto,
                                                  matching: .images,
                                                  photoLibrary: .shared()) {
-                                        Image(systemName: "plus.circle.fill")
+                                        Image(systemName: "pencil.circle.fill")
                                             .font(.system(size: 35))
                                             .foregroundColor(.white)
                                             .opacity(0.6)
@@ -145,29 +144,40 @@ struct MyFitDetailsView: View {
                 }
                 else {
                     displayInvalidBikeFitAlert = true
+                    displayInvalidBikeFitDiscardOption = true
                 }
             }) {
                 HStack {
                     Image(systemName: "chevron.left")
                     Text("My Fit")
                 }
+            }, trailing: Button(action: {
+                if viewModel.bikeFit.isValid() {
+                    viewModel.saveBikeFit()
+                    navigationPath.removeLast()
+                }
+                else {
+                    displayInvalidBikeFitAlert = true
+                }
+            }) {
+                Text("Save")
             })
-            .alert(isPresented: $displayInvalidBikeFitAlert) {
-                Alert(
-                    title: Text("Bike Fit Incomplete"),
-                    message: Text("Please ensure all measurements are populated to save this bike fit"),
-                    primaryButton: .default(Text("OK")),
-                    secondaryButton: .destructive(Text("Discard Bike Fit"), action: {
+            .alert("Bike Fit Incomplete", isPresented: $displayInvalidBikeFitAlert) {
+                Button("OK", role: .cancel) { }
+                if displayInvalidBikeFitDiscardOption {
+                    Button("Discard Bike Fit", role: .destructive) {
                         navigationPath.removeLast()
-                    })
-                )
+                    }
+                }
+            } message: {
+                Text("Please ensure all measurements are populated to save this bike fit")
             }
         }
-        .onChange(of: bikeItem) {
+        .onChange(of: selectedPhoto) {
             // manage the loading of the bike image from the photo picker
             Task {
-                if let loaded = try? await bikeItem?.loadTransferable(type: Image.self) {
-                    bikeImage = loaded
+                if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                    viewModel.saveImageDataToDocuments(imageData: data)
                 } else {
                     print("Failed")
                 }
