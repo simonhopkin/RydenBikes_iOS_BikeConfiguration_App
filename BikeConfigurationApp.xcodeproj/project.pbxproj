@@ -8,12 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */; };
-		3E2140952C8A1378007BA9CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140942C8A1378007BA9CA /* ContentView.swift */; };
+		3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140942C8A1378007BA9CA /* HomeView.swift */; };
 		3E2140972C8A137A007BA9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E2140962C8A137A007BA9CA /* Assets.xcassets */; };
 		3E21409A2C8A137A007BA9CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E2140992C8A137A007BA9CA /* Preview Assets.xcassets */; };
 		3E2140A42C8A137B007BA9CA /* BikeConfigurationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140A32C8A137B007BA9CA /* BikeConfigurationAppTests.swift */; };
 		3E2140AE2C8A137B007BA9CA /* BikeConfigurationAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140AD2C8A137B007BA9CA /* BikeConfigurationAppUITests.swift */; };
 		3E2140B02C8A137B007BA9CA /* BikeConfigurationAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140AF2C8A137B007BA9CA /* BikeConfigurationAppUITestsLaunchTests.swift */; };
+		3E27B82D2C9070BE004844B4 /* BikeFitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E27B82C2C9070BE004844B4 /* BikeFitRepository.swift */; };
+		3E27B8302C90712B004844B4 /* BikeFitRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E27B82F2C90712B004844B4 /* BikeFitRepositoryProtocol.swift */; };
+		3E645AF42C8CAABA009866A9 /* MyFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645AF32C8CAABA009866A9 /* MyFitView.swift */; };
+		3E645AF82C8CB18E009866A9 /* BikeFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645AF72C8CB18E009866A9 /* BikeFit.swift */; };
+		3E645AFA2C8CB1DF009866A9 /* BikeFitSaddlePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645AF92C8CB1DF009866A9 /* BikeFitSaddlePosition.swift */; };
+		3E645AFC2C8CB211009866A9 /* BikeFitHandlebarPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645AFB2C8CB211009866A9 /* BikeFitHandlebarPosition.swift */; };
+		3E645AFE2C8CB21B009866A9 /* BikeFitHandPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645AFD2C8CB21B009866A9 /* BikeFitHandPosition.swift */; };
+		3E645B012C8CB7F1009866A9 /* TintedNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E645B002C8CB7F1009866A9 /* TintedNavigationBarModifier.swift */; };
+		3E87DC212C907B5D00B53289 /* MyFitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC202C907B5D00B53289 /* MyFitViewModel.swift */; };
+		3E87DC232C9084FD00B53289 /* MyFitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */; };
+		3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC242C90856600B53289 /* MyFitDetailsViewModel.swift */; };
+		3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC262C9090AB00B53289 /* Coordinator.swift */; };
+		3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC292C90A7D600B53289 /* DecimalTextField.swift */; };
+		3EA04AA82C8C4B5E009BB9AC /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */; };
+		3EA04AA92C8C4B5E009BB9AC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */; };
+		3EA04AAA2C8C4B5E009BB9AC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */; };
+		3EA04AAB2C8C4B5E009BB9AC /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9F2C8C4B5E009BB9AC /* Roboto-BoldItalic.ttf */; };
+		3EA04AAC2C8C4B5E009BB9AC /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA02C8C4B5E009BB9AC /* Roboto-Black.ttf */; };
+		3EA04AAD2C8C4B5E009BB9AC /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA12C8C4B5E009BB9AC /* Roboto-LightItalic.ttf */; };
+		3EA04AAE2C8C4B5E009BB9AC /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA22C8C4B5E009BB9AC /* Roboto-Light.ttf */; };
+		3EA04AAF2C8C4B5E009BB9AC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA32C8C4B5E009BB9AC /* Roboto-Bold.ttf */; };
+		3EA04AB02C8C4B5E009BB9AC /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA42C8C4B5E009BB9AC /* Roboto-BlackItalic.ttf */; };
+		3EA04AB12C8C4B5E009BB9AC /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA52C8C4B5E009BB9AC /* Roboto-Italic.ttf */; };
+		3EA04AB22C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA62C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf */; };
+		3EA04AB32C8C4B5E009BB9AC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA72C8C4B5E009BB9AC /* Roboto-Regular.ttf */; };
+		3ECAC01C2C8A18DF008703C5 /* Motion in Frameworks */ = {isa = PBXBuildFile; productRef = 3ECAC01B2C8A18DF008703C5 /* Motion */; };
+		3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECAC01D2C8B44B7008703C5 /* SplashView.swift */; };
+		3ECAC0212C8B4E8C008703C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +64,7 @@
 /* Begin PBXFileReference section */
 		3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeConfigurationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppApp.swift; sourceTree = "<group>"; };
-		3E2140942C8A1378007BA9CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3E2140942C8A1378007BA9CA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E2140962C8A137A007BA9CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E2140992C8A137A007BA9CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E21409F2C8A137B007BA9CA /* BikeConfigurationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeConfigurationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +72,34 @@
 		3E2140A92C8A137B007BA9CA /* BikeConfigurationAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeConfigurationAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2140AD2C8A137B007BA9CA /* BikeConfigurationAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppUITests.swift; sourceTree = "<group>"; };
 		3E2140AF2C8A137B007BA9CA /* BikeConfigurationAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3E27B82C2C9070BE004844B4 /* BikeFitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitRepository.swift; sourceTree = "<group>"; };
+		3E27B82F2C90712B004844B4 /* BikeFitRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitRepositoryProtocol.swift; sourceTree = "<group>"; };
+		3E645AF32C8CAABA009866A9 /* MyFitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitView.swift; sourceTree = "<group>"; };
+		3E645AF72C8CB18E009866A9 /* BikeFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFit.swift; sourceTree = "<group>"; };
+		3E645AF92C8CB1DF009866A9 /* BikeFitSaddlePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitSaddlePosition.swift; sourceTree = "<group>"; };
+		3E645AFB2C8CB211009866A9 /* BikeFitHandlebarPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitHandlebarPosition.swift; sourceTree = "<group>"; };
+		3E645AFD2C8CB21B009866A9 /* BikeFitHandPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitHandPosition.swift; sourceTree = "<group>"; };
+		3E645B002C8CB7F1009866A9 /* TintedNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedNavigationBarModifier.swift; sourceTree = "<group>"; };
+		3E87DC202C907B5D00B53289 /* MyFitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitViewModel.swift; sourceTree = "<group>"; };
+		3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitDetailsView.swift; sourceTree = "<group>"; };
+		3E87DC242C90856600B53289 /* MyFitDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitDetailsViewModel.swift; sourceTree = "<group>"; };
+		3E87DC262C9090AB00B53289 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3E87DC292C90A7D600B53289 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
+		3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		3EA04A9F2C8C4B5E009BB9AC /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3EA04AA02C8C4B5E009BB9AC /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		3EA04AA12C8C4B5E009BB9AC /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		3EA04AA22C8C4B5E009BB9AC /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3EA04AA32C8C4B5E009BB9AC /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		3EA04AA42C8C4B5E009BB9AC /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		3EA04AA52C8C4B5E009BB9AC /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		3EA04AA62C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3EA04AA72C8C4B5E009BB9AC /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3ECAC01D2C8B44B7008703C5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		3ECAC01F2C8B4E39008703C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ECAC01C2C8A18DF008703C5 /* Motion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,10 +151,18 @@
 		3E2140912C8A1378007BA9CA /* BikeConfigurationApp */ = {
 			isa = PBXGroup;
 			children = (
+				3EA04A9B2C8C4B40009BB9AC /* Fonts */,
+				3ECAC01F2C8B4E39008703C5 /* Info.plist */,
 				3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */,
-				3E2140942C8A1378007BA9CA /* ContentView.swift */,
+				3E645AFF2C8CB7DB009866A9 /* Modifiers */,
+				3E27B82B2C9070A8004844B4 /* DataRepository */,
+				3E645AF62C8CB16D009866A9 /* Views */,
+				3E87DC282C90A7BD00B53289 /* Components */,
+				3E87DC1F2C907B4500B53289 /* ViewModels */,
+				3E645AF52C8CB168009866A9 /* Model */,
 				3E2140962C8A137A007BA9CA /* Assets.xcassets */,
 				3E2140982C8A137A007BA9CA /* Preview Content */,
+				3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */,
 			);
 			path = BikeConfigurationApp;
 			sourceTree = "<group>";
@@ -127,6 +192,90 @@
 			path = BikeConfigurationAppUITests;
 			sourceTree = "<group>";
 		};
+		3E27B82B2C9070A8004844B4 /* DataRepository */ = {
+			isa = PBXGroup;
+			children = (
+				3E27B82E2C907119004844B4 /* Protocols */,
+				3E27B82C2C9070BE004844B4 /* BikeFitRepository.swift */,
+			);
+			path = DataRepository;
+			sourceTree = "<group>";
+		};
+		3E27B82E2C907119004844B4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3E27B82F2C90712B004844B4 /* BikeFitRepositoryProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3E645AF52C8CB168009866A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E645AF72C8CB18E009866A9 /* BikeFit.swift */,
+				3E645AF92C8CB1DF009866A9 /* BikeFitSaddlePosition.swift */,
+				3E645AFD2C8CB21B009866A9 /* BikeFitHandPosition.swift */,
+				3E645AFB2C8CB211009866A9 /* BikeFitHandlebarPosition.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3E645AF62C8CB16D009866A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3ECAC01D2C8B44B7008703C5 /* SplashView.swift */,
+				3E2140942C8A1378007BA9CA /* HomeView.swift */,
+				3E645AF32C8CAABA009866A9 /* MyFitView.swift */,
+				3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */,
+				3E87DC262C9090AB00B53289 /* Coordinator.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3E645AFF2C8CB7DB009866A9 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				3E645B002C8CB7F1009866A9 /* TintedNavigationBarModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		3E87DC1F2C907B4500B53289 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3E87DC202C907B5D00B53289 /* MyFitViewModel.swift */,
+				3E87DC242C90856600B53289 /* MyFitDetailsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3E87DC282C90A7BD00B53289 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3E87DC292C90A7D600B53289 /* DecimalTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3EA04A9B2C8C4B40009BB9AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3EA04AA02C8C4B5E009BB9AC /* Roboto-Black.ttf */,
+				3EA04AA42C8C4B5E009BB9AC /* Roboto-BlackItalic.ttf */,
+				3EA04AA32C8C4B5E009BB9AC /* Roboto-Bold.ttf */,
+				3EA04A9F2C8C4B5E009BB9AC /* Roboto-BoldItalic.ttf */,
+				3EA04AA52C8C4B5E009BB9AC /* Roboto-Italic.ttf */,
+				3EA04AA22C8C4B5E009BB9AC /* Roboto-Light.ttf */,
+				3EA04AA12C8C4B5E009BB9AC /* Roboto-LightItalic.ttf */,
+				3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */,
+				3EA04AA62C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf */,
+				3EA04AA72C8C4B5E009BB9AC /* Roboto-Regular.ttf */,
+				3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */,
+				3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +292,9 @@
 			dependencies = (
 			);
 			name = BikeConfigurationApp;
+			packageProductDependencies = (
+				3ECAC01B2C8A18DF008703C5 /* Motion */,
+			);
 			productName = BikeConfigurationApp;
 			productReference = 3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +367,9 @@
 				Base,
 			);
 			mainGroup = 3E2140862C8A1378007BA9CA;
+			packageReferences = (
+				3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */,
+			);
 			productRefGroup = 3E2140902C8A1378007BA9CA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,7 +386,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA04AA92C8C4B5E009BB9AC /* Roboto-ThinItalic.ttf in Resources */,
+				3EA04AA82C8C4B5E009BB9AC /* Roboto-Thin.ttf in Resources */,
+				3EA04AAE2C8C4B5E009BB9AC /* Roboto-Light.ttf in Resources */,
+				3EA04AAA2C8C4B5E009BB9AC /* Roboto-Medium.ttf in Resources */,
+				3EA04AB22C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf in Resources */,
+				3EA04AAF2C8C4B5E009BB9AC /* Roboto-Bold.ttf in Resources */,
+				3EA04AB12C8C4B5E009BB9AC /* Roboto-Italic.ttf in Resources */,
+				3EA04AAC2C8C4B5E009BB9AC /* Roboto-Black.ttf in Resources */,
+				3ECAC0212C8B4E8C008703C5 /* LaunchScreen.storyboard in Resources */,
+				3EA04AB02C8C4B5E009BB9AC /* Roboto-BlackItalic.ttf in Resources */,
+				3EA04AAD2C8C4B5E009BB9AC /* Roboto-LightItalic.ttf in Resources */,
 				3E21409A2C8A137A007BA9CA /* Preview Assets.xcassets in Resources */,
+				3EA04AB32C8C4B5E009BB9AC /* Roboto-Regular.ttf in Resources */,
+				3EA04AAB2C8C4B5E009BB9AC /* Roboto-BoldItalic.ttf in Resources */,
 				3E2140972C8A137A007BA9CA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +425,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E2140952C8A1378007BA9CA /* ContentView.swift in Sources */,
+				3E645B012C8CB7F1009866A9 /* TintedNavigationBarModifier.swift in Sources */,
+				3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */,
+				3E645AFA2C8CB1DF009866A9 /* BikeFitSaddlePosition.swift in Sources */,
+				3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */,
+				3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */,
+				3E645AFE2C8CB21B009866A9 /* BikeFitHandPosition.swift in Sources */,
 				3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */,
+				3E645AF82C8CB18E009866A9 /* BikeFit.swift in Sources */,
+				3E27B8302C90712B004844B4 /* BikeFitRepositoryProtocol.swift in Sources */,
+				3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */,
+				3E27B82D2C9070BE004844B4 /* BikeFitRepository.swift in Sources */,
+				3E87DC212C907B5D00B53289 /* MyFitViewModel.swift in Sources */,
+				3E645AF42C8CAABA009866A9 /* MyFitView.swift in Sources */,
+				3E87DC232C9084FD00B53289 /* MyFitDetailsView.swift in Sources */,
+				3E645AFC2C8CB211009866A9 /* BikeFitHandlebarPosition.swift in Sources */,
+				3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,21 +607,28 @@
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeConfigurationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = bike.ryden.BikeConfigurationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,21 +643,28 @@
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeConfigurationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = bike.ryden.BikeConfigurationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -588,6 +784,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:simonhopkin/RydenBikes_iOS_Motion_Swift_Package.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3ECAC01B2C8A18DF008703C5 /* Motion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */;
+			productName = Motion;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E2140872C8A1378007BA9CA /* Project object */;
 }

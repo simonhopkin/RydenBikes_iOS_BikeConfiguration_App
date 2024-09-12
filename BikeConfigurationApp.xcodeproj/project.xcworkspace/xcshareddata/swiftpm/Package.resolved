@@ -1,0 +1,15 @@
+{
+  "originHash" : "3f450ff6ce0f7cab6fd98f565dfd80a90b8cd6415fa35624967b6f02e9e768d9",
+  "pins" : [
+    {
+      "identity" : "rydenbikes_ios_motion_swift_package",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:simonhopkin/RydenBikes_iOS_Motion_Swift_Package.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1aa6acd792cdb719f3576409d6058c88aecc7442"
+      }
+    }
+  ],
+  "version" : 3
+}
