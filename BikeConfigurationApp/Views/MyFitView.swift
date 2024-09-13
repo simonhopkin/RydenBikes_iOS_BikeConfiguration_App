@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MyFitView: View {
     @Binding var navigationPath: NavigationPath
@@ -14,10 +15,12 @@ struct MyFitView: View {
     @State var selectedBikeFit: BikeFit?
     @State var showDeleteBikeFitAlert = false
     @State var showShareSheet = false
+    
+    @Query(sort: \BikeFit.created, order: .reverse) private var bikeFits: [BikeFit]
 
     var body: some View {
         GeometryReader { geometry in
-            List(viewModel.bikeFits) { bikeFit in
+            List(bikeFits) { bikeFit in
                 VStack (alignment: .leading) {
                     Button {
                         navigationPath.append(Coordinator.View.myFitDetailsView(bikeFit))
@@ -147,9 +150,10 @@ struct MyFitView: View {
                 }
                 return ShareSheet(sharedItems: [selectedBikeFit!.bikeFitAppLink])
             }
-            .onAppear {
-                viewModel.fetchData()
-            }
+//            .onAppear {
+//                print("MyFitView onAppear")
+//                viewModel.fetchData()
+//            }
         }
     }
 }

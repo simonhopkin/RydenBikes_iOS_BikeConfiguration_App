@@ -34,7 +34,6 @@ class MyFitDetailsViewModel: ObservableObject {
         }
     }
     
-
     init(bikeFitRepository: BikeFitRepositoryProtocol, bikeFit: BikeFit) {
         self.bikeFitRepository = bikeFitRepository
         self.bikeFit = bikeFit

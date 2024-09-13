@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 protocol BikeFitRepositoryProtocol {
     func fetchBikeFits() -> [BikeFit]
     func addBikeFit(_ bikeFit: BikeFit)
     func deleteBikeFit(_ bikeFit: BikeFit)
+    
+//    func fetchBikeFitsPublisher() -> AnyPublisher<[BikeFit], Error>
 }

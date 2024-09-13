@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showAlert = false
-    @State private var navigationPath = NavigationPath()
+    @Binding var navigationPath: NavigationPath
     @Environment(\.modelContext) var modelContext
 
     var body: some View {
@@ -68,5 +68,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    @State var navigationPath = NavigationPath()
+    return HomeView(navigationPath: $navigationPath)
 }

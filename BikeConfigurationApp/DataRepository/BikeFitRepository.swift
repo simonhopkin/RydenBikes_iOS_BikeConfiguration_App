@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftData
+import Combine
+import _SwiftData_SwiftUI
 
 struct BikeFitRepository : BikeFitRepositoryProtocol {
 
@@ -46,5 +48,17 @@ struct BikeFitRepository : BikeFitRepositoryProtocol {
         }
     }
     
+    
+//    func fetchBikeFitsPublisher() -> AnyPublisher<[BikeFit], any Error> {
+//        
+//        Future { promise in
+//            do {
+//                let fetchRequest =
+//            }
+//        }
+//        
+//    }
+    
+
     
 }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SplashView: View {
     @State var shouldDisplaySplashView: Bool = true
-    
+    @Binding var navigationPath: NavigationPath
+
     var body: some View {
         ZStack {
             if shouldDisplaySplashView {
@@ -40,7 +41,7 @@ struct SplashView: View {
                 .ignoresSafeArea()
             }
             else {
-                HomeView()
+                HomeView(navigationPath: $navigationPath)
             }
         }
         .onAppear {
@@ -52,5 +53,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    SplashView()
+    @State var navigationPath = NavigationPath()
+    return SplashView(navigationPath: $navigationPath)
 }
