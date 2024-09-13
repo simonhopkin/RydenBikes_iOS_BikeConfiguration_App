@@ -10,6 +10,7 @@ import Foundation
 struct Coordinator {
     enum View : Hashable {
         case myFitView
-        case myFitDetailsView(BikeFit?)
+        case myFitDetailsView(BikeFit)
+        case measureSaddlePositionView(BikeFit)
     }
 }

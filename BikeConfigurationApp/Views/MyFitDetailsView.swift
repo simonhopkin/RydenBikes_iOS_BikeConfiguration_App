@@ -194,7 +194,7 @@ struct MyFitDetailsView: View {
             Spacer()
             
             Button(action: {
-                
+                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
             }, label: {
                 Text("measure")
                     .font(.custom("Roboto-Regular", size: 12))

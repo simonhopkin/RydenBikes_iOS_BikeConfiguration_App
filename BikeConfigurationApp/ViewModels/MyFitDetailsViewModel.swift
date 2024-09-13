@@ -12,11 +12,7 @@ import SwiftData
 
 class MyFitDetailsViewModel: ObservableObject {
     
-    var bikeFit: BikeFit {
-        didSet {
-            print("bikeFit didSet \(bikeFit)")
-        }
-    }
+    var bikeFit: BikeFit
     
     private let bikeFitRepository: BikeFitRepositoryProtocol
     

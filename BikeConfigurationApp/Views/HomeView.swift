@@ -57,9 +57,11 @@ struct HomeView: View {
                     
                 case .myFitDetailsView(let bikeFit):
                     MyFitDetailsView(navigationPath: $navigationPath,
-                                     viewModel: MyFitDetailsViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext), 
-                                                                      bikeFit: bikeFit ?? BikeFit.new()))
+                                     viewModel: MyFitDetailsViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext),
+                                                                      bikeFit: bikeFit))
                     
+                case .measureSaddlePositionView(let bikeFit):
+                    MeasureSaddlePositionView(bikeFit: bikeFit, navigationPath: $navigationPath)
                 }
             }
         }
