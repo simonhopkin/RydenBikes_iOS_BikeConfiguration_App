@@ -13,6 +13,8 @@ struct BikeConfigurationAppApp: App {
     
     @State private var navigationPath = NavigationPath()
 
+    @StateObject private var customActivitySheet = CustomActivitySheet()
+
     let modelContainer: ModelContainer
 
     init() {
@@ -26,10 +28,12 @@ struct BikeConfigurationAppApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView(navigationPath: $navigationPath)
-                .modelContainer(modelContainer) // inject the model container
-                .onOpenURL(perform: { url in    // handle incoming urls
+                .modelContainer(modelContainer)         // inject the model container
+                .environmentObject(customActivitySheet) // inject the custom activity sheet container
+                .onOpenURL(perform: { url in            // handle incoming urls
                     handleIncomingURL(url)
                 })
+                .customActivitySheet(customActivitySheet: customActivitySheet, backgroundColor: Color.primary.opacity(0.2))
         }
     }
     

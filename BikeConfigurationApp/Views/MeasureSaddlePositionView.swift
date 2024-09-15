@@ -12,25 +12,34 @@ struct MeasureSaddlePositionView: View {
     @State var bikeFit: BikeFit
     @Binding var navigationPath: NavigationPath
     
+    @EnvironmentObject var customActivitySheet: CustomActivitySheet
+
+    
     @State private var showSaddleHeightEntryDialog = false
     @State private var showSaddleAngleEntryDialog = false
     
     var body: some View {
-        HStack {
-            //            ScrollView {
+//        NavigationView {
             GeometryReader { geometry in
                 
                 ZStack {
-                    
                     Image("SaddlePositionGuide")
                         .resizable()
                         .scaledToFit()
-                    //                        .background(Color.blue)
                     
                     Button {
-                        withAnimation {
-                            showSaddleHeightEntryDialog.toggle()
+                        customActivitySheet.showModal {
+//                            Text("Hello")
+                            CustomAlertSheet(isPresented: $customActivitySheet.isPresented, text: $bikeFit.name)
+                                
+
+                    //                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    //                            .ignoresSafeArea()
+                    //                            .zIndex(1)
                         }
+//                        withAnimation {
+//                            showSaddleHeightEntryDialog.toggle()
+//                        }
                     } label: {
                         HStack {
                             if bikeFit.bbToSaddleCentre != 0 {
@@ -62,26 +71,6 @@ struct MeasureSaddlePositionView: View {
                     )
                     .position(x: geometry.size.width * 0.7, y: geometry.size.height * 0.18)
                     
-                    //
-                    //                    DecimalTextField(placeholder: "Saddle Height", value: $bikeFit.bbToSaddleCentre)
-                    //                        .font(.custom("Roboto-Regular", size: 16))
-                    //                        .frame(minWidth: 75, alignment: .trailing)
-                    //                        .foregroundColor(Color("PrimaryTextColor"))
-                    //                        .padding(.leading, 10)
-                    //                        .padding(.top, 10)
-                    //                        .padding(.bottom, 10)
-                    //                        .suffix("mm", minWidth: 30, color: Color.gray, font: .custom("Roboto-Regular", size: 14), padding: 10)
-                    //                        .background(Color.white)
-                    //
-                    //                        .overlay( // Overlay a RoundedRectangle for the border
-                    //                            RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                    //                                .stroke(Color.red, lineWidth: 4) // Set border color and thickness
-                    //                        )
-                    //                        .padding()
-                    //                        .fixedSize(horizontal: true, vertical: false)
-                    //                        .position(x: 260, y: 220)
-                    
-                    
                     Button {
                         showSaddleAngleEntryDialog = true
                     } label: {
@@ -112,39 +101,35 @@ struct MeasureSaddlePositionView: View {
                         RoundedRectangle(cornerRadius: 3) // Set the corner radius
                             .stroke(Color.red, lineWidth: 4) // Set border color and thickness
                     )
-//                    .shadow(color: Color.primary.opacity(0.7), radius: 10)
                     .background(Color.white)
                     .position(x: geometry.size.width * 0.77, y: geometry.size.height * 0.45)
-
-                    
-                    //                    DecimalTextField(placeholder: "Saddle Angle", value: $bikeFit.bbToSaddleAngle)
-                    //                        .font(.custom("Roboto-Regular", size: 16))
-                    //                        .frame(minWidth: 75, alignment: .trailing)
-                    //                        .foregroundColor(Color("PrimaryTextColor"))
-                    //                        .padding(.leading, 10)
-                    //                        .padding(.top, 10)
-                    //                        .padding(.bottom, 10)
-                    //                        .suffix("°", minWidth: 30, color: Color.gray, font: .custom("Roboto-Regular", size: 14), padding: 10)
-                    //                        .background(Color.white)
-                    //                        .overlay( // Overlay a RoundedRectangle for the border
-                    //                            RoundedRectangle(cornerRadius: 3)
-                    //                                .stroke(Color.red, lineWidth: 4)
-                    //                        )
-                    //                        .padding()
-                    //                        .fixedSize(horizontal: true, vertical: false)
-                    //                        .position(x: 310, y: 410)
                     
                     
-                    if showSaddleHeightEntryDialog {
-                        CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
-                    }
-                    
+//                    if showSaddleHeightEntryDialog {
+//                        CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                            .ignoresSafeArea()
+//                            .zIndex(1)
+//                        
+//                    }
                 }
-                //                .background(Color.yellow)
-                
-            }
-            //            .background(Color.green)
+//            }
         }
+
+//        .overlay {
+//            if showSaddleHeightEntryDialog {
+//                Rectangle()
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .ignoresSafeArea()
+//                    .zIndex(0)
+//                CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .ignoresSafeArea()
+//                    .zIndex(1)
+//            }
+//
+//        }
+        //        }
         .navigationTitle("Saddle Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
@@ -156,53 +141,53 @@ struct MeasureSaddlePositionView: View {
                 Text("Fit Details")
             }
         })
-        .onTapGesture {
-            // dismiss keyboard when user presses away from focused text field
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
-//        .alert("Login", isPresented: $showSaddleHeightEntryDialog, actions: {
-////            TextField("Username", text: $bikeFit.name)
-//
-//                        DecimalTextField(placeholder: "sdfsdf", value: $bikeFit.bbToSaddleCentre)
-//                            .font(.custom("Roboto-Regular", size: 14))
-//                            .frame(minWidth: 75, alignment: .trailing)
-//                            .suffix("mm", minWidth: 30, color: Color.gray, font: .custom("Roboto-Regular", size: 12))
-//                            .foregroundColor(Color("PrimaryTextColor"))
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
-//                            .fixedSize(horizontal: true, vertical: false)
-//                    
-//                    Button("Login", action: {})
-//                    Button("Cancel", role: .cancel, action: {})
-//                }, message: {
-//                    Text("Please enter your username and password.")
-//                })
-//        .overlay(
-
-//        )
-//        .alert("Saddle Height", isPresented: $showSaddleHeightEntryDialog) {
-//            Button("OK", role: .cancel) { }
-////            if displayInvalidBikeFitDiscardOption {
-////                Button("Discard Bike Fit", role: .destructive) {
-////                    navigationPath.removeLast()
-////                }
-////            }
-////            TextField("Bike fit name", text: $bikeFit.bbToSaddleCentre)
-////                .textFieldStyle(RoundedBorderTextFieldStyle())
-//////                .fontWeight((!viewModel.bikeFit.name.isEmpty ? .bold : .regular))
-////                .font(.custom("Roboto-Regular", size: 16)) 
-////
-//            DecimalTextField(placeholder: "", value: $bikeFit.bbToSaddleCentre)
-//                .font(.custom("Roboto-Regular", size: 14))
-//                .frame(minWidth: 75, alignment: .trailing)
-//                .suffix("mm", minWidth: 30, color: Color.gray, font: .custom("Roboto-Regular", size: 12))
-//                .foregroundColor(Color("PrimaryTextColor"))
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                .fixedSize(horizontal: true, vertical: false)
+        
+//        .overlay {
+//                                if showSaddleHeightEntryDialog {
+//                                    CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
+//                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                                        .ignoresSafeArea()
+//                                        .zIndex(1)
 //            
-//        } message: {
-//            Text("Enter the distance (in mm) from the bottom bracket to the centre of the saddle")
+//                                }
 //        }
+//        .customPopupView(isPresented: $showSaddleHeightEntryDialog, popupView: { popupView })
+
+        //        .onTapGesture {
+        //            // dismiss keyboard when user presses away from focused text field
+        //            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        //        }
     }
+    
+    
+//    
+//    var popupView: some View {
+//         
+//        CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .ignoresSafeArea()
+//            .zIndex(1)
+//        
+////         RoundedRectangle(cornerRadius: 20.0)
+////             .fill(Color.white)
+////             .frame(width: 300.0, height: 200.0)
+////             .overlay(
+////                 
+////                 Image(systemName: "xmark").resizable().frame(width: 10.0, height: 10.0)
+////                     .foregroundColor(Color.black)
+////                     .padding(5.0)
+////                     .background(Color.red)
+////                     .clipShape(Circle())
+////                     .padding()
+////                     .onTapGesture { showSaddleHeightEntryDialog.toggle() }
+////                 
+////                 , alignment: .topLeading)
+////             
+////             .overlay(Text("Custom PopUp View!"))
+////             .transition(AnyTransition.slide)
+////             .shadow(radius: 10.0)
+//         
+//     }
 }
 
 #Preview {

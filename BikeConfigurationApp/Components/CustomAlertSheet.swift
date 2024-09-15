@@ -17,7 +17,7 @@ struct CustomAlertSheet: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter Your Text")
+                    Text("Enter Your Text hhh \(geometry.size.height)")
                         .font(.headline)
                         .padding(.top, 20)
                     
@@ -51,17 +51,23 @@ struct CustomAlertSheet: View {
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .frame(width: geometry.size.width, alignment: .center) // Fit width to screen
-                .offset(y: isPresented ? 0 : geometry.size.height) // Slide up from bottom
+//                .offset(y: isPresented ? 0 : geometry.size.height) // Slide up from bottom
             }
-            .background(
-                Color.black.opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation {
-                            isPresented = false // Dismiss when tapping outside
-                        }
-                    }
-            ) // Dimmed background
+//            .onTapGesture {
+//                withAnimation {
+//                    isPresented = false // Dismiss when tapping outside
+//                }
+//            }
+
+//            .background(
+//                Color.black.opacity(0.3)
+//                    .ignoresSafeArea()
+//                    .onTapGesture {
+//                        withAnimation {
+//                            isPresented = false // Dismiss when tapping outside
+//                        }
+//                    }
+//            ) // Dimmed background
         }
     }
 }

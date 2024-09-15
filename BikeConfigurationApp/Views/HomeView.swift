@@ -11,6 +11,8 @@ struct HomeView: View {
     @State private var showAlert = false
     @Binding var navigationPath: NavigationPath
     @Environment(\.modelContext) var modelContext
+    @State var rootActivitySheet: (any View)?
+    @EnvironmentObject var customActivitySheet: CustomActivitySheet
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -46,7 +48,7 @@ struct HomeView: View {
             .alert("Not Yet Implemented", isPresented: $showAlert) { }
             .navigationTitle("Ryden Bikes")
             .navigationBarTitleDisplayMode(.inline)
-            .tintedNavigationBar(tintColor: UIColor(Color.primary), 
+            .tintedNavigationBar(tintColor: UIColor(Color.primary),
                                  backgroundColor: UIColor.systemBackground)
             .navigationDestination(for: Coordinator.View.self) { view in
                 switch view {
@@ -65,6 +67,18 @@ struct HomeView: View {
                 }
             }
         }
+//        .overlay {
+//            customActivitySheet.overlay
+////            if customActivitySheet.isPresented {
+////                Color.black.opacity(0.3)
+////                    .ignoresSafeArea()
+////                    .onTapGesture {
+////                        withAnimation {
+////                            rootActivitySheet = nil // Dismiss when tapping outside
+////                        }
+////                    }
+////            }
+//        }
     }
     
 }
