@@ -12,7 +12,6 @@ struct HomeView: View {
     @Binding var navigationPath: NavigationPath
     @Environment(\.modelContext) var modelContext
     @State var rootActivitySheet: (any View)?
-    @EnvironmentObject var customActivitySheet: CustomActivitySheet
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -67,18 +66,6 @@ struct HomeView: View {
                 }
             }
         }
-//        .overlay {
-//            customActivitySheet.overlay
-////            if customActivitySheet.isPresented {
-////                Color.black.opacity(0.3)
-////                    .ignoresSafeArea()
-////                    .onTapGesture {
-////                        withAnimation {
-////                            rootActivitySheet = nil // Dismiss when tapping outside
-////                        }
-////                    }
-////            }
-//        }
     }
     
 }

@@ -13,7 +13,7 @@ struct BikeConfigurationAppApp: App {
     
     @State private var navigationPath = NavigationPath()
 
-    @StateObject private var customActivitySheet = CustomActivitySheet()
+    @StateObject private var customActivitySheetModal = CustomActivitySheetModal()
 
     let modelContainer: ModelContainer
 
@@ -29,11 +29,11 @@ struct BikeConfigurationAppApp: App {
         WindowGroup {
             HomeView(navigationPath: $navigationPath)
                 .modelContainer(modelContainer)         // inject the model container
-                .environmentObject(customActivitySheet) // inject the custom activity sheet container
+                .environmentObject(customActivitySheetModal) // inject the custom activity sheet container
                 .onOpenURL(perform: { url in            // handle incoming urls
                     handleIncomingURL(url)
                 })
-                .customActivitySheet(customActivitySheet: customActivitySheet, backgroundColor: Color.primary.opacity(0.2))
+                .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
         }
     }
     

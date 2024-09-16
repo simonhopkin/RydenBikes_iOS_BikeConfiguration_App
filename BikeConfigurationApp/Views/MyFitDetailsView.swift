@@ -113,7 +113,7 @@ struct MyFitDetailsView: View {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
                                 fitField("BB to Handlebar", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
-                                fitField("BB to Handlebar Angle", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarAngle)
+                                fitField("BB to Handlebar Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle)
                                 fitField("BB to Handlebar X", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
                                 fitField("BB to Handlebar Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
                             }

@@ -10,10 +10,11 @@ import SwiftUI
 struct DecimalTextField: View {
     var placeholder: String
     @Binding var value: Double
+    var format: String = "%.0f"
     
     var body: some View {
         TextField(placeholder, text: Binding (
-            get: { value != 0 ? String(format: "%.1f", value) : "" },
+            get: { value != 0 ? String(format: format, value) : "" },
             set: { newValue in
                 if let doubleValue = Double(newValue) {
                     value = doubleValue

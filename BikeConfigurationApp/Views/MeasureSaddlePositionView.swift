@@ -6,130 +6,101 @@
 //
 
 import SwiftUI
+import Motion
+import CoreMotion
 
 struct MeasureSaddlePositionView: View {
     
     @State var bikeFit: BikeFit
-    @Binding var navigationPath: NavigationPath
-    
-    @EnvironmentObject var customActivitySheet: CustomActivitySheet
-
-    
     @State private var showSaddleHeightEntryDialog = false
     @State private var showSaddleAngleEntryDialog = false
     
+    @Binding var navigationPath: NavigationPath
+    
+    @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
+    
     var body: some View {
-//        NavigationView {
-            GeometryReader { geometry in
+        GeometryReader { geometry in
+            
+            ZStack {
+                Image("SaddlePositionGuide")
+                    .resizable()
+                    .scaledToFit()
                 
-                ZStack {
-                    Image("SaddlePositionGuide")
-                        .resizable()
-                        .scaledToFit()
-                    
-                    Button {
-                        customActivitySheet.showModal {
-//                            Text("Hello")
-                            CustomAlertSheet(isPresented: $customActivitySheet.isPresented, text: $bikeFit.name)
-                                
-
-                    //                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    //                            .ignoresSafeArea()
-                    //                            .zIndex(1)
-                        }
-//                        withAnimation {
-//                            showSaddleHeightEntryDialog.toggle()
-//                        }
-                    } label: {
-                        HStack {
-                            if bikeFit.bbToSaddleCentre != 0 {
-                                Text(String(format: "%.1f", bikeFit.bbToSaddleCentre))
-                                    .font(.custom("Roboto-Regular", size: 16))
-                                    .foregroundColor(Color("PrimaryTextColor"))
-                                Text("mm")
-                                    .font(.custom("Roboto-Regular", size: 14))
-                                    .foregroundColor(Color.gray)
-                                    .padding(.bottom, 10)
-                                    .padding(.top, 10)
-                            }
-                            else {
-                                Text("Enter Saddle Height")
-                                    .font(.custom("Roboto-Regular", size: 16))
-                                    .foregroundColor(Color.gray)
-                                    .padding(.bottom, 10)
-                                    .padding(.top, 10)
-                            }
-                            
-                        }
-                        .padding(.leading, 10)
-                        .padding(.trailing, 10)
+                Button {
+                    customActivitySheet.showModal {
+                        SaddleHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                    value: $bikeFit.bbToSaddleCentre)
                     }
-                    .background(Color.white)
-                    .overlay( // Overlay a RoundedRectangle for the border
-                        RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                            .stroke(Color.red, lineWidth: 4) // Set border color and thickness
-                    )
-                    .position(x: geometry.size.width * 0.7, y: geometry.size.height * 0.18)
-                    
-                    Button {
-                        showSaddleAngleEntryDialog = true
-                    } label: {
-                        HStack {
-                            if bikeFit.bbToSaddleAngle != 0 {
-                                Text(String(format: "%.1f", bikeFit.bbToSaddleAngle))
-                                    .font(.custom("Roboto-Regular", size: 16))
-                                    .foregroundColor(Color("PrimaryTextColor"))
-                                Text("mm")
-                                    .font(.custom("Roboto-Regular", size: 14))
-                                    .foregroundColor(Color.gray)
-                                    .padding(.bottom, 10)
-                                    .padding(.top, 10)
-                            }
-                            else {
-                                Text("Enter Saddle Angle")
-                                    .font(.custom("Roboto-Regular", size: 16))
-                                    .foregroundColor(Color.gray)
-                                    .padding(.bottom, 10)
-                                    .padding(.top, 10)
-                            }
-                            
+                } label: {
+                    HStack {
+                        if bikeFit.bbToSaddleCentre != 0 {
+                            Text(String(format: "%.0f", bikeFit.bbToSaddleCentre))
+                                .font(.custom("Roboto-Regular", size: 16))
+                                .foregroundColor(Color("PrimaryTextColor"))
+                            Text("mm")
+                                .font(.custom("Roboto-Regular", size: 14))
+                                .foregroundColor(Color.gray)
+                                .padding(.bottom, 10)
+                                .padding(.top, 10)
                         }
-                        .padding(.leading, 10)
-                        .padding(.trailing, 10)
+                        else {
+                            Text("Enter Saddle Height")
+                                .font(.custom("Roboto-Regular", size: 16))
+                                .foregroundColor(Color.gray)
+                                .padding(.bottom, 10)
+                                .padding(.top, 10)
+                        }
+                        
                     }
-                    .overlay( // Overlay a RoundedRectangle for the border
-                        RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                            .stroke(Color.red, lineWidth: 4) // Set border color and thickness
-                    )
-                    .background(Color.white)
-                    .position(x: geometry.size.width * 0.77, y: geometry.size.height * 0.45)
-                    
-                    
-//                    if showSaddleHeightEntryDialog {
-//                        CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
-//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                            .ignoresSafeArea()
-//                            .zIndex(1)
-//                        
-//                    }
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
                 }
-//            }
+                .background(Color.white)
+                .overlay( // Overlay a RoundedRectangle for the border
+                    RoundedRectangle(cornerRadius: 3) // Set the corner radius
+                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                )
+                .position(x: geometry.size.width * 0.65, y: geometry.size.height * 0.22)
+                
+                Button {
+                    customActivitySheet.showModal {
+                        SaddleAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                   value: $bikeFit.bbToSaddleAngle)
+                    }
+                } label: {
+                    HStack {
+                        if bikeFit.bbToSaddleAngle != 0 {
+                            Text(String(format: "%.0f", bikeFit.bbToSaddleAngle))
+                                .font(.custom("Roboto-Regular", size: 16))
+                                .foregroundColor(Color("PrimaryTextColor"))
+                            Text("°")
+                                .font(.custom("Roboto-Regular", size: 14))
+                                .foregroundColor(Color.gray)
+                                .padding(.bottom, 10)
+                                .padding(.top, 10)
+                        }
+                        else {
+                            Text("Enter Saddle Angle")
+                                .font(.custom("Roboto-Regular", size: 16))
+                                .foregroundColor(Color.gray)
+                                .padding(.bottom, 10)
+                                .padding(.top, 10)
+                        }
+                        
+                    }
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
+                }
+                .overlay( // Overlay a RoundedRectangle for the border
+                    RoundedRectangle(cornerRadius: 3) // Set the corner radius
+                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                )
+                .background(Color.white)
+                .position(x: geometry.size.width * 0.7, y: geometry.size.height * 0.45)
+            }
         }
-
-//        .overlay {
-//            if showSaddleHeightEntryDialog {
-//                Rectangle()
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .ignoresSafeArea()
-//                    .zIndex(0)
-//                CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .ignoresSafeArea()
-//                    .zIndex(1)
-//            }
-//
-//        }
-        //        }
+        .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
         .navigationTitle("Saddle Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
@@ -141,56 +112,152 @@ struct MeasureSaddlePositionView: View {
                 Text("Fit Details")
             }
         })
-        
-//        .overlay {
-//                                if showSaddleHeightEntryDialog {
-//                                    CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
-//                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                                        .ignoresSafeArea()
-//                                        .zIndex(1)
-//            
-//                                }
-//        }
-//        .customPopupView(isPresented: $showSaddleHeightEntryDialog, popupView: { popupView })
+    }
+    
+    struct SaddleHeightMeasurementView: View {
+        @Binding var isPresented: Bool
+        @Binding var value: Double
 
-        //        .onTapGesture {
-        //            // dismiss keyboard when user presses away from focused text field
-        //            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        //        }
+        var body: some View {
+            VStack {
+                Spacer() // Push the bottom sheet to the bottom of the screen
+                
+                VStack(spacing: 20) {
+                    Text("Enter the distance from the bottom bracket to the centre of the saddle in millimetres")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.callout)
+                    
+                    DecimalTextField(placeholder: "", value: $value)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .frame(minWidth: 150, alignment: .trailing)
+                        .padding(.top, 8)
+                        .padding(.bottom, 8)
+                        .suffix("mm", minWidth: 30, color: Color.gray, font: .title)
+                        .foregroundColor(Color("PrimaryTextColor"))
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding(.trailing, 8)
+                        .overlay( // Overlay a RoundedRectangle for the border
+                            RoundedRectangle(cornerRadius: 3)       // Set the corner radius
+                                .stroke(Color.red, lineWidth: 4)    // Set border color and thickness
+                        )
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .padding(.horizontal, 30)
+                .background(Color.white)
+                .cornerRadius(15)
+                .shadow(radius: 10)
+                
+                VStack(spacing: 20) {
+                    HStack {
+                        Button("Done") {
+                            isPresented = false // Dismiss the sheet
+                        }
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
+                    }
+                }
+                .background(Color.white)
+                .cornerRadius(15)
+                .shadow(radius: 10)
+            }
+            .padding(8)
+        }
     }
     
     
-//    
-//    var popupView: some View {
-//         
-//        CustomAlertSheet(isPresented: $showSaddleHeightEntryDialog, text: $bikeFit.name)
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .ignoresSafeArea()
-//            .zIndex(1)
-//        
-////         RoundedRectangle(cornerRadius: 20.0)
-////             .fill(Color.white)
-////             .frame(width: 300.0, height: 200.0)
-////             .overlay(
-////                 
-////                 Image(systemName: "xmark").resizable().frame(width: 10.0, height: 10.0)
-////                     .foregroundColor(Color.black)
-////                     .padding(5.0)
-////                     .background(Color.red)
-////                     .clipShape(Circle())
-////                     .padding()
-////                     .onTapGesture { showSaddleHeightEntryDialog.toggle() }
-////                 
-////                 , alignment: .topLeading)
-////             
-////             .overlay(Text("Custom PopUp View!"))
-////             .transition(AnyTransition.slide)
-////             .shadow(radius: 10.0)
-//         
-//     }
+    struct SaddleAngleMeasurementView: View {
+        @Binding var isPresented: Bool
+        @Binding var value: Double
+        @State var captureAngle: Bool = false
+        let motionManager = MotionManager(motionManager: CMMotionManager())
+        
+        var body: some View {
+            VStack {
+                Spacer() // Push the bottom sheet to the bottom of the screen
+                
+                VStack(spacing: 20) {
+                    Text("Enter the angle from the bottom bracket to the centre of the saddle")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.callout)
+                    
+                    DecimalTextField(placeholder: "", value: $value)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .frame(minWidth: 150, alignment: .trailing)
+                        .padding(.top, 8)
+                        .padding(.bottom, 8)
+                        .suffix("°", minWidth: 30, color: Color.gray, font: .title)
+                        .foregroundColor(Color("PrimaryTextColor"))
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding(.trailing, 8)
+                        .overlay( // Overlay a RoundedRectangle for the border
+                            RoundedRectangle(cornerRadius: 3)       // Set the corner radius
+                                .stroke(Color.red, lineWidth: 4)    // Set border color and thickness
+                        )
+                    
+                    Toggle(isOn: $captureAngle) {
+                        Text("Capture angle from device")
+                    }
+                    .tint(Color("PrimaryTextColor"))
+                    .padding(.horizontal)
+                    .onChange(of: captureAngle) { oldValue, newValue in
+                        if newValue {
+                            //dismiss keyboard if shown
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            
+                            do {
+                                try motionManager.startDeviceOrientationUpdates { pitch, roll, yaw in
+                                    value = roll
+                                }
+                            }
+                            catch {
+                                print("SaddleAngleMeasurementView -- ERROR: \(error)")
+                                captureAngle = false
+                            }
+                        }
+                        else {
+                            motionManager.stopDeviceOrientationUpdates()
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .padding(.horizontal, 30)
+                .background(Color.white)
+                .cornerRadius(15)
+                .shadow(radius: 10)
+                
+                VStack(spacing: 20) {
+                    HStack {
+                        Button("Done") {
+                            isPresented = false // Dismiss the sheet
+                        }
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
+                    }
+                }
+                .background(Color.white)
+                .cornerRadius(15)
+                .shadow(radius: 10)
+            }
+            .padding(.leading, 8)
+            .padding(.trailing, 8)
+        }
+    }
 }
 
 #Preview {
     @State var navigationPath = NavigationPath()
+    @StateObject var customActivitySheetModal = CustomActivitySheetModal()
     return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+        .environmentObject(customActivitySheetModal)
+        .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
+    
 }
