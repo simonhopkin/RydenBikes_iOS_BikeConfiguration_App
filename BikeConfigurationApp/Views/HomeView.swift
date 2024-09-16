@@ -63,6 +63,13 @@ struct HomeView: View {
                     
                 case .measureSaddlePositionView(let bikeFit):
                     MeasureSaddlePositionView(bikeFit: bikeFit, navigationPath: $navigationPath)
+                    
+                case .measureHandlebarPositionView(let bikeFit):
+                    MeasureHandlebarPositionView(bikeFit: bikeFit, navigationPath: $navigationPath)
+                    
+                case .measurementView(let bikeFit, let selectedPage):
+                    MeasurementView(bikeFit: bikeFit, selectedPage: selectedPage, navigationPath: $navigationPath)
+                    
                 }
             }
         }

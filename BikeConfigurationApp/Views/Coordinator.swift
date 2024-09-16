@@ -11,6 +11,8 @@ struct Coordinator {
     enum View : Hashable {
         case myFitView
         case myFitDetailsView(BikeFit)
+        case measurementView(BikeFit, Int)
         case measureSaddlePositionView(BikeFit)
+        case measureHandlebarPositionView(BikeFit)
     }
 }

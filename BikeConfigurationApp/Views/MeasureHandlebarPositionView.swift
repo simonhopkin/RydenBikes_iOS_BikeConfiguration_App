@@ -1,19 +1,19 @@
 //
-//  MeasureSaddlePositionView.swift
+//  MeasureHandlebarPositionView.swift
 //  BikeConfigurationApp
 //
-//  Created by Simon Hopkin on 13/09/2024.
+//  Created by Simon Hopkin on 16/09/2024.
 //
 
 import SwiftUI
 import Motion
 import CoreMotion
 
-struct MeasureSaddlePositionView: View {
+struct MeasureHandlebarPositionView: View {
     
     @State var bikeFit: BikeFit
-    @State private var showSaddleHeightEntryDialog = false
-    @State private var showSaddleAngleEntryDialog = false
+    @State private var showHandlebarHeightEntryDialog = false
+    @State private var showHandlebarAngleEntryDialog = false
     
     @Binding var navigationPath: NavigationPath
     
@@ -23,19 +23,19 @@ struct MeasureSaddlePositionView: View {
         GeometryReader { geometry in
             
             ZStack {
-                Image("SaddlePositionGuide")
+                Image("HandlebarPositionGuide")
                     .resizable()
                     .scaledToFit()
                 
                 Button {
                     customActivitySheet.showModal {
-                        SaddleHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
-                                                    value: $bikeFit.bbToSaddleCentre)
+                        HandlebarHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                    value: $bikeFit.bbToHandlebarCentre)
                     }
                 } label: {
                     HStack {
-                        if bikeFit.bbToSaddleCentre != 0 {
-                            Text(String(format: "%.0f", bikeFit.bbToSaddleCentre))
+                        if bikeFit.bbToHandlebarCentre != 0 {
+                            Text(String(format: "%.0f", bikeFit.bbToHandlebarCentre))
                                 .font(.custom("Roboto-Regular", size: 16))
                                 .foregroundColor(Color("PrimaryTextColor"))
                             Text("mm")
@@ -45,7 +45,7 @@ struct MeasureSaddlePositionView: View {
                                 .padding(.top, 10)
                         }
                         else {
-                            Text("Enter Saddle Height")
+                            Text("Enter Handlebar Height")
                                 .font(.custom("Roboto-Regular", size: 16))
                                 .foregroundColor(Color.gray)
                                 .padding(.bottom, 10)
@@ -61,17 +61,17 @@ struct MeasureSaddlePositionView: View {
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 4) // Set border color and thickness
                 )
-                .position(x: geometry.size.width * 0.62, y: geometry.size.height * 0.32)
+                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.30)
                 
                 Button {
                     customActivitySheet.showModal {
-                        SaddleAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
-                                                   value: $bikeFit.bbToSaddleAngle)
+                        HandlebarAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                   value: $bikeFit.bbToHandlebarAngle)
                     }
                 } label: {
                     HStack {
-                        if bikeFit.bbToSaddleAngle != 0 {
-                            Text(String(format: "%.0f", bikeFit.bbToSaddleAngle))
+                        if bikeFit.bbToHandlebarAngle != 0 {
+                            Text(String(format: "%.0f", bikeFit.bbToHandlebarAngle))
                                 .font(.custom("Roboto-Regular", size: 16))
                                 .foregroundColor(Color("PrimaryTextColor"))
                             Text("°")
@@ -81,7 +81,7 @@ struct MeasureSaddlePositionView: View {
                                 .padding(.top, 10)
                         }
                         else {
-                            Text("Enter Saddle Angle")
+                            Text("Enter Handlebar Angle")
                                 .font(.custom("Roboto-Regular", size: 16))
                                 .foregroundColor(Color.gray)
                                 .padding(.bottom, 10)
@@ -97,11 +97,11 @@ struct MeasureSaddlePositionView: View {
                         .stroke(Color.red, lineWidth: 4) // Set border color and thickness
                 )
                 .background(Color.white)
-                .position(x: geometry.size.width * 0.22, y: geometry.size.height * 0.52)
+                .position(x: geometry.size.width * 0.7, y: geometry.size.height * 0.55)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
-        .navigationTitle("Saddle Position")
+        .navigationTitle("Handlebar Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: Button(action: {
@@ -114,7 +114,7 @@ struct MeasureSaddlePositionView: View {
         })
     }
     
-    struct SaddleHeightMeasurementView: View {
+    struct HandlebarHeightMeasurementView: View {
         @Binding var isPresented: Bool
         @Binding var value: Double
 
@@ -123,7 +123,7 @@ struct MeasureSaddlePositionView: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the distance from the bottom bracket to the centre of the saddle in millimetres")
+                    Text("Enter the distance from the bottom bracket to the centre of the handlebars in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
@@ -169,7 +169,7 @@ struct MeasureSaddlePositionView: View {
     }
     
     
-    struct SaddleAngleMeasurementView: View {
+    struct HandlebarAngleMeasurementView: View {
         @Binding var isPresented: Bool
         @Binding var value: Double
         @State var captureAngle: Bool = false
@@ -180,7 +180,7 @@ struct MeasureSaddlePositionView: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the angle from the bottom bracket to the centre of the saddle")
+                    Text("Enter the angle from the bottom bracket to the centre of the handlebars")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
@@ -216,7 +216,7 @@ struct MeasureSaddlePositionView: View {
                                 }
                             }
                             catch {
-                                print("SaddleAngleMeasurementView -- ERROR: \(error)")
+                                print("HandlebarAngleMeasurementView -- ERROR: \(error)")
                                 captureAngle = false
                             }
                         }
@@ -256,7 +256,7 @@ struct MeasureSaddlePositionView: View {
 #Preview {
     @State var navigationPath = NavigationPath()
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+    return MeasureHandlebarPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
     

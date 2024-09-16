@@ -90,7 +90,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 0))
                             }
                         }
                     }
@@ -119,7 +119,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 1))
                             }
                         }
                     }
@@ -150,7 +150,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 2))
                             }
                         }
                     }
