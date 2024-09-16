@@ -79,9 +79,19 @@ struct MyFitDetailsView: View {
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
-                            Image("SaddlePositionGuide")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            ZStack {
+                                Image("SaddlePositionGuide")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+
+                                Text("measure")
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.blue)
+                            }
+                            .onTapGesture {
+                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -98,9 +108,19 @@ struct MyFitDetailsView: View {
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
-                            Image("HandPositionGuide")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            ZStack {
+                                Image("HandPositionGuide")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+
+                                Text("measure")
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.blue)
+                            }
+                            .onTapGesture {
+                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -119,9 +139,19 @@ struct MyFitDetailsView: View {
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
-                            Image("HandlebarPositionGuide")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            ZStack {
+                                Image("HandlebarPositionGuide")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+
+                                Text("measure")
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.blue)
+                            }
+                            .onTapGesture {
+                                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -190,15 +220,15 @@ struct MyFitDetailsView: View {
             Text(title)
                 .fontWeight(.bold)
                 .font(.custom("Roboto-Regular", size: 16))
-            
-            Spacer()
-            
-            Button(action: {
-                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
-            }, label: {
-                Text("measure")
-                    .font(.custom("Roboto-Regular", size: 12))
-            })
+//            
+//            Spacer()
+//            
+//            Button(action: {
+//                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
+//            }, label: {
+//                Text("measure")
+//                    .font(.custom("Roboto-Regular", size: 12))
+//            })
         }
     }
     
