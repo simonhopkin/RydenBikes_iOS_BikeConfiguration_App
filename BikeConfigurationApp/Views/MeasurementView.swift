@@ -16,7 +16,7 @@ struct MeasurementView: View {
         VStack {
             TabView(selection: $selectedPage) {
                 MeasureSaddlePositionView(bikeFit: bikeFit, navigationPath: $navigationPath).tag(0)
-                MeasureSaddlePositionView(bikeFit: bikeFit, navigationPath: $navigationPath).tag(1)
+                MeasureHandPositionView(bikeFit: bikeFit, navigationPath: $navigationPath).tag(1)
                 MeasureHandlebarPositionView(bikeFit: bikeFit, navigationPath: $navigationPath).tag(2)
             }
             .tabViewStyle(PageTabViewStyle())

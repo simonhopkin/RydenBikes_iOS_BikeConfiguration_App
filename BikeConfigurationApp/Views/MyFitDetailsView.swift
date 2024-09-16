@@ -73,7 +73,7 @@ struct MyFitDetailsView: View {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
                                 fitField("BB to Saddle Centre", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleCentre)
-                                fitField("BB to Saddle Angle", suffix: "°", value: $viewModel.bikeFit.bbToSaddleAngle)
+                                fitField("BB to Saddle Angle", suffix: "°", value: $viewModel.bikeFit.bbToSaddleAngle, format: "%.1f")
                                 fitField("BB to Saddle X", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleX)
                                 fitField("BB to Saddle Y", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleY)
                             }
@@ -133,7 +133,7 @@ struct MyFitDetailsView: View {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
                                 fitField("BB to Handlebar", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
-                                fitField("BB to Handlebar Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle)
+                                fitField("BB to Handlebar Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle, format: "%.1f")
                                 fitField("BB to Handlebar X", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
                                 fitField("BB to Handlebar Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
                             }
@@ -233,7 +233,7 @@ struct MyFitDetailsView: View {
     }
     
     
-    func fitField(_ title: String, suffix: String, value: Binding<Double>) -> some View {
+    func fitField(_ title: String, suffix: String, value: Binding<Double>, format: String = "%.0f") -> some View {
         HStack {
             Text(title)
                 .frame(alignment: .leading)
@@ -241,7 +241,7 @@ struct MyFitDetailsView: View {
             
             Spacer()
             
-            DecimalTextField(placeholder: "", value: value)
+            DecimalTextField(placeholder: "", value: value, format: format)
                 .font(.custom("Roboto-Regular", size: 14))
                 .frame(minWidth: 75, alignment: .trailing)
                 .suffix(suffix, minWidth: 30, color: Color.gray, font: .custom("Roboto-Regular", size: 12))

@@ -71,7 +71,7 @@ struct MeasureSaddlePositionView: View {
                 } label: {
                     HStack {
                         if bikeFit.bbToSaddleAngle != 0 {
-                            Text(String(format: "%.0f", bikeFit.bbToSaddleAngle))
+                            Text(String(format: "%.1f", bikeFit.bbToSaddleAngle))
                                 .font(.custom("Roboto-Regular", size: 16))
                                 .foregroundColor(Color("PrimaryTextColor"))
                             Text("°")
@@ -173,6 +173,7 @@ struct MeasureSaddlePositionView: View {
         @Binding var isPresented: Bool
         @Binding var value: Double
         @State var captureAngle: Bool = false
+//        let motionManager = CMMotionManager()
         let motionManager = MotionManager(motionManager: CMMotionManager())
         
         var body: some View {
@@ -185,7 +186,7 @@ struct MeasureSaddlePositionView: View {
                         .multilineTextAlignment(.leading)
                         .font(.callout)
                     
-                    DecimalTextField(placeholder: "", value: $value)
+                    DecimalTextField(placeholder: "", value: $value, format: "%.1f")
                         .font(.title)
                         .fontWeight(.bold)
                         .frame(minWidth: 150, alignment: .trailing)
@@ -209,11 +210,35 @@ struct MeasureSaddlePositionView: View {
                         if newValue {
                             //dismiss keyboard if shown
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                            motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { motion, error in
+//                                if let motion = motion {
+////                                    let roll = motion.attitude.roll * 180 / .pi
+////                                        let pitch = motion.attitude.pitch * 180 / .pi
+////                                        let yaw = motion.attitude.yaw * 180 / .pi
+//                                    
+//                                        let rotationMatrix = motion.attitude.rotationMatrix
+//                                                    
+//                                    let quaternion = motion.attitude.quaternion
+//                                    
+////                                        let roll = atan2(rotationMatrix.m32, rotationMatrix.m33)
+//                                    
+////                                    let pitch = asin(-rotationMatrix.m31) * 180 / .pi
+//                                    
+//                                    
+//                                    let pitch = atan2(2 * (quaternion.w * quaternion.y - quaternion.z * quaternion.x), 1 - 2 * (quaternion.x * quaternion.x + quaternion.y * quaternion.y)) * 180 / .pi
+//                                    
+//                                    value = pitch
+////                                        /*callback*/(roll, pitch, yaw)
+//                                }
+//                            }
+                            
                             
                             do {
-                                try motionManager.startDeviceOrientationUpdates { pitch, roll, yaw in
-                                    value = roll
+                                try motionManager.startDeviceOrientationUpdates { roll, pitch, yaw in
+                                    value = pitch
                                 }
+                                
+                            
                             }
                             catch {
                                 print("SaddleAngleMeasurementView -- ERROR: \(error)")
@@ -221,6 +246,7 @@ struct MeasureSaddlePositionView: View {
                             }
                         }
                         else {
+//                            motionManager.stopDeviceMotionUpdates()
                             motionManager.stopDeviceOrientationUpdates()
                         }
                     }
@@ -249,6 +275,10 @@ struct MeasureSaddlePositionView: View {
             }
             .padding(.leading, 8)
             .padding(.trailing, 8)
+            .onDisappear {
+                captureAngle = false
+                motionManager.stopDeviceOrientationUpdates()
+            }
         }
     }
 }

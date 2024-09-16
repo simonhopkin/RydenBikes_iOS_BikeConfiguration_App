@@ -12,6 +12,7 @@
 		3E01B6262C95925800C70D78 /* CustomActivitySheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E01B6252C95925800C70D78 /* CustomActivitySheetModal.swift */; };
 		3E0FD9922C986749004A09DF /* MeasureHandlebarPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */; };
 		3E0FD9962C9869D0004A09DF /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9952C9869D0004A09DF /* MeasurementView.swift */; };
+		3E0FD9982C987186004A09DF /* MeasureHandPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */; };
 		3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */; };
 		3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140942C8A1378007BA9CA /* HomeView.swift */; };
 		3E2140972C8A137A007BA9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E2140962C8A137A007BA9CA /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		3E01B6252C95925800C70D78 /* CustomActivitySheetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivitySheetModal.swift; sourceTree = "<group>"; };
 		3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureHandlebarPositionView.swift; sourceTree = "<group>"; };
 		3E0FD9952C9869D0004A09DF /* MeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
+		3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureHandPositionView.swift; sourceTree = "<group>"; };
 		3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeConfigurationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppApp.swift; sourceTree = "<group>"; };
 		3E2140942C8A1378007BA9CA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				3E87DC2B2C93381800B53289 /* ShareSheet.swift */,
 				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
 				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
+				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
 				3E0FD9952C9869D0004A09DF /* MeasurementView.swift */,
 			);
 			path = Views;
@@ -448,6 +451,7 @@
 				3E645B012C8CB7F1009866A9 /* TintedNavigationBarModifier.swift in Sources */,
 				3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */,
 				3E645AFA2C8CB1DF009866A9 /* BikeFitSaddlePosition.swift in Sources */,
+				3E0FD9982C987186004A09DF /* MeasureHandPositionView.swift in Sources */,
 				3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */,
 				3E87DC2C2C93381800B53289 /* ShareSheet.swift in Sources */,
 				3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */,
@@ -629,7 +633,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
@@ -667,7 +671,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
