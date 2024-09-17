@@ -82,7 +82,7 @@ struct MeasureHandPositionView: View {
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
-        .navigationTitle("Hand Position")
+        .navigationTitle("Grip Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: Button(action: {
@@ -104,7 +104,7 @@ struct MeasureHandPositionView: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the horizontal distance from the centre of the saddle to the hand position in millimetres")
+                    Text("Enter the horizontal distance from the centre of the saddle to the grip position in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
@@ -159,7 +159,7 @@ struct MeasureHandPositionView: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the vertical distance from the top of the saddle to the hand position in millimetres")
+                    Text("Enter the vertical distance from the top of the saddle to the grip position in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)

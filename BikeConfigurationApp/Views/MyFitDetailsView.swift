@@ -100,13 +100,13 @@ struct MyFitDetailsView: View {
                     Divider()
                     
                     VStack(alignment: .leading) {
-                        fitSection("Hand Position")
+                        fitSection("Grip Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("Saddle Centre to Hand", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
-                                fitField("Saddle to Hand Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
-                                fitField("BB to Hand X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
-                                fitField("BB to Hand Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
+                                fitField("Saddle Centre to Grip", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
+                                fitField("Saddle to Grip Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
+                                fitField("BB to Grip X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
+                                fitField("BB to Grip Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             

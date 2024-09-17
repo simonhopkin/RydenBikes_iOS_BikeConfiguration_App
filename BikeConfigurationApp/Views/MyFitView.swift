@@ -59,7 +59,7 @@ struct MyFitView: View {
                             HStack {
                                 VStack(alignment: .leading) {
                                     HStack {
-                                        Text("Saddle X: ").fontWeight(.medium)
+                                        Text("Setback: ").fontWeight(.medium)
                                         Text(String(format: "%.0f", bikeFit.bbToSaddleX)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
@@ -75,11 +75,11 @@ struct MyFitView: View {
                                         Text(String(format: "%.0f", bikeFit.bbToHandlebarY)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Hand X: ").fontWeight(.medium)
+                                        Text("Grip X: ").fontWeight(.medium)
                                         Text(String(format: "%.0f", bikeFit.bbToHandX)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Hand Y: ").fontWeight(.medium)
+                                        Text("Grip Y: ").fontWeight(.medium)
                                         Text(String(format: "%.0f", bikeFit.bbToHandY)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                 }
