@@ -10,7 +10,7 @@ import SwiftData
 import PhotosUI
 
 struct MyFitDetailsView: View {
-    
+        
     @Binding var navigationPath: NavigationPath
     @State var viewModel: MyFitDetailsViewModel
     
@@ -90,7 +90,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 0))
+                                navigationPath.append(Route.measurementView(viewModel.bikeFit, 0))
                             }
                         }
                     }
@@ -119,7 +119,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 1))
+                                navigationPath.append(Route.measurementView(viewModel.bikeFit, 1))
                             }
                         }
                     }
@@ -150,7 +150,7 @@ struct MyFitDetailsView: View {
                                     .foregroundStyle(Color.blue)
                             }
                             .onTapGesture {
-                                navigationPath.append(Coordinator.View.measurementView(viewModel.bikeFit, 2))
+                                navigationPath.append(Route.measurementView(viewModel.bikeFit, 2))
                             }
                         }
                     }
@@ -220,15 +220,6 @@ struct MyFitDetailsView: View {
             Text(title)
                 .fontWeight(.bold)
                 .font(.custom("Roboto-Regular", size: 16))
-//            
-//            Spacer()
-//            
-//            Button(action: {
-//                navigationPath.append(Coordinator.View.measureSaddlePositionView(viewModel.bikeFit))
-//            }, label: {
-//                Text("measure")
-//                    .font(.custom("Roboto-Regular", size: 12))
-//            })
         }
     }
     
@@ -259,6 +250,7 @@ struct MyFitDetailsView: View {
     @State var navigationPath = NavigationPath()
     let modelContainer = try! ModelContainer(for: BikeFit.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
     let modelContext = modelContainer.mainContext
-    let viewModel = MyFitDetailsViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext), bikeFit: BikeFit.new())
+    let bikeFit = BikeFit.new()
+    let viewModel = MyFitDetailsViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext), bikeFit: bikeFit)
     return MyFitDetailsView(navigationPath: $navigationPath, viewModel: viewModel)
 }

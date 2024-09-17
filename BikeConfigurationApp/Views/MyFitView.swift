@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MyFitView: View {
+    
     @Binding var navigationPath: NavigationPath
     @State var viewModel: MyFitViewModel
     @State var showActionSheet = false
@@ -23,7 +24,7 @@ struct MyFitView: View {
             List(bikeFits) { bikeFit in
                 VStack (alignment: .leading) {
                     Button {
-                        navigationPath.append(Coordinator.View.myFitDetailsView(bikeFit))
+                        navigationPath.append(Route.myFitDetailsView(bikeFit))
                     } label: {
                         VStack(alignment: .leading, content: {
                             HStack(alignment: .center) {
@@ -107,7 +108,7 @@ struct MyFitView: View {
                     Text("Home")
                 }
             }, trailing:  Button(action: {
-                navigationPath.append(Coordinator.View.myFitDetailsView(BikeFit.new()))
+                navigationPath.append(Route.myFitDetailsView(BikeFit.new()))
             }) {
                 HStack {
                     Image(systemName: "plus")
@@ -150,10 +151,6 @@ struct MyFitView: View {
                 }
                 return ShareSheet(sharedItems: [selectedBikeFit!.bikeFitAppLink])
             }
-//            .onAppear {
-//                print("MyFitView onAppear")
-//                viewModel.fetchData()
-//            }
         }
     }
 }

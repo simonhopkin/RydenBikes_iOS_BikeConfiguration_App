@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MeasurementView: View {
+        
     @State var bikeFit: BikeFit
     @State var selectedPage = 0
     @Binding var navigationPath: NavigationPath
@@ -37,7 +38,8 @@ struct MeasurementView: View {
 #Preview {
     @State var navigationPath = NavigationPath()
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasurementView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+    let bikeFit = BikeFit.new()
+    return MeasurementView(bikeFit: bikeFit, navigationPath: $navigationPath)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
 }

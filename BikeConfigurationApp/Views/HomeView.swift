@@ -26,7 +26,7 @@ struct HomeView: View {
                 }
                 
                 Button(action: {
-                    navigationPath.append(Coordinator.View.myFitView)
+                    navigationPath.append(Route.myFitView)
                 }) {
                     Text("My Fit")
                         .font(.custom("Roboto-Regular", size: 30))
@@ -49,32 +49,14 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .tintedNavigationBar(tintColor: UIColor(Color.primary),
                                  backgroundColor: UIColor.systemBackground)
-            .navigationDestination(for: Coordinator.View.self) { view in
-                switch view {
-                    
-                case .myFitView:
-                    MyFitView(navigationPath: $navigationPath,
-                              viewModel: MyFitViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext)))
-                    
-                case .myFitDetailsView(let bikeFit):
-                    MyFitDetailsView(navigationPath: $navigationPath,
-                                     viewModel: MyFitDetailsViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext),
-                                                                      bikeFit: bikeFit))
-                    
-                case .measureSaddlePositionView(let bikeFit):
-                    MeasureSaddlePositionView(bikeFit: bikeFit, navigationPath: $navigationPath)
-                    
-                case .measureHandlebarPositionView(let bikeFit):
-                    MeasureHandlebarPositionView(bikeFit: bikeFit, navigationPath: $navigationPath)
-                    
-                case .measurementView(let bikeFit, let selectedPage):
-                    MeasurementView(bikeFit: bikeFit, selectedPage: selectedPage, navigationPath: $navigationPath)
-                    
-                }
+            .navigationDestination(for: Route.self) { route in
+                
+                Coordinator().getViewForRoute(route,
+                                              navigationPath: $navigationPath,
+                                              modelContext: modelContext)
             }
         }
     }
-    
 }
 
 #Preview {
