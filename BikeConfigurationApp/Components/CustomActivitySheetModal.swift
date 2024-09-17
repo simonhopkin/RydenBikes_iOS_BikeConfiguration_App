@@ -12,21 +12,17 @@ class CustomActivitySheetModal: ObservableObject {
     var content: AnyView?
     var backgroundColor: Color = .black.opacity(0.7)
     var animation: Animation? = .easeInOut(duration: 1)
-        
+    
     func showModal(@ViewBuilder content: () -> any View) {
         if !isPresented {
             self.activitySheetContent = AnyView(content())
-//            withAnimation(self.animation) {
-                self.isPresented = true
-//            }
+            self.isPresented = true
         }
     }
     
     func hideModal() {
         if isPresented {
-//            withAnimation(self.animation) {
-                self.isPresented = false
-//            }
+            self.isPresented = false
         }
     }
     
@@ -36,16 +32,13 @@ class CustomActivitySheetModal: ObservableObject {
             .onTapGesture {
                 print(self.isPresented)
                 if self.isPresented {
-//                    withAnimation(self.animation) {
-                        self.isPresented = false // Dismiss when tapping outside
-//                    }
+                    self.isPresented = false // Dismiss when tapping outside
                 }
             }
     }
     
     var overlay: some View {
         content?
-//            .animation(nil, value: isPresented)
             .overlay(isPresented ? backgroundOverlay : nil)
             .overlay(isPresented ? activitySheetContent.transition(.move(edge: .bottom)) : nil)
             .animation(animation, value: isPresented)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Not currently used but can be if we want to show the launch screen for longer
 struct SplashView: View {
     @State var shouldDisplaySplashView: Bool = true
     @Binding var navigationPath: NavigationPath

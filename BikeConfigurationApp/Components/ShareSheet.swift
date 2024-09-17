@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 
+/// View controller used to display the sharing screen
 struct ShareSheet: UIViewControllerRepresentable {
     var sharedItems: [Any]
     
