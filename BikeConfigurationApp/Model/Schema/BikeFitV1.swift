@@ -50,7 +50,7 @@ extension DataSchemaV1 {
             set {
                 print("bbToSaddleCentre set")
                 _bbToSaddleCentre = newValue
-                computeSaddleXAndY() // saddle height has changed, so recalculate x and y if saddle angle is known
+                computeSaddleXAndY()
             }
         }
         
@@ -60,7 +60,7 @@ extension DataSchemaV1 {
             set {
                 print("bbToSaddleAngle set")
                 _bbToSaddleAngle = newValue
-                computeSaddleXAndY() // saddle angle has changed, so recalculate x and y if saddle height is known
+                computeSaddleXAndY()
             }
         }
         
@@ -70,7 +70,6 @@ extension DataSchemaV1 {
             set {
                 print("bbToSaddleX set")
                 _bbToSaddleX = newValue
-                // if X is edited and Y, angle and saddle height are known then recalculate the angle and Y
                 computeSaddleAngleAndY()
             }
         }
@@ -81,7 +80,6 @@ extension DataSchemaV1 {
             set {
                 print("bbToSaddleY set")
                 _bbToSaddleY = newValue
-                // if Y is edited and X, angle and saddle height are known then recalculate the angle and saddle height
                 computeSaddleCentreAndAngle()
             }
         }
@@ -99,7 +97,7 @@ extension DataSchemaV1 {
             set {
                 print("bbToHandlebarCentre set")
                 _bbToHandlebarCentre = newValue
-                computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+                computeHandlebarXAndY()
             }
         }
         
@@ -109,7 +107,7 @@ extension DataSchemaV1 {
             set {
                 print("bbToHandlebarAngle set")
                 _bbToHandlebarAngle = newValue
-                computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+                computeHandlebarXAndY()
             }
         }
         
@@ -119,7 +117,6 @@ extension DataSchemaV1 {
             set {
                 print("bbToHandlebarX set")
                 _bbToHandlebarX = newValue
-                // if X is edited and Y, angle and handlebar height are known then recalculate the angle and Y
                 computeHandlebarAngleAndY()
             }
         }
@@ -130,12 +127,13 @@ extension DataSchemaV1 {
             set {
                 print("bbToHandlebarY set")
                 _bbToHandlebarY = newValue
-                // if Y is edited and X, angle and handlebar height are known then recalculate the angle and handlebar height
                 computeHandlebarCentreAndAngle()
             }
         }
         
-        init(id: UUID, created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        init(id: UUID, created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, 
+             bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double,
+             bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
             self.id = id
             self.created = created
             self.name = name
@@ -152,7 +150,9 @@ extension DataSchemaV1 {
             self._bbToHandlebarY = bbToHandlebarY
         }
         
-        convenience init(created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        convenience init(created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, 
+                         bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, 
+                         bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
             self.init(id: UUID(),
                       created: created,
                       name: name,
@@ -170,7 +170,9 @@ extension DataSchemaV1 {
                       bbToHandlebarY: bbToHandlebarY)
         }
         
-        convenience init(name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        convenience init(name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, 
+                         bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandlebarCentre: Double,
+                         bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
             self.init(id: UUID(),
                       created: Date.now,
                       name: name,
@@ -215,7 +217,7 @@ extension DataSchemaV1 {
             
             if _bbToSaddleAngle != 0 && _bbToSaddleY != 0 && _bbToSaddleCentre != 0 {
                 
-                let angle = 90 - asin(_bbToSaddleX / _bbToSaddleCentre) * 180.0 / .pi
+                let angle = acos(_bbToSaddleX / _bbToSaddleCentre) * 180.0 / .pi
                 let y = sqrt(_bbToSaddleCentre * _bbToSaddleCentre - _bbToSaddleX * _bbToSaddleX)
                 
                 if _bbToSaddleAngle != angle {
@@ -233,7 +235,7 @@ extension DataSchemaV1 {
             
             if _bbToSaddleAngle != 0 && _bbToSaddleX != 0 && _bbToSaddleCentre != 0 {
                 
-                let angle = 90 - atan(_bbToSaddleX / _bbToSaddleY) * 180.0 / .pi
+                let angle = atan(_bbToSaddleY / _bbToSaddleX) * 180.0 / .pi
                 let height = sqrt(_bbToSaddleX * _bbToSaddleX + _bbToSaddleY * _bbToSaddleY)
                 
                 if _bbToSaddleAngle != angle {

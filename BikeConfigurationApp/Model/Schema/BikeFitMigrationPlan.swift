@@ -7,6 +7,7 @@
 
 import SwiftData
 
+/// Schema migration plan executes whenever there is a schema change and the presistent data needs migrating on updating the app
 enum BikeFitMigrationPlan: SchemaMigrationPlan {
     static var schemas : [any VersionedSchema.Type] = [DataSchemaV1.self, DataSchemaV2.self]
     
@@ -14,7 +15,6 @@ enum BikeFitMigrationPlan: SchemaMigrationPlan {
         [migrateV1ToV2]
     }
         
-    
     static let migrateV1ToV2 = MigrationStage.custom(
         fromVersion: DataSchemaV1.self,
         toVersion: DataSchemaV2.self) { context in

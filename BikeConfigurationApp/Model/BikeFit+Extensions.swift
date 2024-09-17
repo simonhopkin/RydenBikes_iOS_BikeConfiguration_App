@@ -1,5 +1,5 @@
 //
-//  BikeFit.swift
+//  BikeFit+Extensions.swift
 //  BikeConfigurationApp
 //
 //  Created by Simon Hopkin on 07/09/2024.
@@ -11,6 +11,8 @@ import Combine
 import SwiftUI
 
 extension BikeFit {
+    
+    /// Generates a link for sharing BikeFit
     var bikeFitAppLink: String {
         get {
             let url = "https://ryden.bike/bikeFit"
@@ -19,14 +21,10 @@ extension BikeFit {
             + "&notes=\(notes.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
             + "&bb2SC=\(String(format: "%.1f", bbToSaddleCentre))"
             + "&bb2SA=\(String(format: "%.2f", bbToSaddleAngle))"
-            //            + "&bb2SX=\(String(format: "%.1f", bbToSaddleX))"
-            //            + "&bb2SY=\(String(format: "%.1f", bbToSaddleY))"
             + "&sC2H=\(String(format: "%.1f", saddleCentreToHand))"
             + "&s2HD=\(String(format: "%.1f", saddleToHandDrop))"
             + "&bb2HC=\(String(format: "%.1f", bbToHandlebarCentre))"
             + "&bb2HA=\(String(format: "%.2f", bbToHandlebarAngle))"
-            //            + "&bb2HX=\(String(format: "%.1f", bbToHandlebarX))"
-            //            + "&bb2HY=\(String(format: "%.1f", bbToHandlebarY))"
             return url
         }
     }
@@ -34,6 +32,7 @@ extension BikeFit {
 
 extension BikeFit {
     
+    /// Convenience function to create a new empty BikeFit object
     static func new() -> BikeFit {
         BikeFit(name: "",
                 notes: "",
@@ -51,6 +50,7 @@ extension BikeFit {
                 bbToHandlebarY: 0)
     }
     
+    /// Validation function to check all the properties of BikeFit have been set
     func isValid() -> Bool {
         
         if name.isEmpty {
@@ -111,6 +111,8 @@ extension BikeFit {
 }
 
 extension BikeFit {
+    
+    /// Creates a new BikeFit object from a url
     static func bikeFitFromUrl(_ url: URL) -> BikeFit? {
         
         if let components = URLComponents(url: url, resolvingAgainstBaseURL: true), let queryItems = components.queryItems {
@@ -142,6 +144,8 @@ extension BikeFit {
 }
 
 extension BikeFit : CustomStringConvertible {
+    
+    /// Generates a string from a BikeFit object for debugging purposes
     var description: String {
         return "BikeFit("
         + "id: \(id),"

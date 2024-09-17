@@ -8,30 +8,42 @@
 import SwiftUI
 import SwiftData
 
+/// Displays a list of `BikeFit` objects in persistent storage
 struct MyFitView: View {
     
+    /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
+    
     @State var viewModel: MyFitViewModel
     @State var showActionSheet = false
     @State var selectedBikeFit: BikeFit?
     @State var showDeleteBikeFitAlert = false
     @State var showShareSheet = false
     
+    /// Query to fetch the BikeFits from persistent storage and respond to updates.  Would rather have done this in the
+    /// view model but SwiftData doesn't yet support querying and observing Swift Data changes outside of Views
     @Query(sort: \BikeFit.created, order: .reverse) private var bikeFits: [BikeFit]
-
+    
     var body: some View {
         GeometryReader { geometry in
             List(bikeFits) { bikeFit in
+                
                 VStack (alignment: .leading) {
+                    
                     Button {
                         navigationPath.append(Route.myFitDetailsView(bikeFit))
                     } label: {
                         VStack(alignment: .leading, content: {
+                            
                             HStack(alignment: .center) {
+                                
                                 Text(bikeFit.name)
                                     .fontWeight(.bold)
                                     .foregroundStyle(Color.primary)
+                                
                                 Spacer()
+                                
+                                // button to access action sheet to delete or share a `BikeFit`
                                 Button {
                                     selectedBikeFit = bikeFit
                                     showActionSheet = true
@@ -43,7 +55,7 @@ struct MyFitView: View {
                                     }
                                 }
                             }
-                        
+                            
                             HStack {
                                 VStack(alignment: .leading) {
                                     HStack {
@@ -82,6 +94,7 @@ struct MyFitView: View {
                                     .frame(width: geometry.size.width * 0.5)
                             }
                             
+                            // Display the bike notes if not empty
                             if !bikeFit.notes.isEmpty {
                                 Text("Notes")
                                     .font(.custom("Roboto-Bold", size: 14))
@@ -100,22 +113,26 @@ struct MyFitView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .background(Color.gray)
-            .navigationBarItems(leading: Button(action: {
-                navigationPath.removeLast()
-            }) {
-                HStack {
-                    Image(systemName: "chevron.left")
-                    Text("Home")
-                }
-            }, trailing:  Button(action: {
-                navigationPath.append(Route.myFitDetailsView(BikeFit.new()))
-            }) {
-                HStack {
-                    Image(systemName: "plus")
-
-                }
-            })
+            .navigationBarItems(
+                // Override the navigation header bar to contain a back and add buttons
+                leading: Button(action: {
+                    navigationPath.removeLast()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Home")
+                    }
+                },
+                trailing:  Button(action: {
+                    navigationPath.append(Route.myFitDetailsView(BikeFit.new()))
+                }) {
+                    HStack {
+                        Image(systemName: "plus")
+                        
+                    }
+                })
             .actionSheet(isPresented: $showActionSheet, content: {
+                // Action sheet allowing user to delete or share a BikeFit
                 ActionSheet(title: Text("Bike Fit Options"),
                             message: nil,
                             buttons: [
@@ -136,6 +153,7 @@ struct MyFitView: View {
                             ])
             })
             .alert("Delete \(selectedBikeFit?.name ?? "unknown")", isPresented: $showDeleteBikeFitAlert) {
+                // Alert to confirm deletion of a bike fit
                 Button("Cancel", role: .cancel) {
                     showDeleteBikeFitAlert = false
                 }

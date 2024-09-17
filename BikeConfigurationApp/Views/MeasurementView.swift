@@ -32,6 +32,7 @@ struct MeasurementView: View {
             }
             .padding(.top, 10)
         }
+        .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
     }
 }
 

@@ -7,24 +7,17 @@
 
 import Foundation
 
-//@Observable
+/// View model  used to maintain BikeFit reporistory objects
 class MyFitViewModel {
     
     private let bikeFitRepository: BikeFitRepositoryProtocol
-//    var bikeFits = [BikeFit]()
     
     init(bikeFitRepository: BikeFitRepositoryProtocol) {
         self.bikeFitRepository = bikeFitRepository
-//        fetchData()
     }
-    
-//    func fetchData() {
-//        bikeFits = bikeFitRepository.fetchBikeFits()
-//    }
-    
+
     func deleteBikeFit(_ bikeFit: BikeFit) {
         bikeFitRepository.deleteBikeFit(bikeFit)
-//        bikeFits = bikeFitRepository.fetchBikeFits()
     }
 }
 

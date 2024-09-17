@@ -17,7 +17,9 @@ import SwiftUI
 /// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
 /// private property.
 
+/// `BikeFit` namespaced to `DataSchemaV2`
 extension DataSchemaV2 {
+    
     @Model
     class BikeFit : Identifiable {
         let id: UUID
@@ -48,7 +50,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleCentre set")
                 _bbToSaddleCentre = newValue
-                computeSaddleXAndY() // saddle height has changed, so recalculate x and y if saddle angle is known
+                computeSaddleXAndY()
                 computeHandPositions()
             }
         }
@@ -59,7 +61,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleAngle set")
                 _bbToSaddleAngle = newValue
-                computeSaddleXAndY() // saddle angle has changed, so recalculate x and y if saddle height is known
+                computeSaddleXAndY()
                 computeHandPositions()
             }
         }
@@ -70,7 +72,6 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleX set")
                 _bbToSaddleX = newValue
-                // if X is edited and Y, angle and saddle height are known then recalculate the angle and Y
                 computeSaddleAngleAndY()
                 computeHandPositions()
             }
@@ -82,7 +83,6 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleY set")
                 _bbToSaddleY = newValue
-                // if Y is edited and X, angle and saddle height are known then recalculate the angle and saddle height
                 computeSaddleCentreAndAngle()
                 computeHandPositions()
             }
@@ -100,7 +100,7 @@ extension DataSchemaV2 {
             set {
                 print("saddleCentreToHand set")
                 _saddleCentreToHand = newValue
-                computeHandXAndY() // hand distance has changed, so recalculate x and y if hand drop and bbToSaddneY is known
+                computeHandXAndY()
             }
         }
         
@@ -109,7 +109,7 @@ extension DataSchemaV2 {
             set {
                 print("saddleToHandDrop set")
                 _saddleToHandDrop = newValue
-                computeHandXAndY() // hand drop has changed, so recalculate x and y if hand distance and bbToSaddneX is known
+                computeHandXAndY()
             }
         }
         
@@ -118,7 +118,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandX set")
                 _bbToHandX = newValue
-                computeHandPositions() // hand x has changed, so recalculate saddle to hand and hand drop
+                computeHandPositions()
             }
         }
 
@@ -127,7 +127,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandY set")
                 _bbToHandY = newValue
-                computeHandPositions() // hand x has changed, so recalculate saddle to hand and hand drop
+                computeHandPositions()
             }
         }
         
@@ -140,7 +140,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarCentre set")
                 _bbToHandlebarCentre = newValue
-                computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+                computeHandlebarXAndY()
             }
         }
         
@@ -150,7 +150,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarAngle set")
                 _bbToHandlebarAngle = newValue
-                computeHandlebarXAndY() // handlebar height has changed, so recalculate x and y if handlebar angle is known
+                computeHandlebarXAndY()
             }
         }
         
@@ -160,7 +160,6 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarX set")
                 _bbToHandlebarX = newValue
-                // if X is edited and Y, angle and handlebar height are known then recalculate the angle and Y
                 computeHandlebarAngleAndY()
             }
         }
@@ -171,12 +170,13 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarY set")
                 _bbToHandlebarY = newValue
-                // if Y is edited and X, angle and handlebar height are known then recalculate the angle and handlebar height
                 computeHandlebarCentreAndAngle()
             }
         }
         
-        init(id: UUID, created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandX: Double, bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        init(id: UUID, created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, 
+             bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandX: Double,
+             bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
             self.id = id
             self.created = created
             self.name = name
@@ -195,7 +195,10 @@ extension DataSchemaV2 {
             self._bbToHandlebarY = bbToHandlebarY
         }
         
-        convenience init(created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandX: Double, bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        convenience init(created: Date, name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, 
+                         bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double,
+                         bbToHandX: Double, bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double,
+                         bbToHandlebarX: Double, bbToHandlebarY: Double) {
             self.init(id: UUID(),
                       created: created,
                       name: name,
@@ -215,7 +218,10 @@ extension DataSchemaV2 {
                       bbToHandlebarY: bbToHandlebarY)
         }
         
-        convenience init(name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandX: Double, bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double, bbToHandlebarY: Double) {
+        convenience init(name: String, notes: String, bbToSaddleCentre: Double, bbToSaddleAngle: Double, bbToSaddleX: Double, 
+                         bbToSaddleY: Double, saddleCentreToHand: Double, saddleToHandDrop: Double, bbToHandX: Double,
+                         bbToHandY: Double, bbToHandlebarCentre: Double, bbToHandlebarAngle: Double, bbToHandlebarX: Double,
+                         bbToHandlebarY: Double) {
             self.init(id: UUID(),
                       created: Date.now,
                       name: name,
