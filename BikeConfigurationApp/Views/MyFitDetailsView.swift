@@ -105,6 +105,8 @@ struct MyFitDetailsView: View {
                             VStack(alignment: .leading) {
                                 fitField("Saddle Centre to Hand", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
                                 fitField("Saddle to Hand Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
+                                fitField("BB to Hand X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
+                                fitField("BB to Hand Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             

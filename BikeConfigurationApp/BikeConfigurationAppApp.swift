@@ -19,7 +19,7 @@ struct BikeConfigurationAppApp: App {
 
     init() {
         do {
-            modelContainer = try ModelContainer(for: BikeFit.self)
+            modelContainer = try ModelContainer(for: BikeFit.self, migrationPlan: BikeFitMigrationPlan.self)
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }

@@ -48,27 +48,27 @@ struct MyFitView: View {
                                 VStack(alignment: .leading) {
                                     HStack {
                                         Text("Saddle X: ").fontWeight(.medium)
-                                        Text(String(format: "%.1f", bikeFit.bbToSaddleX)).foregroundStyle(Color("PrimaryTextColor"))
+                                        Text(String(format: "%.0f", bikeFit.bbToSaddleX)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
                                         Text("Saddle Y: ").fontWeight(.medium)
-                                        Text(String(format: "%.1f", bikeFit.bbToSaddleY)).foregroundStyle(Color("PrimaryTextColor"))
+                                        Text(String(format: "%.0f", bikeFit.bbToSaddleY)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Handle X: ").fontWeight(.medium)
-                                        Text(String(format: "%.1f", bikeFit.bbToHandlebarX)).foregroundStyle(Color("PrimaryTextColor"))
+                                        Text("Handlebar X: ").fontWeight(.medium)
+                                        Text(String(format: "%.0f", bikeFit.bbToHandlebarX)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Handle Y: ").fontWeight(.medium)
-                                        Text(String(format: "%.1f", bikeFit.bbToHandlebarY)).foregroundStyle(Color("PrimaryTextColor"))
+                                        Text("Handlebar Y: ").fontWeight(.medium)
+                                        Text(String(format: "%.0f", bikeFit.bbToHandlebarY)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Bars X: ").fontWeight(.medium)
-                                        Text("???").foregroundStyle(Color("PrimaryTextColor"))
+                                        Text("Hand X: ").fontWeight(.medium)
+                                        Text(String(format: "%.0f", bikeFit.bbToHandX)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                     HStack {
-                                        Text("Bars Y: ").fontWeight(.medium)
-                                        Text("???").foregroundStyle(Color("PrimaryTextColor"))
+                                        Text("Hand Y: ").fontWeight(.medium)
+                                        Text(String(format: "%.0f", bikeFit.bbToHandY)).foregroundStyle(Color("PrimaryTextColor"))
                                     }
                                 }
                                 .font(.custom("Roboto-Medium", size: 14))
