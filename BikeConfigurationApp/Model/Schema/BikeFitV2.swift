@@ -262,7 +262,7 @@ extension BikeFitSchemaV2 {
             
             if _bbToSaddleAngle != 0 && _bbToSaddleY != 0 && _bbToSaddleCentre != 0 {
                 
-                let angle = 90 - asin(_bbToSaddleX / _bbToSaddleCentre) * 180.0 / .pi
+                let angle = acos(_bbToSaddleX / _bbToSaddleCentre) * 180.0 / .pi
                 let y = sqrt(_bbToSaddleCentre * _bbToSaddleCentre - _bbToSaddleX * _bbToSaddleX)
                 
                 if _bbToSaddleAngle != angle {
@@ -280,7 +280,7 @@ extension BikeFitSchemaV2 {
             
             if _bbToSaddleAngle != 0 && _bbToSaddleX != 0 && _bbToSaddleCentre != 0 {
                 
-                let angle = 90 - atan(_bbToSaddleX / _bbToSaddleY) * 180.0 / .pi
+                let angle = atan(_bbToSaddleY / _bbToSaddleX) * 180.0 / .pi
                 let height = sqrt(_bbToSaddleX * _bbToSaddleX + _bbToSaddleY * _bbToSaddleY)
                 
                 if _bbToSaddleAngle != angle {
@@ -314,8 +314,8 @@ extension BikeFitSchemaV2 {
             if _bbToHandX != 0 && _bbToHandY != 0 && _bbToSaddleX != 0 && _bbToSaddleY != 0 {
                 
                 let y = _bbToSaddleY - _bbToHandY
-                let x = sqrt(y * y + _bbToHandX * _bbToSaddleX)
-                
+                let x = sqrt((y * y) + ((_bbToHandX + _bbToSaddleX) * (_bbToHandX + _bbToSaddleX)))
+
                 if _saddleCentreToHand != x {
                     _saddleCentreToHand = x
                 }
