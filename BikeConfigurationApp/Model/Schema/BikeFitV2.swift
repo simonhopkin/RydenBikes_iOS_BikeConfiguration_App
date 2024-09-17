@@ -17,7 +17,7 @@ import SwiftUI
 /// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
 /// private property.
 
-extension BikeFitSchemaV2 {
+extension DataSchemaV2 {
     @Model
     class BikeFit : Identifiable {
         let id: UUID

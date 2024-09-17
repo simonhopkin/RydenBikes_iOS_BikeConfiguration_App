@@ -8,7 +8,7 @@
 import SwiftData
 
 enum BikeFitMigrationPlan: SchemaMigrationPlan {
-    static var schemas : [any VersionedSchema.Type] = [BikeFitSchemaV1.self, BikeFitSchemaV2.self]
+    static var schemas : [any VersionedSchema.Type] = [DataSchemaV1.self, DataSchemaV2.self]
     
     static var stages: [MigrationStage] {
         [migrateV1ToV2]
@@ -16,12 +16,12 @@ enum BikeFitMigrationPlan: SchemaMigrationPlan {
         
     
     static let migrateV1ToV2 = MigrationStage.custom(
-        fromVersion: BikeFitSchemaV1.self,
-        toVersion: BikeFitSchemaV2.self) { context in
+        fromVersion: DataSchemaV1.self,
+        toVersion: DataSchemaV2.self) { context in
             print("BikeFitMigrationPlan migrating from V1 to V2")
         } didMigrate: { context in
             print("BikeFitMigrationPlan didMigrate post migration activities")
-            if let bikeFits = try? context.fetch(FetchDescriptor<BikeFitSchemaV2.BikeFit>()) {
+            if let bikeFits = try? context.fetch(FetchDescriptor<DataSchemaV2.BikeFit>()) {
                 for bikeFit in bikeFits {
                     bikeFit.computeHandXAndY()
                 }

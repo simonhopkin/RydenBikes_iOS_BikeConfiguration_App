@@ -1,5 +1,5 @@
 //
-//  BikeFitSchema.swift
+//  DataSchema.swift
 //  BikeConfigurationApp
 //
 //  Created by Simon Hopkin on 17/09/2024.
@@ -8,9 +8,11 @@
 import Foundation
 import SwiftData
 
-typealias BikeFit = BikeFitSchemaV2.BikeFit
+/// BikeFit model type aliases to point to model from the latest schema
+typealias BikeFit = DataSchemaV2.BikeFit
 
-enum BikeFitSchemaV1: VersionedSchema {
+/// Data persistance schema V1
+enum DataSchemaV1: VersionedSchema {
     
     static var versionIdentifier = Schema.Version(1, 0, 0)
     
@@ -19,7 +21,8 @@ enum BikeFitSchemaV1: VersionedSchema {
     }
 }
 
-enum BikeFitSchemaV2: VersionedSchema {
+/// Data persistance schema V2
+enum DataSchemaV2: VersionedSchema {
     
     static var versionIdentifier = Schema.Version(1, 0, 0)
     

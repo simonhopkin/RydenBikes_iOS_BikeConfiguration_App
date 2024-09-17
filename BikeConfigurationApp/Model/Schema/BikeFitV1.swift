@@ -15,9 +15,11 @@ import SwiftUI
 ///
 /// Unfortunately property observers didSet/willSet do not work with classes annotated with the
 /// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
-/// private property.
+/// private property prefixed with underscore
 
-extension BikeFitSchemaV1 {
+/// `BikeFit` namespaced to `DataSchemaV1`
+extension DataSchemaV1 {
+    
     @Model
     class BikeFit : Identifiable {
         let id: UUID

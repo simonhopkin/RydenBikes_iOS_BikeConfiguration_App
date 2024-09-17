@@ -31,7 +31,7 @@
 		3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC262C9090AB00B53289 /* Coordinator.swift */; };
 		3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC292C90A7D600B53289 /* DecimalTextField.swift */; };
 		3E87DC2C2C93381800B53289 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87DC2B2C93381800B53289 /* ShareSheet.swift */; };
-		3E97B5092C997A0D0044FE51 /* BikeFitSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B5082C997A0D0044FE51 /* BikeFitSchema.swift */; };
+		3E97B5092C997A0D0044FE51 /* DataSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B5082C997A0D0044FE51 /* DataSchema.swift */; };
 		3E97B50C2C997C2F0044FE51 /* BikeFitV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B50B2C997C2F0044FE51 /* BikeFitV1.swift */; };
 		3E97B50E2C997CF80044FE51 /* BikeFitV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */; };
 		3E97B5102C997E120044FE51 /* BikeFitMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */; };
@@ -99,7 +99,7 @@
 		3E87DC292C90A7D600B53289 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		3E87DC2B2C93381800B53289 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		3E87DC2D2C93790F00B53289 /* BikeConfigurationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeConfigurationApp.entitlements; sourceTree = "<group>"; };
-		3E97B5082C997A0D0044FE51 /* BikeFitSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitSchema.swift; sourceTree = "<group>"; };
+		3E97B5082C997A0D0044FE51 /* DataSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSchema.swift; sourceTree = "<group>"; };
 		3E97B50B2C997C2F0044FE51 /* BikeFitV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitV1.swift; sourceTree = "<group>"; };
 		3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitV2.swift; sourceTree = "<group>"; };
 		3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitMigrationPlan.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		3E97B50A2C997C0C0044FE51 /* Schema */ = {
 			isa = PBXGroup;
 			children = (
-				3E97B5082C997A0D0044FE51 /* BikeFitSchema.swift */,
+				3E97B5082C997A0D0044FE51 /* DataSchema.swift */,
 				3E97B50B2C997C2F0044FE51 /* BikeFitV1.swift */,
 				3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */,
 				3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */,
@@ -478,7 +478,7 @@
 				3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */,
 				3E0FD9962C9869D0004A09DF /* MeasurementView.swift in Sources */,
 				3E27B82D2C9070BE004844B4 /* BikeFitRepository.swift in Sources */,
-				3E97B5092C997A0D0044FE51 /* BikeFitSchema.swift in Sources */,
+				3E97B5092C997A0D0044FE51 /* DataSchema.swift in Sources */,
 				3E87DC212C907B5D00B53289 /* MyFitViewModel.swift in Sources */,
 				3E645AF42C8CAABA009866A9 /* MyFitView.swift in Sources */,
 				3E01B6242C94963600C70D78 /* CustomAlertSheet.swift in Sources */,
