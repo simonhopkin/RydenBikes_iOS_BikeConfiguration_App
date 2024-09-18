@@ -88,10 +88,19 @@ struct MyFitView: View {
                                 
                                 Spacer()
                                 
-                                Image("BikeGuides")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: geometry.size.width * 0.5)
+                                if bikeFit.image != nil {
+                                    bikeFit.image!
+                                        .resizable()
+                                        .scaledToFit()
+                                        .cornerRadius(10)
+                                        .frame(width: geometry.size.width * 0.5)
+                                }
+                                else {
+                                    Image("BikeGuides")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: geometry.size.width * 0.5)
+                                }
                             }
                             
                             // Display the bike notes if not empty

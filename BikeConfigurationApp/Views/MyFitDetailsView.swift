@@ -52,7 +52,7 @@ struct MyFitDetailsView: View {
                                          photoLibrary:
                                     .shared()) {
                                         if viewModel.bikeFit.image == nil {
-                                            RoundedRectangle(cornerRadius: 5)
+                                            RoundedRectangle(cornerRadius: 10)
                                                 .stroke(Color("PrimaryTextColor"), lineWidth: 1)
                                                 .background(Color.clear)
                                                 .aspectRatio(1.7, contentMode: .fit)
@@ -73,7 +73,7 @@ struct MyFitDetailsView: View {
                                             viewModel.bikeFit.image!
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
-                                                .cornerRadius(5)
+                                                .cornerRadius(10)
                                         }
                                     }
                                     .buttonStyle(.borderless)
