@@ -45,23 +45,38 @@ struct MyFitDetailsView: View {
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .font(.custom("Roboto-Regular", size: 16))
                             }
-                            .frame(width: geometry.size.width * 0.6)
+                            .frame(width: (viewModel.bikeFit.image != nil) ? geometry.size.width * 0.3 : geometry.size.width * 0.55)
                             
-                            (viewModel.bikeFit.image ?? Image("BikeImagePlaceholder"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(5)
-                                .overlay(alignment: .topLeading) {
-                                    PhotosPicker(selection: $selectedPhoto,
-                                                 matching: .images,
-                                                 photoLibrary: .shared()) {
-                                        Image(systemName: "pencil.circle.fill")
-                                            .font(.system(size: 35))
-                                            .foregroundColor(.white)
-                                            .opacity(0.6)
+                            PhotosPicker(selection: $selectedPhoto,
+                                         matching: .images,
+                                         photoLibrary:
+                                    .shared()) {
+                                        if viewModel.bikeFit.image == nil {
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .stroke(Color("PrimaryTextColor"), lineWidth: 1)
+                                                .background(Color.clear)
+                                                .aspectRatio(1.7, contentMode: .fit)
+                                                .overlay {
+                                                    VStack {
+                                                        Image(systemName:"plus.circle.fill")
+                                                            .font(.system(size: 28))
+                                                            .foregroundStyle(Color("PrimaryTextColor"))
+                                                            .padding(.vertical, 2)
+                                                        Text("Add Photo")
+                                                            .font(.custom("Roboto-Regular", size: 12))
+                                                            .foregroundStyle(Color("PrimaryTextColor"))
+                                                    }
+                                                }
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        }
+                                        else {
+                                            viewModel.bikeFit.image!
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .cornerRadius(5)
+                                        }
                                     }
-                                                 .buttonStyle(.borderless)
-                                }
+                                    .buttonStyle(.borderless)
                         }
                     }
                     .padding()

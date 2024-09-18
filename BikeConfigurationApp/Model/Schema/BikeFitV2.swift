@@ -34,16 +34,14 @@ extension DataSchemaV2 {
         var name: String
         var notes: String
         
-        var imagePath: String?
+        var imagePath: String?  // rename to imagePath imageFilename in next schema migration
         @Transient var image: Image? {
             get {
-                print("imagePath \(String(describing: imagePath))")
-                
-                guard let imagePath = imagePath else {
-                    return nil
-                }
-                if let uiImage = UIImage(contentsOfFile: imagePath) {
-                    return Image(uiImage: uiImage)
+                if let imagePath = imagePath, let documentURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+                    let imageURL = documentURL.appendingPathComponent(imagePath)
+                    if let uiImage = UIImage(contentsOfFile: imageURL.path) {
+                        return Image(uiImage: uiImage)
+                    }
                 }
                 return nil
             }

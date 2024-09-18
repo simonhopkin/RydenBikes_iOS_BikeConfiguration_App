@@ -40,13 +40,12 @@ class MyFitDetailsViewModel: ObservableObject {
     }
     
     func saveImageDataToDocuments(imageData: Data) {
-        let filename = UUID().uuidString + ".jpg"
-        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(filename)
+        let filename = bikeFit.id.uuidString + ".jpg"
         
         do {
+            let fileURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(filename)
             try imageData.write(to: fileURL)
-            print("fileURL \(fileURL)")
-            bikeFit.imagePath = fileURL.path
+            bikeFit.imagePath = filename
         }
         catch {
             print("Error saving image: \(error)")
