@@ -30,13 +30,3 @@ enum DataSchemaV2: VersionedSchema {
         [BikeFit.self]
     }
 }
-//
-///// Data persistance schema V3
-//enum DataSchemaV3: VersionedSchema {
-//    
-//    static var versionIdentifier = Schema.Version(3, 0, 0)
-//    
-//    static var models: [any PersistentModel.Type] {
-//        [BikeFit.self]
-//    }
-//}
