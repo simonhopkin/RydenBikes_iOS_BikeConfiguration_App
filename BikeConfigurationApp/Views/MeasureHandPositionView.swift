@@ -104,7 +104,7 @@ struct MeasureHandPositionView: View {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the horizontal distance from the centre of the saddle to the grip position in millimetres")
+                    Text("Enter the distance from the centre of the saddle to the grip position in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
