@@ -52,7 +52,7 @@ struct MeasureHandPositionView: View {
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .position(x: geometry.size.width * 0.75, y: geometry.size.height * 0.1)
+                .position(x: geometry.size.width * 0.65, y: geometry.size.height * 0.22)
                 
                 Button {
                     customActivitySheet.showModal {
