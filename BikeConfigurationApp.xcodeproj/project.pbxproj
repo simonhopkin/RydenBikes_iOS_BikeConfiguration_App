@@ -51,6 +51,9 @@
 		3ECAC01C2C8A18DF008703C5 /* Motion in Frameworks */ = {isa = PBXBuildFile; productRef = 3ECAC01B2C8A18DF008703C5 /* Motion */; };
 		3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECAC01D2C8B44B7008703C5 /* SplashView.swift */; };
 		3ECAC0212C8B4E8C008703C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */; };
+		3EEA470D2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */; };
+		3EEA470F2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA470E2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift */; };
+		3EEA47112C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA47102C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		3ECAC01D2C8B44B7008703C5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		3ECAC01F2C8B4E39008703C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceSaddlePositionView.swift; sourceTree = "<group>"; };
+		3EEA470E2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceHandPositionView.swift; sourceTree = "<group>"; };
+		3EEA47102C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceHandlebarPositionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +258,9 @@
 				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
 				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
 				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
+				3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */,
+				3EEA470E2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift */,
+				3EEA47102C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,12 +490,15 @@
 				3E97B50C2C997C2F0044FE51 /* BikeFitV1.swift in Sources */,
 				3E645AF82C8CB18E009866A9 /* BikeFit+Extensions.swift in Sources */,
 				3E01B6262C95925800C70D78 /* CustomActivitySheetModal.swift in Sources */,
+				3EEA47112C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift in Sources */,
 				3E97B5172C9ACF440044FE51 /* BikeFitUtils.swift in Sources */,
 				3E01B6222C9449CA00C70D78 /* MeasureSaddlePositionView.swift in Sources */,
 				3E27B8302C90712B004844B4 /* BikeFitRepositoryProtocol.swift in Sources */,
 				3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */,
 				3E0FD9962C9869D0004A09DF /* MeasurementView.swift in Sources */,
+				3EEA470F2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift in Sources */,
 				3E27B82D2C9070BE004844B4 /* BikeFitRepository.swift in Sources */,
+				3EEA470D2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift in Sources */,
 				3E97B5092C997A0D0044FE51 /* DataSchema.swift in Sources */,
 				3E87DC212C907B5D00B53289 /* MyFitViewModel.swift in Sources */,
 				3E645AF42C8CAABA009866A9 /* MyFitView.swift in Sources */,
@@ -657,7 +669,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
@@ -695,7 +707,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;

@@ -14,9 +14,10 @@ struct MeasureSaddlePositionView: View {
     @State var bikeFit: BikeFit
     @State private var showSaddleHeightEntryDialog = false
     @State private var showSaddleAngleEntryDialog = false
-    
+
     @Binding var navigationPath: NavigationPath
-    
+    @Binding var showGuidanceSheet: Bool
+
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
     var body: some View {
@@ -78,20 +79,53 @@ struct MeasureSaddlePositionView: View {
                 )
                 .background(Color.white)
                 .position(x: geometry.size.width * 0.25, y: geometry.size.height * 0.48)
+                
+                
+                // Display setback x on the measurement view
+                
+                HStack {
+                    Text("Setback X")
+                        .font(.custom("Roboto-Regular", size: 16))
+                        .foregroundColor(Color.gray)
+                    Text(String(format: "%.1f", bikeFit.bbToSaddleX))
+                        .font(.custom("Roboto-Medium", size: 18))
+                        .foregroundColor(Color.primary)
+                    Text("mm")
+                        .font(.custom("Roboto-Regular", size: 16))
+                        .foregroundColor(Color.gray)
+                        .padding(.bottom, 10)
+                        .padding(.top, 10)
+                }
+                .padding(.leading, 10)
+                .padding(.trailing, 10)
+                .overlay( // Overlay a RoundedRectangle for the border
+                    RoundedRectangle(cornerRadius: 3)
+                        .stroke(Color.primary, lineWidth: 5)
+                )
+                .background(Color.white)
+                .position(x: geometry.size.width * 0.4, y: geometry.size.height * 0.7)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
         .navigationTitle("Saddle Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: Button(action: {
-            navigationPath.removeLast()
-        }) {
-            HStack {
-                Image(systemName: "chevron.left")
-                Text("Fit Details")
-            }
-        })
+        .navigationBarItems(
+            leading: Button(action: {
+                navigationPath.removeLast()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Fit Details")
+                }
+            }, trailing: Button(action: {
+                showGuidanceSheet = true
+            }) {
+                Image(systemName: "questionmark.circle")
+            })
+        .sheet(isPresented: $showGuidanceSheet) {
+            GuidanceSaddlePositionView(showGuidanceSheet: $showGuidanceSheet)
+        }
     }
     
     struct SaddleHeightMeasurementView: View {
@@ -243,8 +277,9 @@ struct MeasureSaddlePositionView: View {
 
 #Preview {
     @State var navigationPath = NavigationPath()
+    @State var showGuidanceSheet = false
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+    return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
     

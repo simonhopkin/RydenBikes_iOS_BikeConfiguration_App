@@ -72,7 +72,7 @@ struct MyFitDetailsView: View {
                                         else {
                                             viewModel.bikeFit.image!
                                                 .resizable()
-                                                .aspectRatio(contentMode: .fit)
+                                                .aspectRatio(1.6, contentMode: .fit)
                                                 .cornerRadius(10)
                                         }
                                     }
@@ -184,31 +184,32 @@ struct MyFitDetailsView: View {
             .navigationTitle("Fit Details")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
-            .navigationBarItems(leading: Button(action: {
-                if viewModel.bikeFit.isValid() {
-                    viewModel.saveBikeFit()
-                    navigationPath.removeLast()
-                }
-                else {
-                    displayInvalidBikeFitAlert = true
-                    displayInvalidBikeFitDiscardOption = true
-                }
-            }) {
-                HStack {
-                    Image(systemName: "chevron.left")
-                    Text("My Fit")
-                }
-            }, trailing: Button(action: {
-                if viewModel.bikeFit.isValid() {
-                    viewModel.saveBikeFit()
-                    navigationPath.removeLast()
-                }
-                else {
-                    displayInvalidBikeFitAlert = true
-                }
-            }) {
-                Text("Save")
-            })
+            .navigationBarItems(
+                leading: Button(action: {
+                    if viewModel.bikeFit.isValid() {
+                        viewModel.saveBikeFit()
+                        navigationPath.removeLast()
+                    }
+                    else {
+                        displayInvalidBikeFitAlert = true
+                        displayInvalidBikeFitDiscardOption = true
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("My Fit")
+                    }
+                }, trailing: Button(action: {
+                    if viewModel.bikeFit.isValid() {
+                        viewModel.saveBikeFit()
+                        navigationPath.removeLast()
+                    }
+                    else {
+                        displayInvalidBikeFitAlert = true
+                    }
+                }) {
+                    Text("Save")
+                })
             .alert("Bike Fit Incomplete", isPresented: $displayInvalidBikeFitAlert) {
                 Button("OK", role: .cancel) { }
                 if displayInvalidBikeFitDiscardOption {

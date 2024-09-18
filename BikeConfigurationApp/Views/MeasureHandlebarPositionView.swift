@@ -14,9 +14,10 @@ struct MeasureHandlebarPositionView: View {
     @State var bikeFit: BikeFit
     @State private var showHandlebarHeightEntryDialog = false
     @State private var showHandlebarAngleEntryDialog = false
-    
     @Binding var navigationPath: NavigationPath
-    
+    @Binding var showGuidanceSheet: Bool
+
+
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
     var body: some View {
@@ -84,14 +85,22 @@ struct MeasureHandlebarPositionView: View {
         .navigationTitle("Handlebar Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: Button(action: {
-            navigationPath.removeLast()
-        }) {
-            HStack {
-                Image(systemName: "chevron.left")
-                Text("Fit Details")
-            }
-        })
+        .navigationBarItems(
+            leading: Button(action: {
+                navigationPath.removeLast()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Fit Details")
+                }
+            }, trailing: Button(action: {
+                showGuidanceSheet = true
+            }) {
+                Image(systemName: "questionmark.circle")
+            })
+        .sheet(isPresented: $showGuidanceSheet) {
+            GuidanceHandlebarPositionView(showGuidanceSheet: $showGuidanceSheet)
+        }
     }
     
     struct HandlebarHeightMeasurementView: View {
@@ -242,8 +251,9 @@ struct MeasureHandlebarPositionView: View {
 
 #Preview {
     @State var navigationPath = NavigationPath()
+    @State var showGuidanceSheet = false
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasureHandlebarPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+    return MeasureHandlebarPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
     

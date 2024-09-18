@@ -17,7 +17,8 @@ struct MeasureHandPositionView: View {
     @State private var showHandAngleEntryDialog = false
 
     @Binding var navigationPath: NavigationPath
-    
+    @Binding var showGuidanceSheet: Bool
+
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
     var body: some View {
@@ -85,14 +86,22 @@ struct MeasureHandPositionView: View {
         .navigationTitle("Grip Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: Button(action: {
-            navigationPath.removeLast()
-        }) {
-            HStack {
-                Image(systemName: "chevron.left")
-                Text("Fit Details")
-            }
-        })
+        .navigationBarItems(
+            leading: Button(action: {
+                navigationPath.removeLast()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Fit Details")
+                }
+            }, trailing: Button(action: {
+                showGuidanceSheet = true
+            }) {
+                Image(systemName: "questionmark.circle")
+            })
+        .sheet(isPresented: $showGuidanceSheet) {
+            GuidanceHandPositionView(showGuidanceSheet: $showGuidanceSheet)
+        }
     }
     
     struct SaddleToHandMeasurementView: View {
@@ -235,8 +244,9 @@ struct MeasureHandPositionView: View {
 
 #Preview {
     @State var navigationPath = NavigationPath()
+    @State var showGuidanceSheet = false
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasureHandPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath)
+    return MeasureHandPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
     

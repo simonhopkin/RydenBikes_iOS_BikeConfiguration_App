@@ -83,57 +83,10 @@ extension BikeFit {
     }
     
     /// Validation function to check all the properties of BikeFit have been set
+    /// A bike fit is considered valid if the user has at least entered a name
     func isValid() -> Bool {
         
         if name.isEmpty {
-            return false
-        }
-        
-        if bbToSaddleCentre == 0 {
-            return false
-        }
-        
-        if bbToSaddleAngle == 0 {
-            return false
-        }
-        
-        if bbToSaddleX == 0 {
-            return false
-        }
-        
-        if bbToSaddleY == 0 {
-            return false
-        }
-        
-        if saddleCentreToHand == 0 {
-            return false
-        }
-        
-        if saddleToHandDrop == 0 {
-            return false
-        }
-        
-        if bbToHandX == 0 {
-            return false
-        }
-        
-        if bbToHandY == 0 {
-            return false
-        }
-        
-        if bbToHandlebarCentre == 0 {
-            return false
-        }
-        
-        if bbToHandlebarAngle == 0 {
-            return false
-        }
-        
-        if bbToHandlebarX == 0 {
-            return false
-        }
-        
-        if bbToHandlebarY == 0 {
             return false
         }
         
