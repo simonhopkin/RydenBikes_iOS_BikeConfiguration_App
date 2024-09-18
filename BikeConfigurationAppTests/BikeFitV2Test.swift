@@ -35,7 +35,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeSaddleXAndY()
+        bikeFit.updateSaddleXAndYIfChanged()
         
         XCTAssertEqual(bikeFit.bbToSaddleX, 70.710678118654752, accuracy: 1e-13)
         XCTAssertEqual(bikeFit.bbToSaddleY, 70.710678118654752, accuracy: 1e-13)
@@ -58,7 +58,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandXAndY()
+        bikeFit.updateHandXAndYIfChanged()
         
         XCTAssertEqual(bikeFit.bbToHandX, 79.498743710661995, accuracy: 1e-13)
         XCTAssertEqual(bikeFit.bbToHandY, 70)
@@ -81,7 +81,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandlebarXAndY()
+        bikeFit.updateHandlebarXAndYIfChanged()
         
         XCTAssertEqual(bikeFit.bbToHandlebarX, 70.710678118654752, accuracy: 1e-13)
         XCTAssertEqual(bikeFit.bbToHandlebarY, 70.710678118654752, accuracy: 1e-13)
@@ -107,8 +107,8 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeSaddleXAndY()
-        bikeFit.computeHandXAndY()
+        bikeFit.updateSaddleXAndYIfChanged()
+        bikeFit.updateHandXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering saddle and grip position properties
         
@@ -157,8 +157,8 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeSaddleXAndY()
-        bikeFit.computeHandXAndY()
+        bikeFit.updateSaddleXAndYIfChanged()
+        bikeFit.updateHandXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering saddle and grip position properties
         
@@ -207,8 +207,8 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeSaddleXAndY()
-        bikeFit.computeHandXAndY()
+        bikeFit.updateSaddleXAndYIfChanged()
+        bikeFit.updateHandXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering saddle and grip position properties
         
@@ -257,8 +257,8 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeSaddleXAndY()
-        bikeFit.computeHandXAndY()
+        bikeFit.updateSaddleXAndYIfChanged()
+        bikeFit.updateHandXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering saddle and grip position properties
         
@@ -306,7 +306,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandlebarXAndY()
+        bikeFit.updateHandlebarXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering handlebar properties
         
@@ -348,7 +348,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandlebarXAndY()
+        bikeFit.updateHandlebarXAndYIfChanged()
 
         // check initial state of computed x and y properties as expected after entering handlebar position properties
         
@@ -389,7 +389,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandlebarXAndY()
+        bikeFit.updateHandlebarXAndYIfChanged()
         
         // check initial state of computed x and y properties as expected after entering handlebar position properties
         
@@ -430,7 +430,7 @@ final class BikeFitV2Test: XCTestCase {
                                               bbToHandlebarX: 0,
                                               bbToHandlebarY: 0)
         
-        bikeFit.computeHandlebarXAndY()
+        bikeFit.updateHandlebarXAndYIfChanged()
         
         // check initial state of computed x and y properties as expected after entering handlebar position properties
         

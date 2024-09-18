@@ -9,17 +9,16 @@ import SwiftData
 import Foundation
 import SwiftUI
 
-/// `BikeFit` is a SwiftData model object used to persist bike fit measurements.
-///
-/// This class has computed properties which adjust when other properties update.
-///
-/// Unfortunately property observers didSet/willSet do not work with classes annotated with the
-/// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
-/// private property prefixed with underscore
-
-/// `BikeFit` namespaced to `DataSchemaV1`
+/// Namespace for V1 data model changes
 extension DataSchemaV1 {
     
+    /// `BikeFit` is a SwiftData model object used to persist bike fit measurements.
+    ///
+    /// This class has computed properties which adjust when other properties update.
+    ///
+    /// Unfortunately property observers didSet/willSet do not work with classes annotated with the
+    /// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
+    /// private property prefixed with underscore
     @Model
     class BikeFit : Identifiable {
         let id: UUID

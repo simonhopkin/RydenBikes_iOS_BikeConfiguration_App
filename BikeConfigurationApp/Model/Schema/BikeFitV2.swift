@@ -9,17 +9,24 @@ import SwiftData
 import Foundation
 import SwiftUI
 
-/// `BikeFit` is a SwiftData model object used to persist bike fit measurements.
+/// Namespace for V2 data model changes
 ///
-/// This class has computed properties which adjust when other properties update.
+/// `BikeFit` updates to hand(grip) position properties
 ///
-/// Unfortunately property observers didSet/willSet do not work with classes annotated with the
-/// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
-/// private property.
-
-/// `BikeFit` namespaced to `DataSchemaV2`
+///  - `saddleCentreToHand` renamed to `_saddleCentreToHand`
+///  - `saddleToHandDrop` renamed to `_saddleToHandDrop`
+///  - new property `_bbToHandX`
+///  - new property `_bbToHandY`
+///
 extension DataSchemaV2 {
     
+    /// `BikeFit` is a SwiftData model object used to persist bike fit measurements.
+    ///
+    /// This class has computed properties which adjust when other properties update.
+    ///
+    /// Unfortunately property observers didSet/willSet do not work with classes annotated with the
+    /// SwiftData @Model macro.  So instead a public computed property is used backed by a persisted
+    /// private property.
     @Model
     class BikeFit : Identifiable {
         let id: UUID
@@ -50,8 +57,8 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleCentre set")
                 _bbToSaddleCentre = newValue
-                computeSaddleXAndY()
-                computeHandPositions()
+                updateSaddleXAndYIfChanged()
+                updateHandPositionsIfChanged()
             }
         }
         
@@ -61,8 +68,8 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleAngle set")
                 _bbToSaddleAngle = newValue
-                computeSaddleXAndY()
-                computeHandPositions()
+                updateSaddleXAndYIfChanged()
+                updateHandPositionsIfChanged()
             }
         }
         
@@ -72,8 +79,8 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleX set")
                 _bbToSaddleX = newValue
-                computeSaddleAngleAndY()
-                computeHandPositions()
+                updateSaddleAngleAndYIfChanged()
+                updateHandPositionsIfChanged()
             }
         }
         
@@ -83,8 +90,8 @@ extension DataSchemaV2 {
             set {
                 print("bbToSaddleY set")
                 _bbToSaddleY = newValue
-                computeSaddleCentreAndAngle()
-                computeHandPositions()
+                updatgeSaddleCentreAndAngleIfChanged()
+                updateHandPositionsIfChanged()
             }
         }
         
@@ -100,7 +107,7 @@ extension DataSchemaV2 {
             set {
                 print("saddleCentreToHand set")
                 _saddleCentreToHand = newValue
-                computeHandXAndY()
+                updateHandXAndYIfChanged()
             }
         }
         
@@ -109,7 +116,7 @@ extension DataSchemaV2 {
             set {
                 print("saddleToHandDrop set")
                 _saddleToHandDrop = newValue
-                computeHandXAndY()
+                updateHandXAndYIfChanged()
             }
         }
         
@@ -118,7 +125,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandX set")
                 _bbToHandX = newValue
-                computeHandPositions()
+                updateHandPositionsIfChanged()
             }
         }
 
@@ -127,7 +134,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandY set")
                 _bbToHandY = newValue
-                computeHandPositions()
+                updateHandPositionsIfChanged()
             }
         }
         
@@ -140,7 +147,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarCentre set")
                 _bbToHandlebarCentre = newValue
-                computeHandlebarXAndY()
+                updateHandlebarXAndYIfChanged()
             }
         }
         
@@ -150,7 +157,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarAngle set")
                 _bbToHandlebarAngle = newValue
-                computeHandlebarXAndY()
+                updateHandlebarXAndYIfChanged()
             }
         }
         
@@ -160,7 +167,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarX set")
                 _bbToHandlebarX = newValue
-                computeHandlebarAngleAndY()
+                updateHandlebarAngleAndYIfChanged()
             }
         }
         
@@ -170,7 +177,7 @@ extension DataSchemaV2 {
             set {
                 print("bbToHandlebarY set")
                 _bbToHandlebarY = newValue
-                computeHandlebarCentreAndAngle()
+                updateHandlebarCentreAndAngleIfChanged()
             }
         }
         
@@ -241,151 +248,71 @@ extension DataSchemaV2 {
                       bbToHandlebarY: bbToHandlebarY)
         }
         
-        
-        /// Computes `bbToSaddleX` and `bbToSaddleY` from `bbToSaddleCentre` and `bbToSaddleAngle`
-        func computeSaddleXAndY() {
-            if _bbToSaddleAngle != 0 && _bbToSaddleCentre != 0 {
-                
-                let saddleAngleRadians = (90 - _bbToSaddleAngle) * .pi / 180.0
-                
-                let x = _bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
-                let y = _bbToSaddleCentre * cos(saddleAngleRadians) // calculate the adjacent (Y)
-                
-                print("recalculating bbToSaddleX (\(bbToSaddleX)) and bbToSaddleY (\(bbToSaddleY)) to \(x) and \(y)")
-                
-                if _bbToSaddleX != x {
-                    _bbToSaddleX = x
+        /// computes saddle x and y and updates the stored propoerties if they are different
+        func updateSaddleXAndYIfChanged() {
+            if let saddleXAndY = computeSaddleXAndY(bbToSaddleAngle: _bbToSaddleAngle, bbToSaddleCentre: _bbToSaddleCentre) {
+                if _bbToSaddleX != saddleXAndY.bbToSaddleX {
+                    _bbToSaddleX = saddleXAndY.bbToSaddleX
                 }
                 
-                if _bbToSaddleY != y {
-                    _bbToSaddleY = y
+                if _bbToSaddleY != saddleXAndY.bbToSaddleY {
+                    _bbToSaddleY = saddleXAndY.bbToSaddleY
                 }
             }
         }
-        
-        /// Computes `bbToSaddleAngle` and `bbSaddleY` from `bbToSaddleX` and `bbToSaddleCentre`
-        func computeSaddleAngleAndY() {
-            
-            if _bbToSaddleAngle != 0 && _bbToSaddleY != 0 && _bbToSaddleCentre != 0 {
-                
-                let angle = acos(_bbToSaddleX / _bbToSaddleCentre) * 180.0 / .pi
-                let y = sqrt(_bbToSaddleCentre * _bbToSaddleCentre - _bbToSaddleX * _bbToSaddleX)
-                
-                if _bbToSaddleAngle != angle {
-                    _bbToSaddleAngle = angle
-                }
-                
-                if _bbToSaddleY != y {
-                    _bbToSaddleY = y
-                }
-            }
-        }
-        
-        /// Computes `bbToSaddleCentre` and `bbToSaddleAngle` from `bbToSaddleX` and `bbToSaddleY`
-        func computeSaddleCentreAndAngle() {
-            
-            if _bbToSaddleAngle != 0 && _bbToSaddleX != 0 && _bbToSaddleCentre != 0 {
-                
-                let angle = atan(_bbToSaddleY / _bbToSaddleX) * 180.0 / .pi
-                let height = sqrt(_bbToSaddleX * _bbToSaddleX + _bbToSaddleY * _bbToSaddleY)
-                
-                if _bbToSaddleAngle != angle {
-                    _bbToSaddleAngle = angle
-                }
-                
-                if _bbToSaddleCentre != height {
-                    _bbToSaddleCentre = height
-                }
-            }
-        }
-        
-        /// Computes `bbToHandX` and `bbToHandY` from `saddleCentreToHand`, `saddleToHandDrop`, `bbToSaddleX`, and`bbToSaddleY`
-        func computeHandXAndY() {
-            if _saddleCentreToHand != 0 && _saddleToHandDrop != 0 && _bbToSaddleX != 0 && _bbToSaddleY != 0 {
-                
-                let x = sqrt((_saddleCentreToHand * _saddleCentreToHand) - (_saddleToHandDrop * _saddleToHandDrop)) - _bbToSaddleX
-                let y = _bbToSaddleY - _saddleToHandDrop
-                
-                if _bbToHandX != x {
-                    _bbToHandX = x
-                }
-                
-                if _bbToHandY != y {
-                    _bbToHandY = y
-                }
-            }
-        }
-        
-        func computeHandPositions() {
-            if _bbToHandX != 0 && _bbToHandY != 0 && _bbToSaddleX != 0 && _bbToSaddleY != 0 {
-                
-                let y = _bbToSaddleY - _bbToHandY
-                let x = sqrt((y * y) + ((_bbToHandX + _bbToSaddleX) * (_bbToHandX + _bbToSaddleX)))
 
-                if _saddleCentreToHand != x {
-                    _saddleCentreToHand = x
-                }
-                
-                if _saddleToHandDrop != y {
-                    _saddleToHandDrop = y
-                }
+        /// computes saddle angle and y and updates the stored propoerties if they are different
+        func updateSaddleAngleAndYIfChanged() {
+            if let saddleAngleAndY = computeSaddleAngleAndY(bbToSaddleCentre: _bbToSaddleCentre, bbToSaddleX: _bbToSaddleX) {
+                updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleAngleAndY.bbToSaddleAngle)
+                updatePropertyIfChanged(&_bbToSaddleY, value: saddleAngleAndY.bbToSaddleY)
             }
         }
         
-        /// Computes `bbToHandlebarX` and `bbToHandlebarY` from `bbToHandlebarCentre` and `bbToHandlebarAngle`
-        func computeHandlebarXAndY() {
-            if _bbToHandlebarAngle != 0 && _bbToHandlebarCentre != 0 {
-                
-                let handlebarAngleRadians = (90 - _bbToHandlebarAngle) * .pi / 180.0
-                
-                let x = _bbToHandlebarCentre * sin(handlebarAngleRadians) // calculate the opposite (X)
-                let y = _bbToHandlebarCentre * cos(handlebarAngleRadians) // calculate the adjacent (Y)
-                
-                print("recalculating bbToHandlebarX (\(bbToHandlebarX)) and bbToHandlebarY (\(bbToHandlebarY)) to \(x) and \(y)")
-                
-                if _bbToHandlebarX != x {
-                    _bbToHandlebarX = x
-                }
-                
-                if _bbToHandlebarY != y {
-                    _bbToHandlebarY = y
-                }
+        /// computes saddle centre and angle and updates the stored propoerties if they are different
+        func updatgeSaddleCentreAndAngleIfChanged() {
+            if let saddleCentreAndAngle = computeSaddleCentreAndAngle(bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleCentreAndAngle.bbToSaddleAngle)
+                updatePropertyIfChanged(&_bbToSaddleCentre, value: saddleCentreAndAngle.bbToSaddleCentre)
+            }
+        }
+
+        /// computes hand x and y and updates the stored propoerties if they are different
+        func updateHandXAndYIfChanged() {
+            if let handXAndY = computeHandXAndY(saddleCentreToHand: _saddleCentreToHand, saddleToHandDrop: _saddleToHandDrop, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                updatePropertyIfChanged(&_bbToHandX, value: handXAndY.bbToHandX)
+                updatePropertyIfChanged(&_bbToHandY, value: handXAndY.bbToHandY)
             }
         }
         
-        /// Computes `bbToHandlebarAngle` and `bbToHandlebarY` from `bbToHandlebarX` and `bbToHandlebarCentre`
-        func computeHandlebarAngleAndY() {
-            
-            if _bbToHandlebarAngle != 0 && _bbToHandlebarY != 0 && _bbToHandlebarCentre != 0 {
-                
-                let angle = 90 - asin(_bbToHandlebarX / _bbToHandlebarCentre) * 180.0 / .pi
-                let y = sqrt(_bbToHandlebarCentre * _bbToHandlebarCentre - _bbToHandlebarX * _bbToHandlebarX)
-                
-                if _bbToHandlebarAngle != angle {
-                    _bbToHandlebarAngle = angle
-                }
-                
-                if _bbToHandlebarY != y {
-                    _bbToHandlebarY = y
-                }
+        /// computes hand position properties and updates the stored propoerties if they are different
+        func updateHandPositionsIfChanged() {
+            if let handPositions = computeHandPositions(bbToHandX: _bbToHandX, bbToHandY: _bbToHandY, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                updatePropertyIfChanged(&_saddleCentreToHand, value: handPositions.saddleCentreToHand)
+                updatePropertyIfChanged(&_saddleToHandDrop, value: handPositions.saddleToHandDrop)
+            }
+        }
+
+        /// computes handlebar x and y properties and updates the stored propoerties if they are different
+        func updateHandlebarXAndYIfChanged() {
+            if let handlebarXAndY = computeHandlebarXAndY(bbToHandlebarAngle: _bbToHandlebarAngle, bbToHandlebarCentre: _bbToHandlebarCentre) {
+                updatePropertyIfChanged(&_bbToHandlebarX, value: handlebarXAndY.bbToHandlebarX)
+                updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarXAndY.bbToHandlebarY)
+            }
+        }
+
+        func updateHandlebarAngleAndYIfChanged() {
+            if let handlebarAngleAndY = computeHandlebarAngleAndY(bbToHandlebarCentre: _bbToHandlebarCentre, bbToHandlebarX: _bbToHandlebarX) {
+                updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarAngleAndY.bbToHandlebarAngle)
+                updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarAngleAndY.bbToHandlebarY)
             }
         }
         
-        /// Computes `bbToHandlebarCentre` and `bbToHandlebarAngle` from `bbToHandlebarX` and `bbToHandlebarY`
-        func computeHandlebarCentreAndAngle() {
-            
-            if _bbToHandlebarAngle != 0 && _bbToHandlebarX != 0 && _bbToHandlebarCentre != 0 {
-                
-                let angle = 90 - atan(_bbToHandlebarX / _bbToHandlebarY) * 180.0 / .pi
-                let height = sqrt(_bbToHandlebarX * _bbToHandlebarX + _bbToHandlebarY * _bbToHandlebarY)
-                
-                if _bbToHandlebarAngle != angle {
-                    _bbToHandlebarAngle = angle
-                }
-                
-                if _bbToHandlebarCentre != height {
-                    _bbToHandlebarCentre = height
-                }
+        /// computes handlebar centre and angle properties and updates the stored propoerties if they are different
+        func updateHandlebarCentreAndAngleIfChanged() {
+            if let handlebarCentreAndAngle = computeHandlebarCentreAndAngle(bbToHandlebarX: _bbToHandlebarX, bbToHandlebarY: _bbToHandlebarY) {
+                updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarCentreAndAngle.bbToHandlebarAngle)
+                updatePropertyIfChanged(&_bbToHandlebarCentre, value: handlebarCentreAndAngle.bbToHandlebarCentre)
             }
         }
     }

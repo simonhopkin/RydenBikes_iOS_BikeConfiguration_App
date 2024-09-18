@@ -23,7 +23,7 @@ enum BikeFitMigrationPlan: SchemaMigrationPlan {
             print("BikeFitMigrationPlan didMigrate post migration activities")
             if let bikeFits = try? context.fetch(FetchDescriptor<DataSchemaV2.BikeFit>()) {
                 for bikeFit in bikeFits {
-                    bikeFit.computeHandXAndY()
+                    bikeFit.updateHandXAndYIfChanged()
                 }
                 try? context.save()
             }
