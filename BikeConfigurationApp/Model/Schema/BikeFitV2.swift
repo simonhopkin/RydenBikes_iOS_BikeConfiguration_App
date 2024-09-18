@@ -250,69 +250,64 @@ extension DataSchemaV2 {
         
         /// computes saddle x and y and updates the stored propoerties if they are different
         func updateSaddleXAndYIfChanged() {
-            if let saddleXAndY = computeSaddleXAndY(bbToSaddleAngle: _bbToSaddleAngle, bbToSaddleCentre: _bbToSaddleCentre) {
-                if _bbToSaddleX != saddleXAndY.bbToSaddleX {
-                    _bbToSaddleX = saddleXAndY.bbToSaddleX
-                }
-                
-                if _bbToSaddleY != saddleXAndY.bbToSaddleY {
-                    _bbToSaddleY = saddleXAndY.bbToSaddleY
-                }
+            if let saddleXAndY = BikeFitUtils.computeSaddleXAndY(bbToSaddleAngle: _bbToSaddleAngle, bbToSaddleCentre: _bbToSaddleCentre) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleX, value: saddleXAndY.bbToSaddleX)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleY, value: saddleXAndY.bbToSaddleY)
             }
         }
 
         /// computes saddle angle and y and updates the stored propoerties if they are different
         func updateSaddleAngleAndYIfChanged() {
-            if let saddleAngleAndY = computeSaddleAngleAndY(bbToSaddleCentre: _bbToSaddleCentre, bbToSaddleX: _bbToSaddleX) {
-                updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleAngleAndY.bbToSaddleAngle)
-                updatePropertyIfChanged(&_bbToSaddleY, value: saddleAngleAndY.bbToSaddleY)
+            if let saddleAngleAndY = BikeFitUtils.computeSaddleAngleAndY(bbToSaddleCentre: _bbToSaddleCentre, bbToSaddleX: _bbToSaddleX) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleAngleAndY.bbToSaddleAngle)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleY, value: saddleAngleAndY.bbToSaddleY)
             }
         }
         
         /// computes saddle centre and angle and updates the stored propoerties if they are different
         func updatgeSaddleCentreAndAngleIfChanged() {
-            if let saddleCentreAndAngle = computeSaddleCentreAndAngle(bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
-                updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleCentreAndAngle.bbToSaddleAngle)
-                updatePropertyIfChanged(&_bbToSaddleCentre, value: saddleCentreAndAngle.bbToSaddleCentre)
+            if let saddleCentreAndAngle = BikeFitUtils.computeSaddleCentreAndAngle(bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleAngle, value: saddleCentreAndAngle.bbToSaddleAngle)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToSaddleCentre, value: saddleCentreAndAngle.bbToSaddleCentre)
             }
         }
 
         /// computes hand x and y and updates the stored propoerties if they are different
         func updateHandXAndYIfChanged() {
-            if let handXAndY = computeHandXAndY(saddleCentreToHand: _saddleCentreToHand, saddleToHandDrop: _saddleToHandDrop, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
-                updatePropertyIfChanged(&_bbToHandX, value: handXAndY.bbToHandX)
-                updatePropertyIfChanged(&_bbToHandY, value: handXAndY.bbToHandY)
+            if let handXAndY = BikeFitUtils.computeHandXAndY(saddleCentreToHand: _saddleCentreToHand, saddleToHandDrop: _saddleToHandDrop, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandX, value: handXAndY.bbToHandX)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandY, value: handXAndY.bbToHandY)
             }
         }
         
         /// computes hand position properties and updates the stored propoerties if they are different
         func updateHandPositionsIfChanged() {
-            if let handPositions = computeHandPositions(bbToHandX: _bbToHandX, bbToHandY: _bbToHandY, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
-                updatePropertyIfChanged(&_saddleCentreToHand, value: handPositions.saddleCentreToHand)
-                updatePropertyIfChanged(&_saddleToHandDrop, value: handPositions.saddleToHandDrop)
+            if let handPositions = BikeFitUtils.computeHandPositions(bbToHandX: _bbToHandX, bbToHandY: _bbToHandY, bbToSaddleX: _bbToSaddleX, bbToSaddleY: _bbToSaddleY) {
+                BikeFitUtils.updatePropertyIfChanged(&_saddleCentreToHand, value: handPositions.saddleCentreToHand)
+                BikeFitUtils.updatePropertyIfChanged(&_saddleToHandDrop, value: handPositions.saddleToHandDrop)
             }
         }
 
         /// computes handlebar x and y properties and updates the stored propoerties if they are different
         func updateHandlebarXAndYIfChanged() {
-            if let handlebarXAndY = computeHandlebarXAndY(bbToHandlebarAngle: _bbToHandlebarAngle, bbToHandlebarCentre: _bbToHandlebarCentre) {
-                updatePropertyIfChanged(&_bbToHandlebarX, value: handlebarXAndY.bbToHandlebarX)
-                updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarXAndY.bbToHandlebarY)
+            if let handlebarXAndY = BikeFitUtils.computeHandlebarXAndY(bbToHandlebarAngle: _bbToHandlebarAngle, bbToHandlebarCentre: _bbToHandlebarCentre) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarX, value: handlebarXAndY.bbToHandlebarX)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarXAndY.bbToHandlebarY)
             }
         }
 
         func updateHandlebarAngleAndYIfChanged() {
-            if let handlebarAngleAndY = computeHandlebarAngleAndY(bbToHandlebarCentre: _bbToHandlebarCentre, bbToHandlebarX: _bbToHandlebarX) {
-                updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarAngleAndY.bbToHandlebarAngle)
-                updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarAngleAndY.bbToHandlebarY)
+            if let handlebarAngleAndY = BikeFitUtils.computeHandlebarAngleAndY(bbToHandlebarCentre: _bbToHandlebarCentre, bbToHandlebarX: _bbToHandlebarX) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarAngleAndY.bbToHandlebarAngle)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarY, value: handlebarAngleAndY.bbToHandlebarY)
             }
         }
         
         /// computes handlebar centre and angle properties and updates the stored propoerties if they are different
         func updateHandlebarCentreAndAngleIfChanged() {
-            if let handlebarCentreAndAngle = computeHandlebarCentreAndAngle(bbToHandlebarX: _bbToHandlebarX, bbToHandlebarY: _bbToHandlebarY) {
-                updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarCentreAndAngle.bbToHandlebarAngle)
-                updatePropertyIfChanged(&_bbToHandlebarCentre, value: handlebarCentreAndAngle.bbToHandlebarCentre)
+            if let handlebarCentreAndAngle = BikeFitUtils.computeHandlebarCentreAndAngle(bbToHandlebarX: _bbToHandlebarX, bbToHandlebarY: _bbToHandlebarY) {
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarAngle, value: handlebarCentreAndAngle.bbToHandlebarAngle)
+                BikeFitUtils.updatePropertyIfChanged(&_bbToHandlebarCentre, value: handlebarCentreAndAngle.bbToHandlebarCentre)
             }
         }
     }

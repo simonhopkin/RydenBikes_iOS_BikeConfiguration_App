@@ -15,7 +15,7 @@ struct MeasureHandPositionView: View {
     @State var bikeFit: BikeFit
     @State private var showHandHeightEntryDialog = false
     @State private var showHandAngleEntryDialog = false
-    
+
     @Binding var navigationPath: NavigationPath
     
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
@@ -36,10 +36,10 @@ struct MeasureHandPositionView: View {
                 } label: {
                     HStack {
                         Text(String(format: "%.0f", bikeFit.saddleCentreToHand))
-                            .font(.custom("Roboto-Regular", size: 16))
+                            .font(.custom("Roboto-Medium", size: 18))
                             .foregroundColor(Color("PrimaryTextColor"))
                         Text("mm")
-                            .font(.custom("Roboto-Regular", size: 14))
+                            .font(.custom("Roboto-Regular", size: 16))
                             .foregroundColor(Color.gray)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
@@ -50,9 +50,9 @@ struct MeasureHandPositionView: View {
                 .background(Color.white)
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                        .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.15)
+                .position(x: geometry.size.width * 0.75, y: geometry.size.height * 0.1)
                 
                 Button {
                     customActivitySheet.showModal {
@@ -62,10 +62,10 @@ struct MeasureHandPositionView: View {
                 } label: {
                     HStack {
                         Text(String(format: "%.0f", bikeFit.saddleToHandDrop))
-                            .font(.custom("Roboto-Regular", size: 16))
+                            .font(.custom("Roboto-Medium", size: 18))
                             .foregroundColor(Color("PrimaryTextColor"))
                         Text("mm")
-                            .font(.custom("Roboto-Regular", size: 14))
+                            .font(.custom("Roboto-Regular", size: 16))
                             .foregroundColor(Color.gray)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
@@ -75,10 +75,10 @@ struct MeasureHandPositionView: View {
                 }
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                        .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
                 .background(Color.white)
-                .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.3)
+                .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.3)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
@@ -133,17 +133,19 @@ struct MeasureHandPositionView: View {
                 
                 VStack(spacing: 20) {
                     HStack {
-                        Button("Done") {
-                            isPresented = false // Dismiss the sheet
-                        }
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical)
+                        Text("Done")
+                            .foregroundStyle(Color.blue)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
                     }
                 }
                 .background(Color.white)
                 .cornerRadius(15)
                 .shadow(radius: 10)
+                .onTapGesture {
+                    isPresented = false // Dismiss the sheet
+                }
             }
             .padding(8)
         }
@@ -153,21 +155,23 @@ struct MeasureHandPositionView: View {
     struct SaddleToHandDropMeasurementView: View {
         @Binding var isPresented: Bool
         @Binding var value: Double
+        @State private var groundToSaddleHeight: Double = 0
+        @State private var groundToGripHeight: Double = 0
         
         var body: some View {
             VStack {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the vertical distance from the top of the saddle to the grip position in millimetres")
+                    Text("Enter the vertical distance from the ground to the saddle and ground to the grip in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
                     
-                    DecimalTextField(placeholder: "", value: $value)
+                    DecimalTextField(placeholder: "Saddle", value: $groundToSaddleHeight)
                         .font(.title)
                         .fontWeight(.bold)
-                        .frame(minWidth: 150, alignment: .trailing)
+                        .frame(minWidth: 200, alignment: .trailing)
                         .padding(.top, 8)
                         .padding(.bottom, 8)
                         .suffix("mm", minWidth: 30, color: Color.gray, font: .title)
@@ -178,6 +182,27 @@ struct MeasureHandPositionView: View {
                             RoundedRectangle(cornerRadius: 3)       // Set the corner radius
                                 .stroke(Color.red, lineWidth: 4)    // Set border color and thickness
                         )
+                        .onChange(of: groundToSaddleHeight) {
+                            value = groundToSaddleHeight - groundToGripHeight
+                        }
+                    
+                    DecimalTextField(placeholder: "Grip", value: $groundToGripHeight)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .frame(minWidth: 200, alignment: .trailing)
+                        .padding(.top, 8)
+                        .padding(.bottom, 8)
+                        .suffix("mm", minWidth: 30, color: Color.gray, font: .title)
+                        .foregroundColor(Color("PrimaryTextColor"))
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding(.trailing, 8)
+                        .overlay( // Overlay a RoundedRectangle for the border
+                            RoundedRectangle(cornerRadius: 3)       // Set the corner radius
+                                .stroke(Color.red, lineWidth: 4)    // Set border color and thickness
+                        )
+                        .onChange(of: groundToGripHeight) {
+                            value = groundToSaddleHeight - groundToGripHeight
+                        }
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -188,17 +213,19 @@ struct MeasureHandPositionView: View {
                 
                 VStack(spacing: 20) {
                     HStack {
-                        Button("Done") {
-                            isPresented = false // Dismiss the sheet
-                        }
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical)
+                        Text("Done")
+                            .foregroundStyle(Color.blue)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
                     }
                 }
                 .background(Color.white)
                 .cornerRadius(15)
                 .shadow(radius: 10)
+                .onTapGesture {
+                    isPresented = false // Dismiss the sheet
+                }
             }
             .padding(8)
         }

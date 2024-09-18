@@ -8,13 +8,13 @@
 import Foundation
 import SwiftData
 
-/// BikeFit model type aliases to point to model from the latest schema
+/// **IMPORTANT: `BikeFit` model type aliases to point to model from the latest schema
 typealias BikeFit = DataSchemaV2.BikeFit
 
 /// Data persistance schema V1
 enum DataSchemaV1: VersionedSchema {
     
-    static var versionIdentifier = Schema.Version(1, 0, 0)
+    static var versionIdentifier = Schema.Version(0, 1, 0)
     
     static var models: [any PersistentModel.Type] {
         [BikeFit.self]
@@ -30,3 +30,13 @@ enum DataSchemaV2: VersionedSchema {
         [BikeFit.self]
     }
 }
+//
+///// Data persistance schema V3
+//enum DataSchemaV3: VersionedSchema {
+//    
+//    static var versionIdentifier = Schema.Version(3, 0, 0)
+//    
+//    static var models: [any PersistentModel.Type] {
+//        [BikeFit.self]
+//    }
+//}

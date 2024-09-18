@@ -35,6 +35,8 @@
 		3E97B50E2C997CF80044FE51 /* BikeFitV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */; };
 		3E97B5102C997E120044FE51 /* BikeFitMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */; };
 		3E97B5122C99AAC40044FE51 /* BikeFitV2Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B5112C99AAC40044FE51 /* BikeFitV2Test.swift */; };
+		3E97B5152C9AC8C00044FE51 /* BikeFitV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B5142C9AC8C00044FE51 /* BikeFitV3.swift */; };
+		3E97B5172C9ACF440044FE51 /* BikeFitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97B5162C9ACF440044FE51 /* BikeFitUtils.swift */; };
 		3EA04AA82C8C4B5E009BB9AC /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */; };
 		3EA04AA92C8C4B5E009BB9AC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */; };
 		3EA04AAA2C8C4B5E009BB9AC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */; };
@@ -102,6 +104,8 @@
 		3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitV2.swift; sourceTree = "<group>"; };
 		3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitMigrationPlan.swift; sourceTree = "<group>"; };
 		3E97B5112C99AAC40044FE51 /* BikeFitV2Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitV2Test.swift; sourceTree = "<group>"; };
+		3E97B5142C9AC8C00044FE51 /* BikeFitV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitV3.swift; sourceTree = "<group>"; };
+		3E97B5162C9ACF440044FE51 /* BikeFitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeFitUtils.swift; sourceTree = "<group>"; };
 		3EA04A9C2C8C4B5D009BB9AC /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		3EA04A9D2C8C4B5D009BB9AC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3EA04A9E2C8C4B5D009BB9AC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 			children = (
 				3E97B50A2C997C0C0044FE51 /* Schema */,
 				3E645AF72C8CB18E009866A9 /* BikeFit+Extensions.swift */,
+				3E97B5162C9ACF440044FE51 /* BikeFitUtils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,8 +252,8 @@
 				3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */,
 				3E0FD9952C9869D0004A09DF /* MeasurementView.swift */,
 				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
-				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
 				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
+				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				3E97B5082C997A0D0044FE51 /* DataSchema.swift */,
 				3E97B50B2C997C2F0044FE51 /* BikeFitV1.swift */,
 				3E97B50D2C997CF80044FE51 /* BikeFitV2.swift */,
+				3E97B5142C9AC8C00044FE51 /* BikeFitV3.swift */,
 				3E97B50F2C997E120044FE51 /* BikeFitMigrationPlan.swift */,
 			);
 			path = Schema;
@@ -468,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E97B5102C997E120044FE51 /* BikeFitMigrationPlan.swift in Sources */,
+				3E97B5152C9AC8C00044FE51 /* BikeFitV3.swift in Sources */,
 				3E645B012C8CB7F1009866A9 /* TintedNavigationBarModifier.swift in Sources */,
 				3E87DC252C90856600B53289 /* MyFitDetailsViewModel.swift in Sources */,
 				3E0FD9982C987186004A09DF /* MeasureHandPositionView.swift in Sources */,
@@ -478,6 +485,7 @@
 				3E97B50C2C997C2F0044FE51 /* BikeFitV1.swift in Sources */,
 				3E645AF82C8CB18E009866A9 /* BikeFit+Extensions.swift in Sources */,
 				3E01B6262C95925800C70D78 /* CustomActivitySheetModal.swift in Sources */,
+				3E97B5172C9ACF440044FE51 /* BikeFitUtils.swift in Sources */,
 				3E01B6222C9449CA00C70D78 /* MeasureSaddlePositionView.swift in Sources */,
 				3E27B8302C90712B004844B4 /* BikeFitRepositoryProtocol.swift in Sources */,
 				3E87DC2A2C90A7D600B53289 /* DecimalTextField.swift in Sources */,
@@ -653,7 +661,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
@@ -691,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;

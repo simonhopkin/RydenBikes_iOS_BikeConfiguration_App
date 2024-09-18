@@ -34,24 +34,14 @@ struct MeasureHandlebarPositionView: View {
                     }
                 } label: {
                     HStack {
-                        if bikeFit.bbToHandlebarCentre != 0 {
-                            Text(String(format: "%.0f", bikeFit.bbToHandlebarCentre))
-                                .font(.custom("Roboto-Regular", size: 16))
-                                .foregroundColor(Color("PrimaryTextColor"))
-                            Text("mm")
-                                .font(.custom("Roboto-Regular", size: 14))
-                                .foregroundColor(Color.gray)
-                                .padding(.bottom, 10)
-                                .padding(.top, 10)
-                        }
-                        else {
-                            Text("Enter Handlebar Height")
-                                .font(.custom("Roboto-Regular", size: 16))
-                                .foregroundColor(Color.gray)
-                                .padding(.bottom, 10)
-                                .padding(.top, 10)
-                        }
-                        
+                        Text(String(format: "%.0f", bikeFit.bbToHandlebarCentre))
+                            .font(.custom("Roboto-Medium", size: 18))
+                            .foregroundColor(Color("PrimaryTextColor"))
+                        Text("mm")
+                            .font(.custom("Roboto-Regular", size: 16))
+                            .foregroundColor(Color.gray)
+                            .padding(.bottom, 10)
+                            .padding(.top, 10)
                     }
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
@@ -59,9 +49,9 @@ struct MeasureHandlebarPositionView: View {
                 .background(Color.white)
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                        .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.30)
+                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.28)
                 
                 Button {
                     customActivitySheet.showModal {
@@ -70,34 +60,24 @@ struct MeasureHandlebarPositionView: View {
                     }
                 } label: {
                     HStack {
-                        if bikeFit.bbToHandlebarAngle != 0 {
-                            Text(String(format: "%.1f", bikeFit.bbToHandlebarAngle))
-                                .font(.custom("Roboto-Regular", size: 16))
-                                .foregroundColor(Color("PrimaryTextColor"))
-                            Text("°")
-                                .font(.custom("Roboto-Regular", size: 14))
-                                .foregroundColor(Color.gray)
-                                .padding(.bottom, 10)
-                                .padding(.top, 10)
-                        }
-                        else {
-                            Text("Enter Handlebar Angle")
-                                .font(.custom("Roboto-Regular", size: 16))
-                                .foregroundColor(Color.gray)
-                                .padding(.bottom, 10)
-                                .padding(.top, 10)
-                        }
-                        
+                        Text(String(format: "%.1f", bikeFit.bbToHandlebarAngle))
+                            .font(.custom("Roboto-Medium", size: 18))
+                            .foregroundColor(Color("PrimaryTextColor"))
+                        Text("°")
+                            .font(.custom("Roboto-Regular", size: 16))
+                            .foregroundColor(Color.gray)
+                            .padding(.bottom, 10)
+                            .padding(.top, 10)
                     }
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
                 }
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
-                        .stroke(Color.red, lineWidth: 4) // Set border color and thickness
+                        .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
                 .background(Color.white)
-                .position(x: geometry.size.width * 0.7, y: geometry.size.height * 0.55)
+                .position(x: geometry.size.width * 0.68, y: geometry.size.height * 0.52)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
@@ -152,17 +132,19 @@ struct MeasureHandlebarPositionView: View {
                 
                 VStack(spacing: 20) {
                     HStack {
-                        Button("Done") {
-                            isPresented = false // Dismiss the sheet
-                        }
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical)
+                        Text("Done")
+                            .foregroundStyle(Color.blue)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
                     }
                 }
                 .background(Color.white)
                 .cornerRadius(15)
                 .shadow(radius: 10)
+                .onTapGesture {
+                    isPresented = false // Dismiss the sheet
+                }
             }
             .padding(8)
         }
@@ -234,18 +216,19 @@ struct MeasureHandlebarPositionView: View {
                 
                 VStack(spacing: 20) {
                     HStack {
-                        Button("Done") {
-                            isPresented = false // Dismiss the sheet
-                        }
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical)
+                        Text("Done")
+                            .foregroundStyle(Color.blue)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
                     }
                 }
                 .background(Color.white)
                 .cornerRadius(15)
                 .shadow(radius: 10)
+                .onTapGesture {
+                    isPresented = false // Dismiss the sheet
+                }
             }
             .padding(.leading, 8)
             .padding(.trailing, 8)
