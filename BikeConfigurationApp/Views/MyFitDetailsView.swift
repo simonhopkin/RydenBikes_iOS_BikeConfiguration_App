@@ -87,10 +87,10 @@ struct MyFitDetailsView: View {
                         fitSection("Saddle Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("BB to Saddle Centre", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleCentre)
+                                fitField("Saddle Height (BB to saddle centre)", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleCentre)
                                 fitField("BB to Saddle Angle", suffix: "°", value: $viewModel.bikeFit.bbToSaddleAngle, format: "%.1f")
-                                fitField("BB to Saddle X", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleX)
-                                fitField("BB to Saddle Y", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleY)
+                                fitField("Saddle Setback (BB to Saddle centre X)", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleX)
+                                fitField("BB to Saddle Centre Y", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
@@ -118,10 +118,10 @@ struct MyFitDetailsView: View {
                         fitSection("Grip Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("Saddle Centre to Grip", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
-                                fitField("Saddle to Grip Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
-                                fitField("BB to Grip X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
-                                fitField("BB to Grip Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
+                                fitField("Grip Reach (Saddle Centre to Grip position)", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
+                                fitField("Saddle to Grip Position Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
+                                fitField("BB to Grip Position X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
+                                fitField("BB to Grip Position Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
@@ -149,10 +149,10 @@ struct MyFitDetailsView: View {
                         fitSection("Handlebar Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("BB to Handlebar", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
-                                fitField("BB to Handlebar Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle, format: "%.1f")
-                                fitField("BB to Handlebar X", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
-                                fitField("BB to Handlebar Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
+                                fitField("BB to Handlebar Centre", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
+                                fitField("BB to Handlebar Centre Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle, format: "%.1f")
+                                fitField("BB to Handlebar Centre X", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
+                                fitField("BB to Handlebar Centre Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
