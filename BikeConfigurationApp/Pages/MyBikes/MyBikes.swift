@@ -24,7 +24,7 @@ struct MyBikes: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(
-            // Override the navigation header bar to contain a back and add buttons
+            // Override the navigation header bar to contain a back button
             leading: Button(action: {
                 navigationPath.removeLast()
             }) {

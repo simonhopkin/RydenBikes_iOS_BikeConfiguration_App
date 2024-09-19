@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-/// Not currently used but can be if we want to show the launch screen for longer
+/// Splash page extends the launch screen so that its visible for longer than the default launch screen
+/// Once it has been shown for a period of time it shows the `HomeView`
 struct SplashView: View {
     @State var shouldDisplaySplashView: Bool = true
     @Binding var navigationPath: NavigationPath

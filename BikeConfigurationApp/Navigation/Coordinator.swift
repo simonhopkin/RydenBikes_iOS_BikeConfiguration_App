@@ -19,6 +19,7 @@ enum Route : Hashable {
 /// Page coordinator to create views when navigation to a `Route`
 struct Coordinator {
 
+    /// Creates and initialises the correct view for the requested route.
     @MainActor @ViewBuilder func getViewForRoute(_ destination: Route, navigationPath: Binding<NavigationPath>, modelContext: ModelContext) -> some View {
 
         switch destination {

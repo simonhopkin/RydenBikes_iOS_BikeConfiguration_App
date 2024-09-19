@@ -7,13 +7,18 @@
 
 import SwiftUI
 
+/// The home view / dashboard for the app
 struct HomeView: View {
-    @State private var showAlert = false
-    @Binding var navigationPath: NavigationPath
-    @Environment(\.modelContext) var modelContext
-    @Environment(\.openURL) var openURL
-    @State var rootActivitySheet: (any View)?
     
+    /// navigation path for requesting page changes
+    @Binding var navigationPath: NavigationPath
+    
+    /// Stage variables
+    @State private var showAlert = false
+    
+    /// Environment variables
+    @Environment(\.modelContext) var modelContext
+
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack(spacing: 20) {
@@ -52,6 +57,7 @@ struct HomeView: View {
                                  backgroundColor: UIColor.systemBackground)
             .navigationDestination(for: Route.self) { route in
                 
+                // Delegate destination view creation to the `Coordinator`
                 Coordinator().getViewForRoute(route,
                                               navigationPath: $navigationPath,
                                               modelContext: modelContext)

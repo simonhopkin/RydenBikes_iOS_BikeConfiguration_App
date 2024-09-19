@@ -14,6 +14,7 @@ struct MyFitView: View {
     /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
     
+    /// State variables
     @State var viewModel: MyFitViewModel
     @State var showActionSheet = false
     @State var selectedBikeFit: BikeFit?
