@@ -34,7 +34,7 @@ struct MyFitDetailsView: View {
                         
                         DatePicker(selection: $viewModel.bikeFit.created,
                                    in: ...Date.now,
-                                   displayedComponents: [.date, .hourAndMinute]) {
+                                   displayedComponents: [.date]) {
                             Text("Date: ")
                                 .padding(.top, 10)
                                 .padding(.bottom, 1)
