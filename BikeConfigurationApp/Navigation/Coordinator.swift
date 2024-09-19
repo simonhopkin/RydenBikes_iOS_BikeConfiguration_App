@@ -55,4 +55,14 @@ struct Coordinator {
                 })
         }
     }
+    
+    /// Opens the browser and goes to the appropriate store based on the users locale
+    func goToStore() {
+        switch Locale.current.region?.identifier {
+        case "US":
+            UIApplication.shared.open(URL(string: "https://shop.rydenusa.bike")!)
+        default:
+            UIApplication.shared.open(URL(string: "https://shop.ryden.bike")!)
+        }
+    }
 }

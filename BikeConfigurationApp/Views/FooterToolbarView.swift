@@ -58,7 +58,7 @@ struct FooterToolbarView: View {
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .onTapGesture {
-                    openURL(URL(string: "https://shop.ryden.bike")!)
+                    Coordinator().goToStore()
                 }
             }
         }

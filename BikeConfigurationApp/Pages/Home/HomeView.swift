@@ -36,7 +36,7 @@ struct HomeView: View {
                 }
                 
                 Button(action: {
-                    openURL(URL(string: "https://shop.ryden.bike")!)
+                    Coordinator().goToStore()
                 }) {
                     Text("Store")
                         .font(.custom("Roboto-Regular", size: 30))
