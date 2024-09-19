@@ -20,9 +20,7 @@ struct BikeFitUtils {
         
         var x = bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
         let y = bbToSaddleCentre * cos(saddleAngleRadians) // calculate the adjacent (Y)
-        
-        x += 3  // add 3mm to setback x to account for tool used to measure saddle angle and centre
-               
+                       
         return (bbToSaddleX: x, bbToSaddleY: y)
     }
     
