@@ -246,6 +246,11 @@ extension DataSchemaV2 {
                       bbToHandlebarY: bbToHandlebarY)
         }
         
+        /// used to apply an adjustment to the bb to saddle x value without triggering recomputation of other properties
+        func applyBBToSaddleXAdjustment(adjustment: Double) {
+            _bbToSaddleX += adjustment
+        }
+        
         /// computes saddle x and y and updates the stored propoerties if they are different
         func updateSaddleXAndYIfChanged() {
             if let saddleXAndY = BikeFitUtils.computeSaddleXAndY(bbToSaddleAngle: _bbToSaddleAngle, bbToSaddleCentre: _bbToSaddleCentre) {

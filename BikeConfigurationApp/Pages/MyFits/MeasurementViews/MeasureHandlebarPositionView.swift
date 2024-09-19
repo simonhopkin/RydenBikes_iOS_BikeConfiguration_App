@@ -1,22 +1,24 @@
 //
-//  MeasureSaddlePositionView.swift
+//  MeasureHandlebarPositionView.swift
 //  BikeConfigurationApp
 //
-//  Created by Simon Hopkin on 13/09/2024.
+//  Created by Simon Hopkin on 16/09/2024.
 //
 
 import SwiftUI
 import Motion
 import CoreMotion
 
-struct MeasureSaddlePositionView: View {
+struct MeasureHandlebarPositionView: View {
     
     @State var bikeFit: BikeFit
-    @State private var showSaddleHeightEntryDialog = false
-    @State private var showSaddleAngleEntryDialog = false
-
+    @State private var showHandlebarHeightEntryDialog = false
+    @State private var showHandlebarAngleEntryDialog = false
     @Binding var navigationPath: NavigationPath
     @Binding var showGuidanceSheet: Bool
+    
+    @State private var unAdjustedHandlebarCentre: Double = 0
+
 
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
@@ -24,18 +26,21 @@ struct MeasureSaddlePositionView: View {
         GeometryReader { geometry in
             
             ZStack {
-                Image("SaddlePositionGuide")
+                Image("HandlebarPositionGuide")
                     .resizable()
                     .scaledToFit()
                 
                 Button {
                     customActivitySheet.showModal {
-                        SaddleHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
-                                                    value: $bikeFit.bbToSaddleCentre)
+                        HandlebarHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                       targetValue: $bikeFit.bbToHandlebarCentre) { value in
+                            unAdjustedHandlebarCentre = value
+                            return BikeFitUtils.computeBBToHandlebarCentreToolAdjustment(bbToHandlebarCentre: value)
+                        }
                     }
                 } label: {
                     HStack {
-                        Text(String(format: "%.0f", bikeFit.bbToSaddleCentre))
+                        Text(String(format: "%.0f", bikeFit.bbToHandlebarCentre))
                             .font(.custom("Roboto-Medium", size: 18))
                             .foregroundColor(Color("PrimaryTextColor"))
                         Text("mm")
@@ -52,16 +57,23 @@ struct MeasureSaddlePositionView: View {
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .position(x: geometry.size.width * 0.65, y: geometry.size.height * 0.28)
+                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.28)
                 
                 Button {
                     customActivitySheet.showModal {
-                        SaddleAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
-                                                   value: $bikeFit.bbToSaddleAngle)
+                        HandlebarAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
+                                                      targetValue: $bikeFit.bbToHandlebarAngle) { value in
+                            if unAdjustedHandlebarCentre != 0 {
+                                return BikeFitUtils.computeBBToHandlebarAngleToolAdjustment(bbToHandlebarAngle: value, bbToHandlebarCentre: unAdjustedHandlebarCentre)
+                            }
+                            else {
+                                return value
+                            }
+                        }
                     }
                 } label: {
                     HStack {
-                        Text(String(format: "%.1f", bikeFit.bbToSaddleAngle))
+                        Text(String(format: "%.1f", bikeFit.bbToHandlebarAngle))
                             .font(.custom("Roboto-Medium", size: 18))
                             .foregroundColor(Color("PrimaryTextColor"))
                         Text("°")
@@ -78,36 +90,11 @@ struct MeasureSaddlePositionView: View {
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
                 .background(Color(.secondarySystemBackground))
-                .position(x: geometry.size.width * 0.25, y: geometry.size.height * 0.48)
-                
-                
-                // Display setback x on the measurement view
-                
-                HStack {
-                    Text("Setback (X)")
-                        .font(.custom("Roboto-Regular", size: 16))
-                        .foregroundColor(Color.gray)
-                    Text(String(format: "%.0f", bikeFit.bbToSaddleX))
-                        .font(.custom("Roboto-Medium", size: 18))
-                        .foregroundColor(Color.primary)
-                    Text("mm")
-                        .font(.custom("Roboto-Regular", size: 16))
-                        .foregroundColor(Color.gray)
-                        .padding(.bottom, 10)
-                        .padding(.top, 10)
-                }
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
-                .overlay( // Overlay a RoundedRectangle for the border
-                    RoundedRectangle(cornerRadius: 3)
-                        .stroke(Color.primary, lineWidth: 5)
-                )
-                .background(Color(.secondarySystemBackground))
-                .position(x: geometry.size.width * 0.4, y: geometry.size.height * 0.1)
+                .position(x: geometry.size.width * 0.68, y: geometry.size.height * 0.52)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears
-        .navigationTitle("Saddle Position")
+        .navigationTitle("Handlebar Position")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(
@@ -124,20 +111,29 @@ struct MeasureSaddlePositionView: View {
                 Image(systemName: "questionmark.circle")
             })
         .sheet(isPresented: $showGuidanceSheet) {
-            GuidanceSaddlePositionView(showGuidanceSheet: $showGuidanceSheet)
+            GuidanceHandlebarPositionView(showGuidanceSheet: $showGuidanceSheet)
         }
     }
     
-    struct SaddleHeightMeasurementView: View {
+    struct HandlebarHeightMeasurementView: View {
         @Binding var isPresented: Bool
-        @Binding var value: Double
+        @Binding var targetValue: Double
 
+        @State private var value: Double = 0
+        
+        /// called before the measurement update has been applied to the target value so that any adjustments can be made to it before
+        /// it is applied to the bike fit
+        var appliedAdjustment: ((_ value: Double) -> Double)?
+        
+        /// called after the measurement update has been applied to the target value so that any further adjustments can be made
+        var measurementApplied: (() -> Void)?
+        
         var body: some View {
             VStack {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the distance from the bottom bracket to the centre of the saddle in millimetres")
+                    Text("Enter the distance from the bottom bracket to the centre of the handlebars in millimetres")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
@@ -177,26 +173,41 @@ struct MeasureSaddlePositionView: View {
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {
+                    targetValue = appliedAdjustment?(value) ?? value
+                    measurementApplied?()
                     isPresented = false // Dismiss the sheet
                 }
             }
             .padding(8)
+            .onAppear {
+                value = targetValue
+            }
         }
     }
     
     
-    struct SaddleAngleMeasurementView: View {
+    struct HandlebarAngleMeasurementView: View {
         @Binding var isPresented: Bool
-        @Binding var value: Double
+        @Binding var targetValue: Double
+
+        @State private var value: Double = 0
         @State var captureAngle: Bool = false
-        let motionManager = MotionManager(motionManager: CMMotionManager())
         
+        /// called before the measurement update has been applied to the target value so that any adjustments can be made to it before
+        /// it is applied to the bike fit
+        var appliedAdjustment: ((_ value: Double) -> Double)?
+        
+        /// called after the measurement update has been applied to the target value so that any further adjustments can be made
+        var measurementApplied: (() -> Void)?
+        
+        let motionManager = MotionManager(motionManager: CMMotionManager())
+
         var body: some View {
             VStack {
                 Spacer() // Push the bottom sheet to the bottom of the screen
                 
                 VStack(spacing: 20) {
-                    Text("Enter the angle from the bottom bracket to the centre of the saddle")
+                    Text("Enter the angle from the bottom bracket to the centre of the handlebars")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.callout)
@@ -225,15 +236,14 @@ struct MeasureSaddlePositionView: View {
                         if newValue {
                             //dismiss keyboard if shown
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            do {
-                                try motionManager.startDeviceOrientationUpdates { roll, pitch, yaw in
-                                    value = pitch
-                                }
-                                
                             
+                            do {
+                                try motionManager.startDeviceOrientationUpdates { pitch, roll, yaw in
+                                    value = roll
+                                }
                             }
                             catch {
-                                print("SaddleAngleMeasurementView -- ERROR: \(error)")
+                                print("HandlebarAngleMeasurementView -- ERROR: \(error)")
                                 captureAngle = false
                             }
                         }
@@ -262,11 +272,16 @@ struct MeasureSaddlePositionView: View {
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {
+                    targetValue = appliedAdjustment?(value) ?? value
+                    measurementApplied?()
                     isPresented = false // Dismiss the sheet
                 }
             }
             .padding(.leading, 8)
             .padding(.trailing, 8)
+            .onAppear {
+                value = targetValue
+            }
             .onDisappear {
                 captureAngle = false
                 motionManager.stopDeviceOrientationUpdates()
@@ -279,7 +294,7 @@ struct MeasureSaddlePositionView: View {
     @State var navigationPath = NavigationPath()
     @State var showGuidanceSheet = false
     @StateObject var customActivitySheetModal = CustomActivitySheetModal()
-    return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
+    return MeasureHandlebarPositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))
     

@@ -180,13 +180,8 @@
 			children = (
 				3E645AF32C8CAABA009866A9 /* MyFitView.swift */,
 				3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */,
-				3E0FD9952C9869D0004A09DF /* MeasurementView.swift */,
-				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
-				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
-				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
-				3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */,
-				3EEA470E2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift */,
-				3EEA47102C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift */,
+				3E1B647F2C9C6D470088C08A /* MeasurementViews */,
+				3E1B64802C9C6D5B0088C08A /* GuidanceViews */,
 			);
 			path = MyFits;
 			sourceTree = "<group>";
@@ -197,6 +192,27 @@
 				3E1B64792C9C2EAB0088C08A /* MyBikes.swift */,
 			);
 			path = MyBikes;
+			sourceTree = "<group>";
+		};
+		3E1B647F2C9C6D470088C08A /* MeasurementViews */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FD9952C9869D0004A09DF /* MeasurementView.swift */,
+				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
+				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
+				3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */,
+			);
+			path = MeasurementViews;
+			sourceTree = "<group>";
+		};
+		3E1B64802C9C6D5B0088C08A /* GuidanceViews */ = {
+			isa = PBXGroup;
+			children = (
+				3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */,
+				3EEA470E2C9B0DB600AD8E39 /* GuidanceHandPositionView.swift */,
+				3EEA47102C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift */,
+			);
+			path = GuidanceViews;
 			sourceTree = "<group>";
 		};
 		3E2140862C8A1378007BA9CA = {
