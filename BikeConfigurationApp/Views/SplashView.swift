@@ -11,42 +11,38 @@ import SwiftUI
 struct SplashView: View {
     @State var shouldDisplaySplashView: Bool = true
     @Binding var navigationPath: NavigationPath
-
+    
     var body: some View {
         ZStack {
             if shouldDisplaySplashView {
-                GeometryReader { geometry in
+                
+                Image("SplashBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height)
+                    .clipped()
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.size.height * 0.098)
                     
-                    Image("SplashBackground")
+                    Image("BrandAndLogo")
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width,
-                               height: UIScreen.main.bounds.height)
-                        .clipped()
-                        .ignoresSafeArea()
-                    
-                    VStack(spacing: 10) {
-                        Spacer().background(Color.red)
-                            .frame(height: geometry.size.height * 0.1)
-                        Image("RydenBikesIcon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 85, height: 85)
-                        Text("Ryden Bikes")
-                            .font(.custom("Roboto-Black", size: 48))
-                            .bold()
-                            .foregroundColor(Color("PrimaryTextColor"))
-                    }
-                    .frame(width: geometry.size.width)
+                        .scaledToFit()
+                        .frame(width: 357, height: 150)
+                        .padding(0)
+                    Spacer()
                 }
-                .ignoresSafeArea()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             else {
                 HomeView(navigationPath: $navigationPath)
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 shouldDisplaySplashView = false
             }
         }

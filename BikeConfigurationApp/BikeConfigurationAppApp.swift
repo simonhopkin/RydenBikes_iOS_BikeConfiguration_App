@@ -27,7 +27,7 @@ struct BikeConfigurationAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView(navigationPath: $navigationPath)
+            SplashView(navigationPath: $navigationPath)
                 .modelContainer(modelContainer)         // inject the model container
                 .environmentObject(customActivitySheetModal) // inject the custom activity sheet container
                 .onOpenURL(perform: { url in            // handle incoming urls
