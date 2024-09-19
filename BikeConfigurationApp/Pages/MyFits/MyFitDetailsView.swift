@@ -11,11 +11,12 @@ import PhotosUI
 
 struct MyFitDetailsView: View {
     
+    /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
+    
+    /// State variables
     @State var viewModel: MyFitDetailsViewModel
-    
     @State private var selectedPhoto: PhotosPickerItem?
-    
     @State private var displayInvalidBikeFitAlert = false
     @State private var displayInvalidBikeFitDiscardOption = false
     

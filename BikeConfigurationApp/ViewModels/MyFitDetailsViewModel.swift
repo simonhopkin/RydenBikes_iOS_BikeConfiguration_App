@@ -10,6 +10,7 @@ import _PhotosUI_SwiftUI
 import SwiftUI
 import SwiftData
 
+/// View model for managing changes to the bike fit for the details page.
 class MyFitDetailsViewModel: ObservableObject {
     
     var bikeFit: BikeFit

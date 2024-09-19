@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// TabView to display the 3 bike measurement views
 struct MeasurementView: View {
         
     @State var bikeFit: BikeFit

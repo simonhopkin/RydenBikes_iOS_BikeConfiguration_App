@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+/// Placeholder page for the bikes section
 struct MyBikes: View {
+    
     /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
     

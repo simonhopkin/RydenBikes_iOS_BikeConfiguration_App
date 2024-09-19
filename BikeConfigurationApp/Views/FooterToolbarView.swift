@@ -7,12 +7,11 @@
 
 import SwiftUI
 
+/// Footer to display at the bottom of all main pages
 struct FooterToolbarView: View {
     
     /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
-    
-    @Environment(\.openURL) var openURL
 
     var body: some View {
         VStack (spacing: 20) {

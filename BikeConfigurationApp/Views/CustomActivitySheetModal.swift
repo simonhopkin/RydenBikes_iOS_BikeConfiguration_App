@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+/// Custom activity sheet style view to display any type of content rather than just buttons
 class CustomActivitySheetModal: ObservableObject {
     @Published var isPresented: Bool = false
     @Published var activitySheetContent: AnyView = AnyView(EmptyView())

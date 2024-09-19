@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Wrappper around `TextField` to display `Double` values with an optional suffix label
 struct DecimalTextField: View {
     var placeholder: String
     @Binding var value: Double
