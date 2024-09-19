@@ -13,6 +13,8 @@
 		3E0FD9962C9869D0004A09DF /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9952C9869D0004A09DF /* MeasurementView.swift */; };
 		3E0FD9982C987186004A09DF /* MeasureHandPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */; };
 		3E1B64762C9C05BF0088C08A /* MyFitSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */; };
+		3E1B64782C9C25D40088C08A /* FooterToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B64772C9C25D40088C08A /* FooterToolbarView.swift */; };
+		3E1B647A2C9C2EAC0088C08A /* MyBikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B64792C9C2EAB0088C08A /* MyBikes.swift */; };
 		3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */; };
 		3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140942C8A1378007BA9CA /* HomeView.swift */; };
 		3E2140972C8A137A007BA9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E2140962C8A137A007BA9CA /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		3E0FD9952C9869D0004A09DF /* MeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
 		3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureHandPositionView.swift; sourceTree = "<group>"; };
 		3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitSummaryView.swift; sourceTree = "<group>"; };
+		3E1B64772C9C25D40088C08A /* FooterToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterToolbarView.swift; sourceTree = "<group>"; };
+		3E1B64792C9C2EAB0088C08A /* MyBikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBikes.swift; sourceTree = "<group>"; };
 		3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeConfigurationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppApp.swift; sourceTree = "<group>"; };
 		3E2140942C8A1378007BA9CA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				3E2140942C8A1378007BA9CA /* HomeView.swift */,
 				3E645AF32C8CAABA009866A9 /* MyFitView.swift */,
 				3E87DC222C9084FD00B53289 /* MyFitDetailsView.swift */,
+				3E1B64792C9C2EAB0088C08A /* MyBikes.swift */,
 				3E0FD9952C9869D0004A09DF /* MeasurementView.swift */,
 				3E01B6212C9449CA00C70D78 /* MeasureSaddlePositionView.swift */,
 				3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */,
@@ -291,6 +296,7 @@
 				3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */,
 				3E87DC292C90A7D600B53289 /* DecimalTextField.swift */,
 				3E01B6252C95925800C70D78 /* CustomActivitySheetModal.swift */,
+				3E1B64772C9C25D40088C08A /* FooterToolbarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 				3E645AF82C8CB18E009866A9 /* BikeFit+Extensions.swift in Sources */,
 				3E01B6262C95925800C70D78 /* CustomActivitySheetModal.swift in Sources */,
 				3EEA47112C9B0DD500AD8E39 /* GuidanceHandlebarPositionView.swift in Sources */,
+				3E1B647A2C9C2EAC0088C08A /* MyBikes.swift in Sources */,
 				3E97B5172C9ACF440044FE51 /* BikeFitUtils.swift in Sources */,
 				3E01B6222C9449CA00C70D78 /* MeasureSaddlePositionView.swift in Sources */,
 				3E27B8302C90712B004844B4 /* BikeFitRepositoryProtocol.swift in Sources */,
@@ -508,6 +515,7 @@
 				3E87DC232C9084FD00B53289 /* MyFitDetailsView.swift in Sources */,
 				3E97B50E2C997CF80044FE51 /* BikeFitV2.swift in Sources */,
 				3E0FD9922C986749004A09DF /* MeasureHandlebarPositionView.swift in Sources */,
+				3E1B64782C9C25D40088C08A /* FooterToolbarView.swift in Sources */,
 				3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */,
 				3E1B64762C9C05BF0088C08A /* MyFitSummaryView.swift in Sources */,
 			);

@@ -11,13 +11,14 @@ struct HomeView: View {
     @State private var showAlert = false
     @Binding var navigationPath: NavigationPath
     @Environment(\.modelContext) var modelContext
+    @Environment(\.openURL) var openURL
     @State var rootActivitySheet: (any View)?
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack(spacing: 20) {
                 Button(action: {
-                    showAlert = true
+                    navigationPath.append(Route.myBikes)
                 }) {
                     Text("My Bikes")
                         .font(.custom("Roboto-Regular", size: 30))
@@ -35,9 +36,9 @@ struct HomeView: View {
                 }
                 
                 Button(action: {
-                    showAlert = true
+                    openURL(URL(string: "https://shop.ryden.bike")!)
                 }) {
-                    Text("Knowledge")
+                    Text("Store")
                         .font(.custom("Roboto-Regular", size: 30))
                         .foregroundStyle(Color("PrimaryTextColor"))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)

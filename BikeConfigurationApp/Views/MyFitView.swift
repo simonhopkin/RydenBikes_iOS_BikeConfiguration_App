@@ -25,7 +25,9 @@ struct MyFitView: View {
     @Query(sort: \BikeFit.created, order: .reverse) private var bikeFits: [BikeFit]
     
     var body: some View {
-        GeometryReader { geometry in
+//        GeometryReader { geometry in
+        VStack (spacing: 0) {
+            
             
             if bikeFits.isEmpty {
                 HStack {
@@ -47,6 +49,8 @@ struct MyFitView: View {
                 .listRowSpacing(15)
                 .background(Color.gray)
             }
+                        
+            FooterToolbarView(navigationPath: $navigationPath)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle("My Fit")
