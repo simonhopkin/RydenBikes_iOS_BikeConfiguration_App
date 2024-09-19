@@ -23,8 +23,8 @@ struct MeasurementView: View {
                 MeasureHandPositionView(bikeFit: bikeFit, navigationPath: $navigationPath, showGuidanceSheet: $showHandGuidance).tag(1)
                 MeasureHandlebarPositionView(bikeFit: bikeFit, navigationPath: $navigationPath, showGuidanceSheet: $showHandlebarGuidance).tag(2)
             }
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .automatic))
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .onChange(of: selectedPage) {
                 print(selectedPage)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

@@ -41,6 +41,7 @@ struct MyFitView: View {
                 List(bikeFits) { bikeFit in
                     MyFitSummaryView(bikeFit: bikeFit, 
                                      selectedBikeFit: $selectedBikeFit,
+                                     showActionSheet: $showActionSheet,
                                      navigationPath: $navigationPath)
                 }
                 .listRowSpacing(15)

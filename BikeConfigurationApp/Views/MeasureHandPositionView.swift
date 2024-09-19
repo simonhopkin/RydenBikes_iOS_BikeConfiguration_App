@@ -48,7 +48,7 @@ struct MeasureHandPositionView: View {
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
@@ -78,7 +78,7 @@ struct MeasureHandPositionView: View {
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.3)
             }
         }
@@ -136,7 +136,7 @@ struct MeasureHandPositionView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .padding(.horizontal, 30)
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 
@@ -149,7 +149,7 @@ struct MeasureHandPositionView: View {
                             .padding(.vertical)
                     }
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {
@@ -216,7 +216,7 @@ struct MeasureHandPositionView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .padding(.horizontal, 30)
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 
@@ -229,7 +229,7 @@ struct MeasureHandPositionView: View {
                             .padding(.vertical)
                     }
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {

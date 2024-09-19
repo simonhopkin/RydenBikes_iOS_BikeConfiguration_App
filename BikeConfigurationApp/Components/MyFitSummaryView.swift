@@ -13,9 +13,10 @@ struct MyFitSummaryView: View {
     /// the bike fit shown in this summary
     var bikeFit: BikeFit
     
-    /// binding to allow selection of this bike fit
+    /// binding to allow selection of this bike fit and show the action sheet with options
     @Binding var selectedBikeFit: BikeFit?
-    
+    @Binding var showActionSheet: Bool
+
     /// navigation path for requesting page changes
     @Binding var navigationPath: NavigationPath
     
@@ -38,7 +39,7 @@ struct MyFitSummaryView: View {
                     // button to access action sheet to delete or share a `BikeFit`
                     Button {
                         selectedBikeFit = bikeFit
-                        //                            showActionSheet = true
+                        showActionSheet = true
                     } label: {
                         HStack (spacing: 1) {
                             Image(systemName: "circle.fill").font(.system(size: 5))
@@ -128,12 +129,14 @@ struct MyFitSummaryView: View {
                 }
             }
         }
+        .padding(.vertical, 10)
     }
 }
 
 #Preview {
     @State var navigationPath = NavigationPath()
     @State var selectedBikeFit: BikeFit?
+    @State var showActionSheet: Bool = false
     let bikeFit = BikeFit.new()
-    return MyFitSummaryView(bikeFit: bikeFit, selectedBikeFit: $selectedBikeFit, navigationPath: $navigationPath)
+    return MyFitSummaryView(bikeFit: bikeFit, selectedBikeFit: $selectedBikeFit, showActionSheet: $showActionSheet, navigationPath: $navigationPath)
 }

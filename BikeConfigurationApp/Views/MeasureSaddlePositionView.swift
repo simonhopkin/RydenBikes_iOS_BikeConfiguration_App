@@ -47,7 +47,7 @@ struct MeasureSaddlePositionView: View {
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .overlay( // Overlay a RoundedRectangle for the border
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
@@ -77,7 +77,7 @@ struct MeasureSaddlePositionView: View {
                     RoundedRectangle(cornerRadius: 3) // Set the corner radius
                         .stroke(Color.red, lineWidth: 5) // Set border color and thickness
                 )
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .position(x: geometry.size.width * 0.25, y: geometry.size.height * 0.48)
                 
                 
@@ -102,7 +102,7 @@ struct MeasureSaddlePositionView: View {
                     RoundedRectangle(cornerRadius: 3)
                         .stroke(Color.primary, lineWidth: 5)
                 )
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .position(x: geometry.size.width * 0.4, y: geometry.size.height * 0.1)
             }
         }
@@ -160,7 +160,7 @@ struct MeasureSaddlePositionView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .padding(.horizontal, 30)
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 
@@ -173,7 +173,7 @@ struct MeasureSaddlePositionView: View {
                             .padding(.vertical)
                     }
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {
@@ -245,7 +245,7 @@ struct MeasureSaddlePositionView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .padding(.horizontal, 30)
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 
@@ -258,7 +258,7 @@ struct MeasureSaddlePositionView: View {
                             .padding(.vertical)
                     }
                 }
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 10)
                 .onTapGesture {
