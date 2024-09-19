@@ -18,47 +18,37 @@ struct MyFitDetailsView: View {
     
     @State private var displayInvalidBikeFitAlert = false
     @State private var displayInvalidBikeFitDiscardOption = false
-        
+    
     var body: some View {
         GeometryReader { geometry in
             
             ScrollView {
                 VStack(alignment: .leading) {
                     
-                    VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
                         
                         TextField("Bike fit name", text: $viewModel.bikeFit.name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .fontWeight((!viewModel.bikeFit.name.isEmpty ? .bold : .regular))
                             .font(.custom("Roboto-Regular", size: 16))
                         
-                        DatePicker(selection: $viewModel.bikeFit.created,
-                                   in: ...Date.now,
-                                   displayedComponents: [.date]) {
-                            Text("Date: ")
-                                .padding(.top, 10)
-                                .padding(.bottom, 1)
-                                .font(.custom("Roboto-Regular", size: 14))
-                        }
-                        .datePickerStyle(.compact)
-                        .onTapGesture(count: 99, perform: {
-                            // overrides tap gesture to fix ios 17.1 bug
-                        })
-                        
                         HStack(alignment: .top, spacing: 20) {
-                            
                             VStack (alignment: .leading) {
-                                Text("Notes: ")
+                                Text("Date: ")
                                     .padding(.top, 10)
                                     .padding(.bottom, 1)
                                     .font(.custom("Roboto-Regular", size: 14))
-
-                                TextField("Bike fit notes", text: $viewModel.bikeFit.notes, axis: .vertical)
-                                    .lineLimit(4)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .font(.custom("Roboto-Regular", size: 16))
+                                
+                                DatePicker("", selection: $viewModel.bikeFit.created, in: ...Date.now, displayedComponents: .date)
+                                    .datePickerStyle(.compact)
+                                    .labelsHidden()
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .frame(alignment: .leading)
+                                    .onTapGesture(count: 99, perform: {
+                                        // overrides tap gesture to fix ios 17.1 bug
+                                    })
                             }
-                            .frame(width: (viewModel.bikeFit.image != nil) ? geometry.size.width * 0.3 : geometry.size.width * 0.55)
+                            .frame(width:geometry.size.width * 0.3)
                             
                             PhotosPicker(selection: $selectedPhoto,
                                          matching: .images,
@@ -97,6 +87,17 @@ struct MyFitDetailsView: View {
                                         }
                                     }
                                     .buttonStyle(.borderless)
+                        }
+                        
+                        VStack (alignment: .leading) {
+                            Text("Notes: ")
+                                .padding(.bottom, 1)
+                                .font(.custom("Roboto-Regular", size: 14))
+                            
+                            TextField("Bike fit notes", text: $viewModel.bikeFit.notes, axis: .vertical)
+                                .lineLimit(4)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(.custom("Roboto-Regular", size: 16))
                         }
                     }
                     .padding()

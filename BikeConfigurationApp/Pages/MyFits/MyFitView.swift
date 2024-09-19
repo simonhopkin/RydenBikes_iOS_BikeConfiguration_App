@@ -25,10 +25,7 @@ struct MyFitView: View {
     @Query(sort: \BikeFit.created, order: .reverse) private var bikeFits: [BikeFit]
     
     var body: some View {
-//        GeometryReader { geometry in
         VStack (spacing: 0) {
-            
-            
             if bikeFits.isEmpty {
                 HStack {
                     Text("Create your first bike fit by pressing the + button above")

@@ -47,18 +47,4 @@ struct BikeFitRepository : BikeFitRepositoryProtocol {
             fatalError(error.localizedDescription)
         }
     }
-    
-    
-//    func fetchBikeFitsPublisher() -> AnyPublisher<[BikeFit], any Error> {
-//        
-//        Future { promise in
-//            do {
-//                let fetchRequest =
-//            }
-//        }
-//        
-//    }
-    
-
-    
 }

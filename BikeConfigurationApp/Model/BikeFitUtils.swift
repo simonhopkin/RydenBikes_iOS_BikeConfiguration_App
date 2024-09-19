@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Utility structure to house all the bike fit calculations
 struct BikeFitUtils {
     
     /// Computes `bbToSaddleX` and `bbToSaddleY` from `bbToSaddleCentre` and `bbToSaddleAngle`
@@ -17,8 +18,10 @@ struct BikeFitUtils {
             
         let saddleAngleRadians = (90 - bbToSaddleAngle) * .pi / 180.0
         
-        let x = bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
+        var x = bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
         let y = bbToSaddleCentre * cos(saddleAngleRadians) // calculate the adjacent (Y)
+        
+        x += 3  // add 3mm to setback x to account for tool used to measure saddle angle and centre
                
         return (bbToSaddleX: x, bbToSaddleY: y)
     }

@@ -58,7 +58,7 @@ struct MyFitSummaryView: View {
                         }
                         
                         HStack {
-                            Text("Saddle Setback (X): ").fontWeight(.medium)
+                            Text("Saddle Setback: ").fontWeight(.medium)
                             Spacer()
                             Text(String(format: "%.0f", bikeFit.bbToSaddleX)).foregroundStyle(Color("PrimaryTextColor"))
                         }
