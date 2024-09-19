@@ -18,7 +18,7 @@ struct MyFitDetailsView: View {
     
     @State private var displayInvalidBikeFitAlert = false
     @State private var displayInvalidBikeFitDiscardOption = false
-    
+        
     var body: some View {
         GeometryReader { geometry in
             
@@ -32,14 +32,27 @@ struct MyFitDetailsView: View {
                             .fontWeight((!viewModel.bikeFit.name.isEmpty ? .bold : .regular))
                             .font(.custom("Roboto-Regular", size: 16))
                         
+                        DatePicker(selection: $viewModel.bikeFit.created,
+                                   in: ...Date.now,
+                                   displayedComponents: [.date, .hourAndMinute]) {
+                            Text("Date: ")
+                                .padding(.top, 10)
+                                .padding(.bottom, 1)
+                                .font(.custom("Roboto-Regular", size: 14))
+                        }
+                        .datePickerStyle(.compact)
+                        .onTapGesture(count: 99, perform: {
+                            // overrides tap gesture to fix ios 17.1 bug
+                        })
+                        
                         HStack(alignment: .top, spacing: 20) {
                             
                             VStack (alignment: .leading) {
-                                Text("Notes")
+                                Text("Notes: ")
                                     .padding(.top, 10)
                                     .padding(.bottom, 1)
-                                    .font(.custom("Roboto-Light", size: 12))
-                                
+                                    .font(.custom("Roboto-Regular", size: 14))
+
                                 TextField("Bike fit notes", text: $viewModel.bikeFit.notes, axis: .vertical)
                                     .lineLimit(4)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -94,10 +107,10 @@ struct MyFitDetailsView: View {
                         fitSection("Saddle Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("Saddle Height (BB to saddle centre)", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleCentre)
-                                fitField("BB to Saddle Angle", suffix: "°", value: $viewModel.bikeFit.bbToSaddleAngle, format: "%.1f")
-                                fitField("Saddle Setback (BB to Saddle centre X)", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleX)
-                                fitField("BB to Saddle Centre Y", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleY)
+                                fitField("Saddle Height (BB to saddle centre): ", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleCentre)
+                                fitField("BB to Saddle Angle: ", suffix: "°", value: $viewModel.bikeFit.bbToSaddleAngle, format: "%.1f")
+                                fitField("Saddle Setback (BB to Saddle centre X): ", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleX)
+                                fitField("BB to Saddle Centre Y: ", suffix: "mm", value: $viewModel.bikeFit.bbToSaddleY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
@@ -125,10 +138,10 @@ struct MyFitDetailsView: View {
                         fitSection("Grip Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("Grip Reach (Saddle Centre to Grip position)", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
-                                fitField("Saddle to Grip Position Drop", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
-                                fitField("BB to Grip Position X", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
-                                fitField("BB to Grip Position Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
+                                fitField("Grip Reach (Saddle Centre to Grip position): ", suffix: "mm", value: $viewModel.bikeFit.saddleCentreToHand)
+                                fitField("Saddle to Grip Position Drop: ", suffix: "mm", value: $viewModel.bikeFit.saddleToHandDrop)
+                                fitField("BB to Grip Position X: ", suffix: "mm", value: $viewModel.bikeFit.bbToHandX)
+                                fitField("BB to Grip Position Y: ", suffix: "mm", value: $viewModel.bikeFit.bbToHandY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             
@@ -156,10 +169,10 @@ struct MyFitDetailsView: View {
                         fitSection("Handlebar Position")
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                fitField("BB to Handlebar Centre", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
-                                fitField("BB to Handlebar Centre Angle", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle, format: "%.1f")
-                                fitField("BB to Handlebar Centre X", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
-                                fitField("BB to Handlebar Centre Y", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
+                                fitField("BB to Handlebar Centre: ", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarCentre)
+                                fitField("BB to Handlebar Centre Angle: ", suffix: "°", value: $viewModel.bikeFit.bbToHandlebarAngle, format: "%.1f")
+                                fitField("BB to Handlebar Centre X: ", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarX)
+                                fitField("BB to Handlebar Centre Y: ", suffix: "mm", value: $viewModel.bikeFit.bbToHandlebarY)
                             }
                             .frame(width: geometry.size.width * 0.6)
                             

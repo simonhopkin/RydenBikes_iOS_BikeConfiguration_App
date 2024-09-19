@@ -30,7 +30,7 @@ extension DataSchemaV2 {
     @Model
     class BikeFit : Identifiable {
         let id: UUID
-        let created: Date
+        var created: Date
         var name: String
         var notes: String
         
