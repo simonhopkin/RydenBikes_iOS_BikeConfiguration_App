@@ -10,6 +10,7 @@ import SwiftData
 import Combine
 import _SwiftData_SwiftUI
 
+/// Repository for accessing and modifying bike fits from presistent storage
 struct BikeFitRepository : BikeFitRepositoryProtocol {
 
     private let modelContext: ModelContext

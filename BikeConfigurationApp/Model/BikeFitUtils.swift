@@ -134,7 +134,8 @@ struct BikeFitUtils {
     }
     
     static func computeBBToHandlebarAngleToolAdjustment(bbToHandlebarAngle: Double, bbToHandlebarCentre: Double) -> Double {
-        return  bbToHandlebarAngle - atan(32 / bbToHandlebarCentre)
+        let adjustedAngle = bbToHandlebarAngle - (atan(32.0 / bbToHandlebarCentre)  * 180.0 / .pi)
+        return adjustedAngle
     }
     
     static func updatePropertyIfChanged( _ property: inout Double, value: Double) {

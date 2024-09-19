@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+/// Protocol for the bike fit repository to allow different sources for bike fit retrieval
 protocol BikeFitRepositoryProtocol {
     func fetchBikeFits() -> [BikeFit]
     func addBikeFit(_ bikeFit: BikeFit)

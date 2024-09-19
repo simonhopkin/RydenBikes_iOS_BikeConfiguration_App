@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// Possible page routes
 enum Route : Hashable {
     case myFitView
     case myFitDetailsView(BikeFit)
@@ -15,6 +16,7 @@ enum Route : Hashable {
     case myBikes
 }
 
+/// Page coordinator to create views when navigation to a `Route`
 struct Coordinator {
 
     @MainActor @ViewBuilder func getViewForRoute(_ destination: Route, navigationPath: Binding<NavigationPath>, modelContext: ModelContext) -> some View {

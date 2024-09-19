@@ -13,7 +13,7 @@ struct HomeView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.openURL) var openURL
     @State var rootActivitySheet: (any View)?
-
+    
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack(spacing: 20) {

@@ -19,7 +19,6 @@ struct MeasureHandlebarPositionView: View {
     
     @State private var unAdjustedHandlebarCentre: Double = 0
 
-
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
     var body: some View {
