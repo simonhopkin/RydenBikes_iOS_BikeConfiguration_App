@@ -12,6 +12,7 @@
 		3E0FD9922C986749004A09DF /* MeasureHandlebarPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */; };
 		3E0FD9962C9869D0004A09DF /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9952C9869D0004A09DF /* MeasurementView.swift */; };
 		3E0FD9982C987186004A09DF /* MeasureHandPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */; };
+		3E1B64762C9C05BF0088C08A /* MyFitSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */; };
 		3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */; };
 		3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2140942C8A1378007BA9CA /* HomeView.swift */; };
 		3E2140972C8A137A007BA9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E2140962C8A137A007BA9CA /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		3E0FD9912C986749004A09DF /* MeasureHandlebarPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureHandlebarPositionView.swift; sourceTree = "<group>"; };
 		3E0FD9952C9869D0004A09DF /* MeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
 		3E0FD9972C987186004A09DF /* MeasureHandPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureHandPositionView.swift; sourceTree = "<group>"; };
+		3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitSummaryView.swift; sourceTree = "<group>"; };
 		3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeConfigurationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2140922C8A1378007BA9CA /* BikeConfigurationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeConfigurationAppApp.swift; sourceTree = "<group>"; };
 		3E2140942C8A1378007BA9CA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				3E87DC2B2C93381800B53289 /* ShareSheet.swift */,
+				3E1B64752C9C05BF0088C08A /* MyFitSummaryView.swift */,
 				3E87DC292C90A7D600B53289 /* DecimalTextField.swift */,
 				3E01B6252C95925800C70D78 /* CustomActivitySheetModal.swift */,
 			);
@@ -506,6 +509,7 @@
 				3E97B50E2C997CF80044FE51 /* BikeFitV2.swift in Sources */,
 				3E0FD9922C986749004A09DF /* MeasureHandlebarPositionView.swift in Sources */,
 				3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */,
+				3E1B64762C9C05BF0088C08A /* MyFitSummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +673,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;
@@ -707,7 +711,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BikeConfigurationApp/BikeConfigurationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeConfigurationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 229AAQ5WA9;
 				ENABLE_PREVIEWS = YES;

@@ -84,10 +84,10 @@ struct MeasureSaddlePositionView: View {
                 // Display setback x on the measurement view
                 
                 HStack {
-                    Text("Setback X")
+                    Text("Setback (X)")
                         .font(.custom("Roboto-Regular", size: 16))
                         .foregroundColor(Color.gray)
-                    Text(String(format: "%.1f", bikeFit.bbToSaddleX))
+                    Text(String(format: "%.0f", bikeFit.bbToSaddleX))
                         .font(.custom("Roboto-Medium", size: 18))
                         .foregroundColor(Color.primary)
                     Text("mm")
@@ -103,7 +103,7 @@ struct MeasureSaddlePositionView: View {
                         .stroke(Color.primary, lineWidth: 5)
                 )
                 .background(Color.white)
-                .position(x: geometry.size.width * 0.4, y: geometry.size.height * 0.7)
+                .position(x: geometry.size.width * 0.4, y: geometry.size.height * 0.1)
             }
         }
         .ignoresSafeArea(.keyboard)  // prevents the view from resizing when the keyboard appears

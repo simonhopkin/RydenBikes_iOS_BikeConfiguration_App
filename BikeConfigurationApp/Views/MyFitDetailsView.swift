@@ -10,7 +10,7 @@ import SwiftData
 import PhotosUI
 
 struct MyFitDetailsView: View {
-        
+    
     @Binding var navigationPath: NavigationPath
     @State var viewModel: MyFitDetailsViewModel
     
@@ -18,7 +18,7 @@ struct MyFitDetailsView: View {
     
     @State private var displayInvalidBikeFitAlert = false
     @State private var displayInvalidBikeFitDiscardOption = false
-
+    
     var body: some View {
         GeometryReader { geometry in
             
@@ -72,7 +72,14 @@ struct MyFitDetailsView: View {
                                         else {
                                             viewModel.bikeFit.image!
                                                 .resizable()
-                                                .aspectRatio(1.6, contentMode: .fit)
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(
+                                                    minWidth: 0,
+                                                    maxWidth: .infinity,
+                                                    minHeight: 0,
+                                                    maxHeight: .infinity
+                                                )
+                                                .aspectRatio(16 / 9, contentMode: .fill)
                                                 .cornerRadius(10)
                                         }
                                     }
@@ -98,7 +105,7 @@ struct MyFitDetailsView: View {
                                 Image("SaddlePositionGuide")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-
+                                
                                 Text("measure")
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                                     .font(.footnote)
@@ -129,7 +136,7 @@ struct MyFitDetailsView: View {
                                 Image("HandPositionGuide")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-
+                                
                                 Text("measure")
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                                     .font(.footnote)
@@ -160,7 +167,7 @@ struct MyFitDetailsView: View {
                                 Image("HandlebarPositionGuide")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-
+                                
                                 Text("measure")
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                                     .font(.footnote)
@@ -257,7 +264,7 @@ struct MyFitDetailsView: View {
                 .foregroundColor(Color("PrimaryTextColor"))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .fixedSize(horizontal: true, vertical: false)
-
+            
         }
         .frame(maxWidth: .infinity)
     }

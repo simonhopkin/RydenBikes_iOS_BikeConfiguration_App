@@ -39,96 +39,11 @@ struct MyFitView: View {
             }
             else {
                 List(bikeFits) { bikeFit in
-                    
-                    VStack (alignment: .leading) {
-                        
-                        Button {
-                            navigationPath.append(Route.myFitDetailsView(bikeFit))
-                        } label: {
-                            VStack(alignment: .leading, content: {
-                                
-                                HStack(alignment: .center) {
-                                    
-                                    Text(bikeFit.name)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(Color.primary)
-                                    
-                                    Spacer()
-                                    
-                                    // button to access action sheet to delete or share a `BikeFit`
-                                    Button {
-                                        selectedBikeFit = bikeFit
-                                        showActionSheet = true
-                                    } label: {
-                                        HStack (spacing: 1) {
-                                            Image(systemName: "circle.fill").font(.system(size: 5))
-                                            Image(systemName: "circle.fill").font(.system(size: 5))
-                                            Image(systemName: "circle.fill").font(.system(size: 5))
-                                        }
-                                    }
-                                }
-                                
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text("Setback: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToSaddleX)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                        HStack {
-                                            Text("Saddle Y: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToSaddleY)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                        HStack {
-                                            Text("Handlebar X: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToHandlebarX)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                        HStack {
-                                            Text("Handlebar Y: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToHandlebarY)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                        HStack {
-                                            Text("Grip X: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToHandX)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                        HStack {
-                                            Text("Grip Y: ").fontWeight(.medium)
-                                            Text(String(format: "%.0f", bikeFit.bbToHandY)).foregroundStyle(Color("PrimaryTextColor"))
-                                        }
-                                    }
-                                    .font(.custom("Roboto-Medium", size: 14))
-                                    .foregroundStyle(Color.primary)
-                                    
-                                    Spacer()
-                                    
-                                    if bikeFit.image != nil {
-                                        bikeFit.image!
-                                            .resizable()
-                                            .aspectRatio(1.6, contentMode: .fit)
-                                            .cornerRadius(10)
-                                            .frame(width: geometry.size.width * 0.5)
-                                    }
-                                    else {
-                                        Image("BikeGuides")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: geometry.size.width * 0.5)
-                                    }
-                                }
-                                
-                                // Display the bike notes if not empty
-                                if !bikeFit.notes.isEmpty {
-                                    Text("Notes")
-                                        .font(.custom("Roboto-Bold", size: 14))
-                                        .foregroundStyle(Color.primary)
-                                    Text(bikeFit.notes)
-                                        .font(.custom("Roboto-Regular", size: 14))
-                                        .foregroundStyle(Color.primary)
-                                }
-                            })
-                        }
-                    }
+                    MyFitSummaryView(bikeFit: bikeFit, 
+                                     selectedBikeFit: $selectedBikeFit,
+                                     navigationPath: $navigationPath)
                 }
-                .listRowSpacing(5)
+                .listRowSpacing(15)
                 .background(Color.gray)
             }
         }
@@ -194,8 +109,6 @@ struct MyFitView: View {
         }
     }
 }
-
-
 
 #Preview {
     @State var navigationPath = NavigationPath()
