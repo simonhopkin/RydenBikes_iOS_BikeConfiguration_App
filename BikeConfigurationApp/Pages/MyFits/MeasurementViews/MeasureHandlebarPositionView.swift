@@ -16,8 +16,6 @@ struct MeasureHandlebarPositionView: View {
     @Binding var navigationPath: NavigationPath
     @Binding var showGuidanceSheet: Bool
     
-    @State private var unAdjustedHandlebarCentre: Double = 0
-
     @EnvironmentObject var customActivitySheet: CustomActivitySheetModal
     
     var body: some View {
@@ -31,10 +29,7 @@ struct MeasureHandlebarPositionView: View {
                 Button {
                     customActivitySheet.showModal {
                         HandlebarHeightMeasurementView(isPresented: $customActivitySheet.isPresented,
-                                                       targetValue: $bikeFit.bbToHandlebarCentre) { value in
-                            unAdjustedHandlebarCentre = value
-                            return BikeFitUtils.computeBBToHandlebarCentreToolAdjustment(bbToHandlebarCentre: value)
-                        }
+                                                       targetValue: $bikeFit.bbToHandlebarCentre)
                     }
                 } label: {
                     HStack {
@@ -61,12 +56,7 @@ struct MeasureHandlebarPositionView: View {
                     customActivitySheet.showModal {
                         HandlebarAngleMeasurementView(isPresented: $customActivitySheet.isPresented,
                                                       targetValue: $bikeFit.bbToHandlebarAngle) { value in
-                            if unAdjustedHandlebarCentre != 0 {
-                                return BikeFitUtils.computeBBToHandlebarAngleToolAdjustment(bbToHandlebarAngle: value, bbToHandlebarCentre: unAdjustedHandlebarCentre)
-                            }
-                            else {
-                                return value
-                            }
+                            return BikeFitUtils.computeBBToHandlebarAngleToolAdjustment(bbToHandlebarAngle: value, bbToHandlebarCentre: bikeFit.bbToHandlebarCentre)
                         }
                     }
                 } label: {
