@@ -221,16 +221,6 @@ struct MyFitDetailsView: View {
                         Image(systemName: "chevron.left")
                         Text("My Fit")
                     }
-                }, trailing: Button(action: {
-                    if viewModel.bikeFit.isValid() {
-                        viewModel.saveBikeFit()
-                        navigationPath.removeLast()
-                    }
-                    else {
-                        displayInvalidBikeFitAlert = true
-                    }
-                }) {
-                    Text("Save")
                 })
             .alert("Bike Fit Incomplete", isPresented: $displayInvalidBikeFitAlert) {
                 Button("OK", role: .cancel) { }
