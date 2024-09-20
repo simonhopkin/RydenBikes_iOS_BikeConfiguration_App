@@ -29,7 +29,7 @@ extension DataSchemaV2 {
     /// private property.
     @Model
     class BikeFit : Identifiable {
-        let id: UUID
+        private(set) var id: UUID
         var created: Date
         var name: String
         var notes: String

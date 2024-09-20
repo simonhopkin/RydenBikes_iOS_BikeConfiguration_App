@@ -18,7 +18,7 @@ struct BikeFitUtils {
             
         let saddleAngleRadians = (90 - bbToSaddleAngle) * .pi / 180.0
         
-        var x = bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
+        let x = bbToSaddleCentre * sin(saddleAngleRadians) // calculate the opposite (X)
         let y = bbToSaddleCentre * cos(saddleAngleRadians) // calculate the adjacent (Y)
                        
         return (bbToSaddleX: x, bbToSaddleY: y)
