@@ -7,7 +7,6 @@
 
 
 import SwiftUI
-import Motion
 import CoreMotion
 
 struct MeasureHandPositionView: View {

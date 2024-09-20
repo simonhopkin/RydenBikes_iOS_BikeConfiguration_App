@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Motion
 import CoreMotion
 
 struct MeasureSaddlePositionView: View {

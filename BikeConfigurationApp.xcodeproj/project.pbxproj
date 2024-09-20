@@ -51,7 +51,7 @@
 		3EA04AB12C8C4B5E009BB9AC /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA52C8C4B5E009BB9AC /* Roboto-Italic.ttf */; };
 		3EA04AB22C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA62C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf */; };
 		3EA04AB32C8C4B5E009BB9AC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04AA72C8C4B5E009BB9AC /* Roboto-Regular.ttf */; };
-		3ECAC01C2C8A18DF008703C5 /* Motion in Frameworks */ = {isa = PBXBuildFile; productRef = 3ECAC01B2C8A18DF008703C5 /* Motion */; };
+		3EC265D72C9D5D6900E2CFAD /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC265D62C9D5D6900E2CFAD /* MotionManager.swift */; };
 		3ECAC01E2C8B44B7008703C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECAC01D2C8B44B7008703C5 /* SplashView.swift */; };
 		3ECAC0212C8B4E8C008703C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */; };
 		3EEA470D2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA470C2C9B0CB200AD8E39 /* GuidanceSaddlePositionView.swift */; };
@@ -125,6 +125,7 @@
 		3EA04AA52C8C4B5E009BB9AC /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		3EA04AA62C8C4B5E009BB9AC /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		3EA04AA72C8C4B5E009BB9AC /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3EC265D62C9D5D6900E2CFAD /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		3ECAC01D2C8B44B7008703C5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		3ECAC01F2C8B4E39008703C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,7 +139,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ECAC01C2C8A18DF008703C5 /* Motion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +249,7 @@
 				3E87DC282C90A7BD00B53289 /* Views */,
 				3E87DC1F2C907B4500B53289 /* ViewModels */,
 				3E645AF52C8CB168009866A9 /* Model */,
+				3EC265D82C9D5D7200E2CFAD /* Services */,
 				3E2140962C8A137A007BA9CA /* Assets.xcassets */,
 				3E2140982C8A137A007BA9CA /* Preview Content */,
 				3ECAC0202C8B4E8C008703C5 /* LaunchScreen.storyboard */,
@@ -387,6 +388,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		3EC265D82C9D5D7200E2CFAD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3EC265D62C9D5D6900E2CFAD /* MotionManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,7 +413,6 @@
 			);
 			name = BikeConfigurationApp;
 			packageProductDependencies = (
-				3ECAC01B2C8A18DF008703C5 /* Motion */,
 			);
 			productName = BikeConfigurationApp;
 			productReference = 3E21408F2C8A1378007BA9CA /* BikeConfigurationApp.app */;
@@ -479,7 +487,6 @@
 			);
 			mainGroup = 3E2140862C8A1378007BA9CA;
 			packageReferences = (
-				3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */,
 			);
 			productRefGroup = 3E2140902C8A1378007BA9CA /* Products */;
 			projectDirPath = "";
@@ -543,6 +550,7 @@
 				3E2140952C8A1378007BA9CA /* HomeView.swift in Sources */,
 				3E87DC2C2C93381800B53289 /* ShareSheet.swift in Sources */,
 				3E87DC272C9090AB00B53289 /* Coordinator.swift in Sources */,
+				3EC265D72C9D5D6900E2CFAD /* MotionManager.swift in Sources */,
 				3E2140932C8A1378007BA9CA /* BikeConfigurationAppApp.swift in Sources */,
 				3E97B50C2C997C2F0044FE51 /* BikeFitV1.swift in Sources */,
 				3E645AF82C8CB18E009866A9 /* BikeFit+Extensions.swift in Sources */,
@@ -914,25 +922,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:simonhopkin/RydenBikes_iOS_Motion_Swift_Package.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		3ECAC01B2C8A18DF008703C5 /* Motion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3ECAC01A2C8A18DF008703C5 /* XCRemoteSwiftPackageReference "RydenBikes_iOS_Motion_Swift_Package" */;
-			productName = Motion;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E2140872C8A1378007BA9CA /* Project object */;
 }
