@@ -72,8 +72,8 @@ struct MeasurementView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
-    @StateObject var customActivitySheetModal = CustomActivitySheetModal()
+    @Previewable @State var navigationPath = NavigationPath()
+    @Previewable @StateObject var customActivitySheetModal = CustomActivitySheetModal()
     let bikeFit = BikeFit.new()
     return MeasurementView(bikeFit: bikeFit, navigationPath: $navigationPath)
         .environmentObject(customActivitySheetModal)

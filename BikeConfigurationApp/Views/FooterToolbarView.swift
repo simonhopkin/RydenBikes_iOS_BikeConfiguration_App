@@ -66,6 +66,6 @@ struct FooterToolbarView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
+    @Previewable @State var navigationPath = NavigationPath()
     return FooterToolbarView(navigationPath: $navigationPath)
 }

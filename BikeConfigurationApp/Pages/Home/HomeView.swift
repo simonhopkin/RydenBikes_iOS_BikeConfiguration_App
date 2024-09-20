@@ -67,6 +67,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
+    @Previewable @State var navigationPath = NavigationPath()
     return HomeView(navigationPath: $navigationPath)
 }

@@ -96,6 +96,6 @@ struct GuidanceHandPositionView: View {
 }
 
 #Preview {
-    @State var showGuidanceSheet: Bool = false
+    @Previewable @State var showGuidanceSheet: Bool = false
     return GuidanceHandPositionView(showGuidanceSheet: $showGuidanceSheet)
 }

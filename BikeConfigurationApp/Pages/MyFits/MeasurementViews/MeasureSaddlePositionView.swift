@@ -314,9 +314,9 @@ struct MeasureSaddlePositionView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
-    @State var showGuidanceSheet = false
-    @StateObject var customActivitySheetModal = CustomActivitySheetModal()
+    @Previewable @State var navigationPath = NavigationPath()
+    @Previewable @State var showGuidanceSheet = false
+    @Previewable @StateObject var customActivitySheetModal = CustomActivitySheetModal()
     return MeasureSaddlePositionView(bikeFit: BikeFit.new(), navigationPath: $navigationPath, showGuidanceSheet: $showGuidanceSheet)
         .environmentObject(customActivitySheetModal)
         .customActivitySheet(customActivitySheetModal: customActivitySheetModal, backgroundColor: Color.primary.opacity(0.2))

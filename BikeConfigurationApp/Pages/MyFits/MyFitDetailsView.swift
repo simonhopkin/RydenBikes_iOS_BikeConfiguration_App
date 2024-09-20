@@ -287,7 +287,7 @@ struct MyFitDetailsView: View {
 
 
 #Preview {
-    @State var navigationPath = NavigationPath()
+    @Previewable @State var navigationPath = NavigationPath()
     let modelContainer = try! ModelContainer(for: BikeFit.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
     let modelContext = modelContainer.mainContext
     let bikeFit = BikeFit.new()

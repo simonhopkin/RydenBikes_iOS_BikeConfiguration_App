@@ -39,6 +39,6 @@ struct MyBikes: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
+    @Previewable @State var navigationPath = NavigationPath()
     return MyBikes(navigationPath: $navigationPath)
 }

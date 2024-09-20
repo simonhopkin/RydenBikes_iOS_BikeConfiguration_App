@@ -134,9 +134,9 @@ struct MyFitSummaryView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
-    @State var selectedBikeFit: BikeFit?
-    @State var showActionSheet: Bool = false
+    @Previewable @State var navigationPath = NavigationPath()
+    @Previewable @State var selectedBikeFit: BikeFit?
+    @Previewable @State var showActionSheet: Bool = false
     let bikeFit = BikeFit.new()
     return MyFitSummaryView(bikeFit: bikeFit, selectedBikeFit: $selectedBikeFit, showActionSheet: $showActionSheet, navigationPath: $navigationPath)
 }

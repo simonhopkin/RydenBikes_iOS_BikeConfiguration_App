@@ -114,8 +114,8 @@ struct MyFitView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
-    @Environment(\.modelContext) var modelContext
+    @Previewable @State var navigationPath = NavigationPath()
+    @Previewable @Environment(\.modelContext) var modelContext
     let viewModel = MyFitViewModel(bikeFitRepository: BikeFitRepository(modelContext: modelContext))
     return MyFitView(navigationPath: $navigationPath, viewModel: viewModel)
 }

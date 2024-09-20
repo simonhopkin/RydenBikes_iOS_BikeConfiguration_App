@@ -96,6 +96,6 @@ struct GuidanceSaddlePositionView: View {
 }
 
 #Preview {
-    @State var showGuidanceSheet: Bool = false
+    @Previewable @State var showGuidanceSheet: Bool = false
     return GuidanceSaddlePositionView(showGuidanceSheet: $showGuidanceSheet)
 }

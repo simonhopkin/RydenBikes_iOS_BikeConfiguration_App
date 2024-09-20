@@ -51,6 +51,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    @State var navigationPath = NavigationPath()
+    @Previewable @State var navigationPath = NavigationPath()
     return SplashView(navigationPath: $navigationPath)
 }
