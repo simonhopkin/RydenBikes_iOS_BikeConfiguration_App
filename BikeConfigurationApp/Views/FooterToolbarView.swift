@@ -62,6 +62,7 @@ struct FooterToolbarView: View {
             }
         }
         .padding(0)
+        .padding(.bottom, 5)
     }
 }
 
